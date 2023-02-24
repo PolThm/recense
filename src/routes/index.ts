@@ -11,6 +11,13 @@ export const router: Route[] = [
     component: HomePage,
   },
   {
+    key: 'census-route',
+    title: 'Nouveau recensement',
+    path: '/new-census',
+    enabled: true,
+    component: HomePage,
+  },
+  {
     key: 'about-route',
     title: 'À propos',
     path: '/about',

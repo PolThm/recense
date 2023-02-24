@@ -19,6 +19,8 @@ import appRoutes from '../routes';
 
 const accountFakeTabs = ['Profil', 'Tableau de bord', 'Déconnexion'];
 
+const APP_NAME = 'RECENSE';
+
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -60,7 +62,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            RECENSEMENT
+            {APP_NAME}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -117,7 +119,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            RECENSEMENT
+            {APP_NAME}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {appRoutes.map((page) => (
