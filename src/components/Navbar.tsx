@@ -93,9 +93,7 @@ const Navbar = () => {
               keepMounted
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {appRoutes.map((page) => (
                 <Link
