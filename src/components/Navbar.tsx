@@ -122,8 +122,10 @@ const Navbar = () => {
               letterSpacing: '.3rem',
               color: 'secondary.main',
               textDecoration: 'none',
+              alignItems: 'center',
             }}
           >
+            <LogoIcon sx={{ mr: 1 }} />
             {APP_NAME}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
