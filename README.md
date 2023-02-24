@@ -1,9 +1,9 @@
 # Recensement by Pol Thomas
 
-Made with: Vite + React + Redux + TS + Formik + MUI
+Made with: Vite + React + TS + Redux + MUI + Formik
 
 ## Install / Run / Test / Build
-- yarn install
-- yarn run dev
-- yarn run test
-- yarn build
+- pnpm install
+- pnpm run dev
+- pnpm run test
+- pnpm build

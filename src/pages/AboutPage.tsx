@@ -1,26 +1,23 @@
-import { Box, Paper, Typography } from '@mui/material';
-import { FC } from 'react';
+import { Container, Typography } from '@mui/material';
+import React, { FC } from 'react';
 
 const AboutPage: FC = () => {
   return (
-    <Box
-      height="60vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 1,
+        mt: -4,
+      }}
     >
-      <Paper
-        elevation={3}
-        sx={{ padding: '1rem', backgroundColor: 'secondary.light' }}
-      >
-        <Typography color="primary.dark" variant="h1">
-          About
-        </Typography>
-        <h1>This is the About Page</h1>
-        <div className="card" />
-      </Paper>
-    </Box>
+      <Typography variant="h1" gutterBottom>
+        À propos
+      </Typography>
+      <Typography variant="h2">Voici une autre page</Typography>
+    </Container>
   );
 };
 

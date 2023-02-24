@@ -12,10 +12,7 @@ const App: FC = () => {
     <Box height="100vh" display="flex" flexDirection="column">
       <Router>
         <Navbar />
-        <Paper
-          elevation={3}
-          sx={{ padding: '1rem', backgroundColor: 'secondary.light' }}
-        >
+        <Paper elevation={3} sx={{ p: 2, flex: 1 }}>
           <Routes>
             {appRoutes.map((route) => (
               <Route

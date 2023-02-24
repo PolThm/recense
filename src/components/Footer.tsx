@@ -1,31 +1,48 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Box, Link, Typography } from '@mui/material';
 import { FC } from 'react';
 
 const Footer: FC = () => {
   return (
     <Box
       sx={{
-        width: '100%',
-        height: 'auto',
-        backgroundColor: 'secondary.main',
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: 'primary.main',
+        py: 2,
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container direction="column" alignItems="center">
-          <Grid item xs={12}>
-            <Typography color="black" variant="h5">
-              React Starter App
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography color="textSecondary" variant="subtitle1">
-              {`${new Date().getFullYear()} | React | TS | Redux | MUI | React Router`}
-            </Typography>
-          </Grid>
-        </Grid>
-      </Container>
+      <Typography
+        variant="h6"
+        color="primary.contrastText"
+        sx={{
+          fontWeight: 400,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 0.8,
+        }}
+      >
+        Développé par
+        <Link
+          underline="none"
+          href="https://github.com/PolThm/recensement"
+          target="_blank"
+          rel="noopener noreferrer"
+          color="secondary"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+          }}
+        >
+          Pol Thomas
+          <GitHubIcon sx={{ fontSize: '1.5rem' }} />
+        </Link>
+      </Typography>
+      <Typography color="textSecondary" variant="subtitle1" sx={{ mt: 1 }}>
+        {`${new Date().getFullYear()} | Vite | React | TS | Redux | MUI | Formik`}
+      </Typography>
     </Box>
   );
 };
