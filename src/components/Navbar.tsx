@@ -56,13 +56,11 @@ const Navbar = () => {
               <Typography
                 variant="h6"
                 noWrap
-                component="a"
-                href="/"
                 sx={{
                   mr: 2,
                   fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: '.3rem',
+                  letterSpacing: 5,
                   color: 'inherit',
                   textDecoration: 'none',
                 }}
@@ -102,7 +100,9 @@ const Navbar = () => {
                   variant="button"
                 >
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page.title}</Typography>
+                    <Typography textAlign="center" sx={{ letterSpacing: 1 }}>
+                      {page.title}
+                    </Typography>
                   </MenuItem>
                 </Link>
               ))}
@@ -119,7 +119,7 @@ const Navbar = () => {
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: 5,
               color: 'secondary.main',
               textDecoration: 'none',
               alignItems: 'center',
@@ -139,10 +139,7 @@ const Navbar = () => {
                 variant="button"
               >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="center"
-                    sx={{ fontWeight: 500, letterSpacing: 1 }}
-                  >
+                  <Typography textAlign="center" sx={{ letterSpacing: 2 }}>
                     {page.title}
                   </Typography>
                 </MenuItem>
