@@ -1,4 +1,5 @@
-import AboutPage from '@/pages/AboutPage';
+import CensusPage from '@/pages/CensusPage';
+import DashboardPage from '@/pages/DashboardPage';
 import HomePage from '@/pages/HomePage';
 import { Route } from '@/types/interfaces';
 
@@ -13,16 +14,16 @@ export const router: Route[] = [
   {
     key: 'census-route',
     title: 'Nouveau recensement',
-    path: '/new-census',
+    path: '/census',
     enabled: true,
-    component: HomePage,
+    component: CensusPage,
   },
   {
-    key: 'about-route',
-    title: 'À propos',
-    path: '/about',
+    key: 'dashboard-route',
+    title: 'Tableau de bord',
+    path: '/dashboard',
     enabled: true,
-    component: AboutPage,
+    component: DashboardPage,
   },
 ];
 

@@ -17,7 +17,7 @@ import { NavLink } from 'react-router-dom';
 
 import appRoutes from '../routes';
 
-const accountFakeTabs = ['Profil', 'Tableau de bord', 'Déconnexion'];
+const accountFakeTabs = ['Profil', 'Paramètres', 'Déconnexion'];
 
 const APP_NAME = 'RECENSE';
 
@@ -87,7 +87,7 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {appRoutes.map((page) => (
+              {appRoutes.slice(1).map((page) => (
                 <Link
                   key={page.key}
                   component={NavLink}
@@ -122,7 +122,7 @@ const Navbar = () => {
             {APP_NAME}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {appRoutes.map((page) => (
+            {appRoutes.slice(1).map((page) => (
               <Link
                 key={page.key}
                 component={NavLink}
@@ -160,9 +160,9 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {accountFakeTabs.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {accountFakeTabs.map((tab) => (
+                <MenuItem key={tab} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{tab}</Typography>
                 </MenuItem>
               ))}
             </Menu>
