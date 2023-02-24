@@ -46,15 +46,13 @@ const Navbar = () => {
             color="inherit"
             underline="none"
             variant="button"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              color: 'secondary.main',
+            }}
           >
             <MenuItem onClick={handleCloseNavMenu}>
-              <LogoIcon
-                sx={{
-                  display: { xs: 'none', md: 'flex' },
-                  mr: 1,
-                  color: 'secondary.main',
-                }}
-              />
+              <LogoIcon sx={{ mr: 1 }} />
               <Typography
                 variant="h6"
                 noWrap
@@ -62,11 +60,10 @@ const Navbar = () => {
                 href="/"
                 sx={{
                   mr: 2,
-                  display: { xs: 'none', md: 'flex' },
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: 'secondary.main',
+                  color: 'inherit',
                   textDecoration: 'none',
                 }}
               >
