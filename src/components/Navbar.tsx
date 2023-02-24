@@ -40,30 +40,40 @@ const Navbar = () => {
     <AppBar position="static" sx={{ backgroundColor: 'primary.dark' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <LogoIcon
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              mr: 1,
-              color: 'secondary.main',
-            }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'secondary.main',
-              textDecoration: 'none',
-            }}
+          <Link
+            component={NavLink}
+            to="/"
+            color="inherit"
+            underline="none"
+            variant="button"
           >
-            {APP_NAME}
-          </Typography>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <LogoIcon
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  mr: 1,
+                  color: 'secondary.main',
+                }}
+              />
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'secondary.main',
+                  textDecoration: 'none',
+                }}
+              >
+                {APP_NAME}
+              </Typography>
+            </MenuItem>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -87,7 +97,7 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {appRoutes.slice(1).map((page) => (
+              {appRoutes.map((page) => (
                 <Link
                   key={page.key}
                   component={NavLink}
