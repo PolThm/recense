@@ -26,7 +26,7 @@ const Footer: FC = () => {
         Développé par
         <Link
           underline="none"
-          href="https://github.com/PolThm/recensement"
+          href="https://github.com/PolThm/recense"
           target="_blank"
           rel="noopener noreferrer"
           color="secondary"
