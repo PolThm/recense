@@ -27,7 +27,7 @@ export interface Profile {
   gender: string;
   situation: string;
   education: string;
-  income: number;
+  income: number | null;
 }
 
 export interface Lodging {
