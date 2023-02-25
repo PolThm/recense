@@ -17,7 +17,7 @@ const StatisticsPage: FC = () => {
         Mes archives
       </Typography>
       <Typography variant="h4">
-        Voici une page ou vous pourrez retrouver tous vos recensements
+        Voici une autre page ou vous pourrez retrouver tous vos recensements
       </Typography>
     </Container>
   );

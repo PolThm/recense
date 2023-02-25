@@ -17,7 +17,7 @@ const StatisticsPage: FC = () => {
         Statistics globales
       </Typography>
       <Typography variant="h4">
-        Voici une autre page ou vous pourrez retrouver les statistiques globales
+        Voici une page ou vous pourrez retrouver les statistiques globales
       </Typography>
     </Container>
   );
