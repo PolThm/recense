@@ -21,7 +21,7 @@ const HomePage: FC = () => {
           alignItems: 'center',
           color: 'primary.main',
           mb: 3,
-          fontSize: { xs: '3rem', sm: '4.5rem', md: '6rem' },
+          fontSize: { xs: '4.5rem', md: '6rem' },
         }}
       >
         <LogoIcon sx={{ mr: 2, fontSize: 'inherit' }} />
@@ -54,7 +54,9 @@ const HomePage: FC = () => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           alignItems: 'center',
+          justifyContent: 'center',
           gap: { xs: 4, md: 8 },
+          width: 1,
         }}
       >
         <Button

@@ -1,7 +1,11 @@
 import { Button, Container, Typography } from '@mui/material';
 import { FC } from 'react';
 
-const NewCensusLanding: FC = () => {
+type Props = {
+  startCensus: () => void;
+};
+
+const NewCensusLanding: FC<Props> = ({ startCensus }) => {
   return (
     <Container
       sx={{
@@ -20,7 +24,11 @@ const NewCensusLanding: FC = () => {
         Vous allez remplir un questionnaire
       </Typography>
 
-      <Button variant="contained" sx={{ mt: 8 }}>
+      <Typography textAlign="center">
+        Vous allez remplir un questionnaire
+      </Typography>
+
+      <Button variant="contained" sx={{ mt: 8 }} onClick={startCensus}>
         Commencer
       </Button>
     </Container>

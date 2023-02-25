@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
 import React, { FC, useState } from 'react';
 
+import BackButton from '@/components/BackButton';
 import CensusFormContact from '@/components/census-forms/CensusFormContact';
 import CensusFormLodging from '@/components/census-forms/CensusFormLodging';
 import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
@@ -9,16 +10,20 @@ import { Census } from '@/types/interfaces';
 
 const NewCensusPage: FC = () => {
   const [census, setCensus] = useState<Census | null>(null);
+  const [isStarted, setIsStarted] = useState(false);
 
   return (
     <Box sx={{ height: 1 }}>
-      {!census ? (
-        <NewCensusLanding />
+      {!isStarted ? (
+        <NewCensusLanding startCensus={() => setIsStarted(true)} />
       ) : (
         <Container>
-          <CensusFormContact />
-          <CensusFormProfile />
-          <CensusFormLodging />
+          <BackButton onClick={() => setIsStarted(false)} />
+          <Box>
+            <CensusFormContact />
+            <CensusFormProfile />
+            <CensusFormLodging />
+          </Box>
         </Container>
       )}
     </Box>
