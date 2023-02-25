@@ -3,11 +3,21 @@ html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-size: 14px;
+
+  .MuiButton-root {
+    min-width: 100%;
+  }
 }
+
+
 
 @media (min-width: 600px) { // sm
   html {
     font-size: 15px;
+
+    .MuiButton-root {
+      min-width: 20rem;
+    }
   }
 }
 

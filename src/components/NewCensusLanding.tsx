@@ -16,7 +16,10 @@ const NewCensusLanding: FC = () => {
       <Typography variant="h1" gutterBottom>
         Recensement
       </Typography>
-      <Typography variant="h4">Vous allez remplir un questionnaire</Typography>
+      <Typography variant="h2" textAlign="center">
+        Vous allez remplir un questionnaire
+      </Typography>
+
       <Button variant="contained" sx={{ mt: 8 }}>
         Commencer
       </Button>

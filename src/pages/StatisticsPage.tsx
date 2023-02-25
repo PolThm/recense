@@ -13,10 +13,10 @@ const StatisticsPage: FC = () => {
         mt: -3,
       }}
     >
-      <Typography variant="h1" gutterBottom>
+      <Typography variant="h1" textAlign='center' gutterBottom>
         Statistics Globales
       </Typography>
-      <Typography variant="h4">
+      <Typography variant="h4" textAlign="center">
         Voici une page ou vous pourrez retrouver les statistiques globales
       </Typography>
     </Container>

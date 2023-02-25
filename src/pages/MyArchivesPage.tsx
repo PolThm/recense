@@ -13,10 +13,10 @@ const StatisticsPage: FC = () => {
         mt: -3,
       }}
     >
-      <Typography variant="h1" gutterBottom>
+      <Typography variant="h1" textAlign='center' gutterBottom>
         Mes Archives
       </Typography>
-      <Typography variant="h4">
+      <Typography variant="h4" textAlign='center'>
         Voici une autre page ou vous pourrez retrouver tous vos recensements
       </Typography>
     </Container>
