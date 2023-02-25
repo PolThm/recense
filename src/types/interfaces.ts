@@ -6,3 +6,16 @@ export interface Route {
   path: string;
   component: FC;
 }
+
+export interface Census {
+  id: number | null;
+  date: string;
+  employeeName: string;
+  registeredPerson: RegisteredPerson;
+}
+
+export interface RegisteredPerson {
+  firstName: string;
+  lastName: string;
+  age: number | null;
+}

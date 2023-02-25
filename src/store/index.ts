@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import counterReducer from '@/store/counterSlice';
+import censusesReducer from '@/store/censusesSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    censuses: censusesReducer,
   },
 });
 
