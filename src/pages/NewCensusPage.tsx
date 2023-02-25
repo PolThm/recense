@@ -19,7 +19,7 @@ const NewCensusPage: FC = () => {
       ) : (
         <Container>
           <BackButton onClick={() => setIsStarted(false)} />
-          <Box>
+          <Box sx={{ mt: 2 }}>
             <CensusFormContact />
             <CensusFormProfile />
             <CensusFormLodging />
