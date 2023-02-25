@@ -1,5 +1,7 @@
-import AboutPage from '@/pages/AboutPage';
 import HomePage from '@/pages/HomePage';
+import MyArchivesPage from '@/pages/MyArchivesPage';
+import NewCensusPage from '@/pages/NewCensusPage';
+import StatisticsPage from '@/pages/StatisticsPage';
 import { Route } from '@/types/interfaces';
 
 export const router: Route[] = [
@@ -7,15 +9,25 @@ export const router: Route[] = [
     key: 'home-route',
     title: 'Accueil',
     path: '/',
-    enabled: true,
     component: HomePage,
   },
   {
-    key: 'about-route',
-    title: 'À propos',
-    path: '/about',
-    enabled: true,
-    component: AboutPage,
+    key: 'statistics-route',
+    title: 'Statistiques',
+    path: '/statistics',
+    component: StatisticsPage,
+  },
+  {
+    key: 'my-archives-route',
+    title: 'Mes archives',
+    path: '/my-archives',
+    component: MyArchivesPage,
+  },
+  {
+    key: 'new-census-route',
+    title: 'Recensement',
+    path: '/new-census',
+    component: NewCensusPage,
   },
 ];
 

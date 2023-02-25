@@ -17,7 +17,9 @@ import { NavLink } from 'react-router-dom';
 
 import appRoutes from '../routes';
 
-const accountFakeTabs = ['Profil', 'Tableau de bord', 'Déconnexion'];
+const accountFakeTabs = ['Profil', 'Paramètres', 'Déconnexion'];
+
+const APP_NAME = 'RECENSE';
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -38,30 +40,35 @@ const Navbar = () => {
     <AppBar position="static" sx={{ backgroundColor: 'primary.dark' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <LogoIcon
+          <Link
+            component={NavLink}
+            to="/"
+            color="inherit"
+            underline="none"
+            variant="button"
             sx={{
               display: { xs: 'none', md: 'flex' },
-              mr: 1,
               color: 'secondary.main',
-            }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'secondary.main',
-              textDecoration: 'none',
             }}
           >
-            MYAPP
-          </Typography>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <LogoIcon sx={{ mr: 1 }} />
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{
+                  mr: 2,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: 5,
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                {APP_NAME}
+              </Typography>
+            </MenuItem>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -81,9 +88,7 @@ const Navbar = () => {
               keepMounted
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {appRoutes.map((page) => (
                 <Link
@@ -95,7 +100,9 @@ const Navbar = () => {
                   variant="button"
                 >
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page.title}</Typography>
+                    <Typography textAlign="center" sx={{ letterSpacing: 1 }}>
+                      {page.title}
+                    </Typography>
                   </MenuItem>
                 </Link>
               ))}
@@ -112,15 +119,17 @@ const Navbar = () => {
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: 5,
               color: 'secondary.main',
               textDecoration: 'none',
+              alignItems: 'center',
             }}
           >
-            MYAPP
+            <LogoIcon sx={{ mr: 1 }} />
+            {APP_NAME}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {appRoutes.map((page) => (
+            {appRoutes.slice(1).map((page) => (
               <Link
                 key={page.key}
                 component={NavLink}
@@ -130,10 +139,7 @@ const Navbar = () => {
                 variant="button"
               >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="center"
-                    sx={{ fontWeight: 500, letterSpacing: 1 }}
-                  >
+                  <Typography textAlign="center" sx={{ letterSpacing: 2 }}>
                     {page.title}
                   </Typography>
                 </MenuItem>
@@ -158,9 +164,9 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {accountFakeTabs.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {accountFakeTabs.map((tab) => (
+                <MenuItem key={tab} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{tab}</Typography>
                 </MenuItem>
               ))}
             </Menu>

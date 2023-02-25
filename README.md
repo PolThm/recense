@@ -1,4 +1,4 @@
-# Recensement by Pol Thomas
+# Recense by Pol Thomas
 
 Made with: Vite + React + TS + Redux + MUI + Formik
 

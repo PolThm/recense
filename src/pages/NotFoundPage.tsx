@@ -6,12 +6,12 @@ const NotFoundPage: FC = () => {
   return (
     <Container
       sx={{
-        height: 1,
-        mt: -4,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        height: 1,
+        mt: -3,
       }}
     >
       <Typography variant="h1" gutterBottom sx={{ fontSize: '3rem' }}>

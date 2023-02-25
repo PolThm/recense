@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-const AboutPage: FC = () => {
+const NewCensusPage: FC = () => {
   return (
     <Container
       sx={{
@@ -10,15 +10,15 @@ const AboutPage: FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
-        mt: -4,
+        mt: -3,
       }}
     >
       <Typography variant="h1" gutterBottom>
-        À propos
+        Recensement
       </Typography>
-      <Typography variant="h2">Voici une autre page</Typography>
+      <Typography variant="h4">Vous allez remplir un questionnaire</Typography>
     </Container>
   );
 };
 
-export default AboutPage;
+export default NewCensusPage;
