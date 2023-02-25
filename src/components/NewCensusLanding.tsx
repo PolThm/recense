@@ -14,7 +14,7 @@ const NewCensusLanding: FC<Props> = ({ startCensus }) => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
-        mt: -3,
+        mt: -1,
       }}
     >
       <Typography variant="h1" gutterBottom>

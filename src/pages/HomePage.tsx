@@ -12,7 +12,7 @@ const HomePage: FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
-        mt: -3,
+        mt: -2,
       }}
     >
       <Box
