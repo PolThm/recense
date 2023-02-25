@@ -19,13 +19,13 @@ export interface Contact {
   firstName: string;
   lastName: string;
   mail: string;
-  phone: string;
+  phone?: string;
 }
 
 export interface Profile {
   age: number;
   gender: string;
-  socialSituation: string;
+  situation: string;
   education: string;
   income: number;
 }
