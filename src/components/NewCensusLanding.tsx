@@ -20,11 +20,8 @@ const NewCensusLanding: FC<Props> = ({ startCensus }) => {
       <Typography variant="h1" gutterBottom>
         Recensement
       </Typography>
-      <Typography variant="h2" textAlign="center">
-        Vous allez remplir un questionnaire
-      </Typography>
 
-      <Typography textAlign="center">
+      <Typography variant="h2" textAlign="center">
         Vous allez remplir un questionnaire
       </Typography>
 
