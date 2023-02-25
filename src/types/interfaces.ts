@@ -10,12 +10,28 @@ export interface Route {
 export interface Census {
   id: number | null;
   date: string;
-  employeeName: string;
-  registeredPerson: RegisteredPerson;
+  contact: Contact;
+  profile: Profile;
+  lodging: Lodging;
 }
 
-export interface RegisteredPerson {
+export interface Contact {
   firstName: string;
   lastName: string;
-  age: number | null;
+  mail: string;
+  phone: string;
+}
+
+export interface Profile {
+  age: number;
+  gender: string;
+  socialSituation: string;
+  education: string;
+  income: number;
+}
+
+export interface Lodging {
+  type: string;
+  location: string;
+  residents: number;
 }

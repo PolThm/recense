@@ -8,15 +8,8 @@ import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
 import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import NextButton from '@/components/NextButton';
+import { FormPages } from '@/types/enums';
 import { Census } from '@/types/interfaces';
-
-enum FormPages {
-  Landing = 0,
-  Contact = 1,
-  Profile = 2,
-  Lodging = 3,
-  Summary = 4,
-}
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormPages;
 
