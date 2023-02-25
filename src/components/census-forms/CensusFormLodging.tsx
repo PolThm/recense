@@ -5,7 +5,7 @@ type Props = {};
 const CensusFormLodging: FC<Props> = (props) => {
   const {} = props;
 
-  return <></>;
+  return <>CensusFormLodging</>;
 };
 
 export default CensusFormLodging;

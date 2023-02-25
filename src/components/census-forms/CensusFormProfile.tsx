@@ -5,7 +5,7 @@ type Props = {};
 const CensusFormProfile: FC<Props> = (props) => {
   const {} = props;
 
-  return <></>;
+  return <>CensusFormProfile</>;
 };
 
 export default CensusFormProfile;
