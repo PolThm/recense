@@ -32,6 +32,13 @@ const theme = createTheme({
       fontSize: '1.3rem',
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: { minWidth: '20rem' },
+      },
+    },
+  },
 });
 
 export default theme;
