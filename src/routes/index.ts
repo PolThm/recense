@@ -1,6 +1,7 @@
-import CensusPage from '@/pages/CensusPage';
-import DashboardPage from '@/pages/DashboardPage';
 import HomePage from '@/pages/HomePage';
+import MyArchivesPage from '@/pages/MyArchivesPage';
+import NewCensusPage from '@/pages/NewCensusPage';
+import StatisticsPage from '@/pages/StatisticsPage';
 import { Route } from '@/types/interfaces';
 
 export const router: Route[] = [
@@ -8,22 +9,25 @@ export const router: Route[] = [
     key: 'home-route',
     title: 'Accueil',
     path: '/',
-    enabled: true,
     component: HomePage,
   },
   {
-    key: 'census-route',
-    title: 'Nouveau recensement',
-    path: '/census',
-    enabled: true,
-    component: CensusPage,
+    key: 'statistics-route',
+    title: 'Statistiques',
+    path: '/statistics',
+    component: StatisticsPage,
   },
   {
-    key: 'dashboard-route',
-    title: 'Tableau de bord',
-    path: '/dashboard',
-    enabled: true,
-    component: DashboardPage,
+    key: 'my-archives-route',
+    title: 'Mes archives',
+    path: '/my-archives',
+    component: MyArchivesPage,
+  },
+  {
+    key: 'new-census-route',
+    title: 'Recensement',
+    path: '/new-census',
+    component: NewCensusPage,
   },
 ];
 

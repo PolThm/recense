@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-const DashboardPage: FC = () => {
+const NewCensusPage: FC = () => {
   return (
     <Container
       sx={{
@@ -14,14 +14,11 @@ const DashboardPage: FC = () => {
       }}
     >
       <Typography variant="h1" gutterBottom>
-        Tableau de bord
+        Nouveau recensement
       </Typography>
-      <Typography variant="h4">
-        Voici une autre page ou vous pourrez retrouver vos précedents
-        recensement et les statistiques globales
-      </Typography>
+      <Typography variant="h3">Vous allez remplir un questionnaire</Typography>
     </Container>
   );
 };
 
-export default DashboardPage;
+export default NewCensusPage;

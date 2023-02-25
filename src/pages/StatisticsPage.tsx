@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
-const CensusPage: FC = () => {
+const StatisticsPage: FC = () => {
   return (
     <Container
       sx={{
@@ -14,11 +14,13 @@ const CensusPage: FC = () => {
       }}
     >
       <Typography variant="h1" gutterBottom>
-        Nouveau recensement
+        Statistics globales
       </Typography>
-      <Typography variant="h3">Vous allez remplir un questionnaire</Typography>
+      <Typography variant="h4">
+        Voici une autre page ou vous pourrez retrouver les statistiques globales
+      </Typography>
     </Container>
   );
 };
 
-export default CensusPage;
+export default StatisticsPage;
