@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
 import { FC } from 'react';
 
 const NewCensusPage: FC = () => {
@@ -17,6 +17,9 @@ const NewCensusPage: FC = () => {
         Recensement
       </Typography>
       <Typography variant="h4">Vous allez remplir un questionnaire</Typography>
+      <Button variant="contained" sx={{ mt: 8 }}>
+        Commencer
+      </Button>
     </Container>
   );
 };
