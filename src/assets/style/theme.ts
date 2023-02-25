@@ -28,6 +28,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Open Sans, sans-serif',
+    button: {
+      fontSize: '1.3rem',
+    },
   },
 });
 

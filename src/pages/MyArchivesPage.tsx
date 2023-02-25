@@ -14,7 +14,7 @@ const StatisticsPage: FC = () => {
       }}
     >
       <Typography variant="h1" gutterBottom>
-        Mes archives
+        Mes Archives
       </Typography>
       <Typography variant="h4">
         Voici une autre page ou vous pourrez retrouver tous vos recensements

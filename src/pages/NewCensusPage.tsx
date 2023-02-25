@@ -14,7 +14,7 @@ const NewCensusPage: FC = () => {
       }}
     >
       <Typography variant="h1" gutterBottom>
-        Nouveau recensement
+        Recensement
       </Typography>
       <Typography variant="h4">Vous allez remplir un questionnaire</Typography>
     </Container>

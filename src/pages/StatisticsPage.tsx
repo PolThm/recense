@@ -14,7 +14,7 @@ const StatisticsPage: FC = () => {
       }}
     >
       <Typography variant="h1" gutterBottom>
-        Statistics globales
+        Statistics Globales
       </Typography>
       <Typography variant="h4">
         Voici une page ou vous pourrez retrouver les statistiques globales
