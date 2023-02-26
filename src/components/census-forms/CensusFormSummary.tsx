@@ -2,9 +2,7 @@ import { FC } from 'react';
 
 type Props = {};
 
-const CensusFormSummary: FC<Props> = (props) => {
-  const {} = props;
-
+const CensusFormSummary: FC<Props> = ({}) => {
   return <>CensusFormSummary</>;
 };
 
