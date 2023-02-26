@@ -40,8 +40,8 @@ const NewCensusPage: FC = () => {
       return;
     }
 
-    // setCurrentScreen(currentScreen + 1);
-    redirect('/my-archives');
+    setCurrentScreen(currentScreen + 1);
+    // redirect('/my-archives');
   };
 
   return (
