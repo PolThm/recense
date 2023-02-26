@@ -1,11 +1,11 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import ArchivePreview from '@/components/ArchivePreview';
 import { RootState } from '@/store';
 
-const StatisticsPage: FC = () => {
+const MyArchivesPage: FC = () => {
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
   );
@@ -25,6 +25,7 @@ const StatisticsPage: FC = () => {
       </Typography>
       <Typography variant="h4">Retrouvez tous vos recensements</Typography>
 
+      {/* TODO: Fix Grid style */}
       <Grid container columns={3} spacing={4} sx={{ my: 4 }}>
         {censuses.map((census) => {
           const { date, contact } = census;
@@ -41,4 +42,4 @@ const StatisticsPage: FC = () => {
   );
 };
 
-export default StatisticsPage;
+export default MyArchivesPage;
