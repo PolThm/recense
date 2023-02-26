@@ -10,6 +10,7 @@ export interface Route {
 export interface Census {
   id: number | null;
   date: string;
+  consent: boolean;
   contact: Contact;
   profile: Profile;
   lodging: Lodging;

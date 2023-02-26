@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import BackButton from '@/components/BackButton';
 import CensusFormContact from '@/components/census-forms/CensusFormContact';
@@ -19,6 +19,8 @@ const { Landing, Contact, Profile, Lodging, Summary } = FormScreens;
 
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [census, setCensus] = useState<Census | null>(null);
   const [currentScreen, setCurrentScreen] = useState(Landing);
 
@@ -35,13 +37,11 @@ const NewCensusPage: FC = () => {
 
       // setCensus(newCensus);
       dispatch(addCensus(newCensus));
-
-      redirect('/my-archives');
+      navigate('/my-archives');
       return;
     }
 
     setCurrentScreen(currentScreen + 1);
-    // redirect('/my-archives');
   };
 
   return (
@@ -64,7 +64,10 @@ const NewCensusPage: FC = () => {
             {currentScreen === Lodging && <CensusFormLodging />}
             {currentScreen === Summary && <CensusFormSummary />}
           </Box>
-          <NextButton onClick={next}>
+          <NextButton
+            onClick={next}
+            isDisabled={currentScreen === Summary && true}
+          >
             {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
           </NextButton>
         </Container>

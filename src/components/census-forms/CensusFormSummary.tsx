@@ -14,7 +14,9 @@ const CensusFormSummary: FC<Props> = ({}) => {
         checked={checked}
         onChange={() => setChecked(!checked)}
       />
-      <label htmlFor="confirm">J'ai bien vérifié mes informations</label>
+      <label htmlFor="confirm">
+        L'utilisateur confirme d'envoyer ses données
+      </label>
     </form>
   );
 };

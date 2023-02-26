@@ -4,6 +4,7 @@ const censusesMock: Census[] = [
   {
     id: 1,
     date: '2023-01-22',
+    consent: true,
     contact: {
       firstName: 'Jean',
       lastName: 'Dupont',
@@ -26,6 +27,7 @@ const censusesMock: Census[] = [
   {
     id: 2,
     date: '2023-02-14',
+    consent: true,
     contact: {
       firstName: 'Marie',
       lastName: 'Durand',
@@ -48,6 +50,7 @@ const censusesMock: Census[] = [
   {
     id: 3,
     date: '2023-02-20',
+    consent: true,
     contact: {
       firstName: 'Pierre',
       lastName: 'Martin',
@@ -72,6 +75,7 @@ const censusesMock: Census[] = [
 export const fakeCensus: Census = {
   id: 4,
   date: '2023-02-26',
+  consent: true,
   contact: {
     firstName: '',
     lastName: 'Fake Name',
