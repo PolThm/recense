@@ -12,7 +12,7 @@ const HomePage: FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
-        mt: -3,
+        mt: -2,
       }}
     >
       <Box
@@ -21,7 +21,7 @@ const HomePage: FC = () => {
           alignItems: 'center',
           color: 'primary.main',
           mb: 3,
-          fontSize: '6rem',
+          fontSize: { xs: '4.5rem', md: '6rem' },
         }}
       >
         <LogoIcon sx={{ mr: 2, fontSize: 'inherit' }} />
@@ -36,19 +36,27 @@ const HomePage: FC = () => {
             color: 'inherit',
             textDecoration: 'none',
             fontSize: 'inherit',
+            display: { xs: 'none', sm: 'block' },
           }}
         >
           RECENSE
         </Typography>
       </Box>
-      <Typography variant="h2" sx={{ fontSize: '2.5rem', mb: 8 }}>
+      <Typography
+        variant="h2"
+        textAlign="center"
+        sx={{ fontSize: '2.5rem', mb: 8 }}
+      >
         L'application des professionnels du recensement
       </Typography>
       <Box
         sx={{
           display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
           alignItems: 'center',
-          gap: 8,
+          justifyContent: 'center',
+          gap: { xs: 4, md: 8 },
+          width: 1,
         }}
       >
         <Button
@@ -56,7 +64,6 @@ const HomePage: FC = () => {
           to="/new-census"
           variant="contained"
           color="secondary"
-          sx={{ color: 'primary.main' }}
         >
           RECENSEMENT
         </Button>

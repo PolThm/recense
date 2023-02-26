@@ -31,4 +31,31 @@ export const router: Route[] = [
   },
 ];
 
+export const newRouter = [
+  {
+    key: 'home-route',
+    title: 'Accueil',
+    path: '/',
+    element: HomePage,
+  },
+  {
+    key: 'statistics-route',
+    title: 'Statistiques',
+    path: '/statistics',
+    element: StatisticsPage,
+  },
+  {
+    key: 'my-archives-route',
+    title: 'Mes archives',
+    path: '/my-archives',
+    element: MyArchivesPage,
+  },
+  {
+    key: 'new-census-route',
+    title: 'Recensement',
+    path: '/new-census',
+    element: NewCensusPage,
+  },
+];
+
 export default router;

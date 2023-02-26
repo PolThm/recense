@@ -1,16 +1,25 @@
 import { Box, Paper } from '@mui/material';
-import { FC } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import censusesMock from '@/mocks/CensusesMock';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
+import { fetchCensuses } from '@/store/censusesSlice';
 
 const App: FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCensuses(censusesMock));
+  }, [dispatch]);
+
   return (
     <Box height="100vh" display="flex" flexDirection="column">
-      <Router>
+      <BrowserRouter>
         <Navbar />
         <Paper elevation={3} sx={{ p: 2, flex: 1 }}>
           <Routes>
@@ -25,7 +34,7 @@ const App: FC = () => {
           </Routes>
         </Paper>
         <Footer />
-      </Router>
+      </BrowserRouter>
     </Box>
   );
 };

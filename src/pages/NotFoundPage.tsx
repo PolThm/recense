@@ -14,7 +14,12 @@ const NotFoundPage: FC = () => {
         mt: -3,
       }}
     >
-      <Typography variant="h1" gutterBottom sx={{ fontSize: '3rem' }}>
+      <Typography
+        variant="h1"
+        textAlign="center"
+        gutterBottom
+        sx={{ fontSize: '3rem' }}
+      >
         Oups, page non trouvée...
       </Typography>
       <Link
