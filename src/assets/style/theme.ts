@@ -72,12 +72,4 @@ theme.typography.h6 = {
   [theme.breakpoints.down('md')]: { fontSize: '1.2rem' },
   [theme.breakpoints.down('sm')]: { fontSize: '1rem' },
 };
-
-theme.typography.button = {
-  ...theme.typography.button,
-  fontSize: '1.3rem',
-  [theme.breakpoints.down('md')]: { fontSize: '1.2rem' },
-  [theme.breakpoints.down('sm')]: { fontSize: '1rem' },
-};
-
 export default theme;

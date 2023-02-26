@@ -4,6 +4,10 @@ html {
   scroll-behavior: smooth;
   font-size: 14px;
 
+  .MuiButton-root {
+    font-size: 1rem;
+  }
+
   .MuiButton-sizeMedium {
     min-width: 100%;
   }
@@ -12,7 +16,21 @@ html {
 
 
 @media (min-width: 600px) { // sm
-  html .MuiButton-sizeMedium  {
-    min-width: 20rem;
+  html {
+    .MuiButton-sizeMedium {
+      min-width: 20rem;
+    }
+
+    .MuiButton-root {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (min-width: 600px) { // md
+  html {
+    .MuiButton-root {
+      font-size: 1.3rem;
+    }
   }
 }
