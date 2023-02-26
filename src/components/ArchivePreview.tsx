@@ -13,9 +13,15 @@ type Props = {
   name: string;
   date: string;
   deleteArchive: () => void;
+  openArchive: () => void;
 };
 
-const ArchivePreview: FC<Props> = ({ name, date, deleteArchive }) => {
+const ArchivePreview: FC<Props> = ({
+  name,
+  date,
+  deleteArchive,
+  openArchive,
+}) => {
   return (
     <Card sx={{ backgroundColor: 'primary.main' }} variant="elevation">
       <CardContent sx={{ color: 'text.secondary', position: 'relative' }}>
@@ -35,7 +41,12 @@ const ArchivePreview: FC<Props> = ({ name, date, deleteArchive }) => {
         </IconButton>
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button size="small" color="secondary" sx={{ textTransform: 'none' }}>
+        <Button
+          size="small"
+          color="secondary"
+          sx={{ textTransform: 'none' }}
+          onClick={openArchive}
+        >
           Ouvrir
         </Button>
       </CardActions>

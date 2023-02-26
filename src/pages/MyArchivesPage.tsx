@@ -1,7 +1,8 @@
 import { Container, Grid, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ArchiveModal from '@/components/ArchiveModal';
 import ArchivePreview from '@/components/ArchivePreview';
 import { RootState } from '@/store';
 import { deleteCensus } from '@/store/censusesSlice';
@@ -11,6 +12,8 @@ const MyArchivesPage: FC = () => {
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
   );
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const deleteArchive = (id: number) => {
     dispatch(deleteCensus(id));
@@ -36,14 +39,23 @@ const MyArchivesPage: FC = () => {
           const { id, date, contact } = census;
           const name = `${contact.firstName} ${contact.lastName}`;
 
+          if (!id) return null;
           return (
-            <Grid item xs={12} sm={6} md={4} key={census.id}>
-              <ArchivePreview
-                name={name}
-                date={date}
-                deleteArchive={() => id && deleteArchive(id)}
+            <>
+              <Grid item xs={12} sm={6} md={4} key={census.id}>
+                <ArchivePreview
+                  name={name}
+                  date={date}
+                  deleteArchive={() => deleteArchive(id)}
+                  openArchive={() => setIsModalOpen(true)}
+                />
+              </Grid>
+              <ArchiveModal
+                census={census}
+                isOpen={isModalOpen}
+                handleClose={() => setIsModalOpen(false)}
               />
-            </Grid>
+            </>
           );
         })}
       </Grid>
