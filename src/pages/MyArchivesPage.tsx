@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ArchiveModal from '@/components/ArchiveModal';
 import ArchivePreview from '@/components/ArchivePreview';
+import ConfirmModal from '@/components/ConfirmModal';
 import { RootState } from '@/store';
 import { deleteCensus } from '@/store/censusesSlice';
 import { Census } from '@/types/interfaces';
@@ -14,12 +15,24 @@ const MyArchivesPage: FC = () => {
     (state: RootState) => state.censusesStore.censuses
   );
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [currentCensus, setCurrentCensus] = useState<Census | null>(null);
 
   const openArchiveModal = (census: Census) => {
     setCurrentCensus(census);
-    setIsModalOpen(true);
+    setIsArchiveModalOpen(true);
+  };
+
+  const openConfirmModal = (census: Census) => {
+    setCurrentCensus(census);
+    setIsConfirmModalOpen(true);
+  };
+
+  const confirmArchiveDeletion = () => {
+    if (!currentCensus?.id) return;
+    dispatch(deleteCensus(currentCensus.id));
+    setIsConfirmModalOpen(false);
   };
 
   return (
@@ -48,7 +61,7 @@ const MyArchivesPage: FC = () => {
               <ArchivePreview
                 name={name}
                 date={date}
-                deleteArchive={() => dispatch(deleteCensus(id))}
+                deleteArchive={() => openConfirmModal(census)}
                 openArchive={() => openArchiveModal(census)}
               />
             </Grid>
@@ -58,10 +71,17 @@ const MyArchivesPage: FC = () => {
       {currentCensus && (
         <ArchiveModal
           census={currentCensus}
-          isOpen={isModalOpen}
-          handleClose={() => setIsModalOpen(false)}
+          isOpen={isArchiveModalOpen}
+          handleClose={() => setIsArchiveModalOpen(false)}
         />
       )}
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        handleClose={() => setIsConfirmModalOpen(false)}
+        confirmAction={() => confirmArchiveDeletion()}
+      >
+        Êtes-vous sûr de vouloir supprimer cette archive ?
+      </ConfirmModal>
     </Container>
   );
 };
