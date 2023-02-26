@@ -14,13 +14,12 @@ const StatisticsPage: FC = () => {
       (census) => census.profile.age !== undefined
     );
 
-    const ageAverage =
+    return (
       filteredCensuses.reduce((acc, census) => {
         if (!census.profile.age) return acc;
         return acc + census.profile.age;
-      }, 0) / filteredCensuses.length;
-
-    return ageAverage;
+      }, 0) / filteredCensuses.length
+    );
   };
 
   return (
