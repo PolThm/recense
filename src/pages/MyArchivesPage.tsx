@@ -6,6 +6,7 @@ import ArchiveModal from '@/components/ArchiveModal';
 import ArchivePreview from '@/components/ArchivePreview';
 import { RootState } from '@/store';
 import { deleteCensus } from '@/store/censusesSlice';
+import { Census } from '@/types/interfaces';
 
 const MyArchivesPage: FC = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,11 @@ const MyArchivesPage: FC = () => {
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentCensus, setCurrentCensus] = useState<Census | null>(null);
 
-  const deleteArchive = (id: number) => {
-    dispatch(deleteCensus(id));
+  const openArchiveModal = (census: Census) => {
+    setCurrentCensus(census);
+    setIsModalOpen(true);
   };
 
   return (
@@ -41,24 +44,24 @@ const MyArchivesPage: FC = () => {
 
           if (!id) return null;
           return (
-            <>
-              <Grid item xs={12} sm={6} md={4} key={census.id}>
-                <ArchivePreview
-                  name={name}
-                  date={date}
-                  deleteArchive={() => deleteArchive(id)}
-                  openArchive={() => setIsModalOpen(true)}
-                />
-              </Grid>
-              <ArchiveModal
-                census={census}
-                isOpen={isModalOpen}
-                handleClose={() => setIsModalOpen(false)}
+            <Grid item xs={12} sm={6} md={4} key={census.id}>
+              <ArchivePreview
+                name={name}
+                date={date}
+                deleteArchive={() => dispatch(deleteCensus(id))}
+                openArchive={() => openArchiveModal(census)}
               />
-            </>
+            </Grid>
           );
         })}
       </Grid>
+      {currentCensus && (
+        <ArchiveModal
+          census={currentCensus}
+          isOpen={isModalOpen}
+          handleClose={() => setIsModalOpen(false)}
+        />
+      )}
     </Container>
   );
 };
