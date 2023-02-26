@@ -45,7 +45,7 @@ const StatisticsPage: FC = () => {
         textAlign="center"
         sx={{ mt: 4, color: 'primary.main' }}
       >
-        Age moyen: {getAgeAverage()} ans
+        Age moyen : {getAgeAverage()} ans
       </Typography>
     </Container>
   );
