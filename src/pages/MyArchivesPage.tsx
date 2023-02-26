@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -25,14 +25,13 @@ const MyArchivesPage: FC = () => {
       </Typography>
       <Typography variant="h4">Retrouvez tous vos recensements</Typography>
 
-      {/* TODO: Fix Grid style */}
-      <Grid container columns={3} spacing={4} sx={{ my: 4 }}>
+      <Grid container spacing={4} sx={{ my: 4 }}>
         {censuses.map((census) => {
           const { date, contact } = census;
           const name = `${contact.firstName} ${contact.lastName}`;
 
           return (
-            <Grid item key={census.id}>
+            <Grid item xs={12} sm={6} md={4} key={census.id}>
               <ArchivePreview name={name} date={date} />
             </Grid>
           );

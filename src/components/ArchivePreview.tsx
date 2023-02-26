@@ -14,10 +14,7 @@ type Props = {
 
 const ArchivePreview: FC<Props> = ({ name, date }) => {
   return (
-    <Card
-      sx={{ minWidth: 275, backgroundColor: 'primary.light' }}
-      variant="elevation"
-    >
+    <Card sx={{ backgroundColor: 'primary.main' }} variant="elevation">
       <CardContent sx={{ color: 'text.secondary' }}>
         <Typography sx={{ fontSize: 14 }} gutterBottom>
           {date}
