@@ -17,26 +17,51 @@ import { Census } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormScreens;
 
+const defaultCensus: Census = {
+  id: null,
+  date: '',
+  consent: false,
+  contact: {
+    firstName: '',
+    lastName: '',
+    mail: '',
+    phone: '',
+  },
+  profile: {
+    age: null,
+    gender: '',
+    situation: '',
+    education: '',
+    income: null,
+  },
+  lodging: {
+    type: '',
+    location: '',
+    residents: null,
+  },
+};
+
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [census, setCensus] = useState<Census | null>(null);
   const [currentScreen, setCurrentScreen] = useState(Landing);
-
-  const [firstName, setFirstName] = useState('');
+  const [census, setCensus] = useState<Census>(defaultCensus);
+  const { id, date, consent, contact, profile, lodging } = census;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
+    // set first name for this example
+    const firstName = e.target.value;
+    setCensus({ ...census, contact: { ...contact, firstName } });
   };
 
   const next = () => {
     if (currentScreen === Summary) {
-      const newCensus = fakeCensus;
-      newCensus.contact.firstName = firstName;
+      fakeCensus.contact.firstName = census.contact.firstName;
+      dispatch(addCensus(fakeCensus));
 
-      // setCensus(newCensus);
-      dispatch(addCensus(newCensus));
+      // TODO: Add real census and remove line above
+      // dispatch(addCensus(census));
       navigate('/my-archives');
       return;
     }
@@ -56,7 +81,7 @@ const NewCensusPage: FC = () => {
           <Box sx={{ my: 2 }}>
             {currentScreen === Contact && (
               <CensusFormContact
-                firstName={firstName}
+                firstName={contact.firstName}
                 handleChange={handleChange}
               />
             )}
@@ -66,7 +91,7 @@ const NewCensusPage: FC = () => {
           </Box>
           <NextButton
             onClick={next}
-            isDisabled={currentScreen === Summary && true}
+            isDisabled={currentScreen === Summary && consent}
           >
             {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
           </NextButton>

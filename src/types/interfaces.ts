@@ -24,7 +24,7 @@ export interface Contact {
 }
 
 export interface Profile {
-  age: number;
+  age: number | null;
   gender: string;
   situation: string;
   education: string;
@@ -34,5 +34,5 @@ export interface Profile {
 export interface Lodging {
   type: string;
   location: string;
-  residents: number;
+  residents: number | null;
 }

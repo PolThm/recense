@@ -14,7 +14,7 @@ const censusesMock: Census[] = [
     profile: {
       age: 35,
       gender: 'homme',
-      situation: 'marié',
+      situation: 'marié(e)',
       education: 'diplôme étude supérieures',
       income: 45000,
     },
@@ -60,7 +60,7 @@ const censusesMock: Census[] = [
     profile: {
       age: 28,
       gender: 'homme',
-      situation: 'marié',
+      situation: 'Veuf/Veuve',
       education: 'sans diplôme',
       income: 28000,
     },
@@ -78,14 +78,14 @@ export const fakeCensus: Census = {
   consent: true,
   contact: {
     firstName: '',
-    lastName: 'Fake Name',
+    lastName: 'Dubois',
     mail: 'fake.census@email.com',
     phone: '0456789012',
   },
   profile: {
     age: 60,
     gender: 'homme',
-    situation: 'marié',
+    situation: 'marié(e)',
     education: 'baccalauréat',
     income: 15000,
   },
