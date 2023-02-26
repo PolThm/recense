@@ -16,9 +16,13 @@ function findCensusIndex(state: CensusesState, id: number) {
 }
 
 export const censusesSlice = createSlice({
-  name: 'censuses',
+  name: 'censusesStore',
   initialState,
   reducers: {
+    fetchCensuses: (state, action: PayloadAction<Census[]>) => {
+      state.censuses = action.payload;
+    },
+
     addCensus: (state, action: PayloadAction<Census>) => {
       state.censuses = [...state.censuses, action.payload];
     },
@@ -36,6 +40,7 @@ export const censusesSlice = createSlice({
   },
 });
 
-export const { addCensus, updateCensus, deleteCensus } = censusesSlice.actions;
+export const { addCensus, updateCensus, deleteCensus, fetchCensuses } =
+  censusesSlice.actions;
 
 export default censusesSlice.reducer;

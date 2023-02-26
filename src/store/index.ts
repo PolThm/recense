@@ -4,7 +4,7 @@ import censusesReducer from '@/store/censusesSlice';
 
 export const store = configureStore({
   reducer: {
-    censuses: censusesReducer,
+    censusesStore: censusesReducer,
   },
 });
 
