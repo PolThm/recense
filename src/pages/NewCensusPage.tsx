@@ -3,13 +3,13 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import BackButton from '@/components/BackButton';
 import CensusFormContact from '@/components/census-forms/CensusFormContact';
 import CensusFormLodging from '@/components/census-forms/CensusFormLodging';
 import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
 import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
-import NextButton from '@/components/NextButton';
+import BackButton from '@/components/shared/BackButton';
+import NextButton from '@/components/shared/NextButton';
 import { fakeCensus } from '@/mocks/CensusesMock';
 import { addCensus } from '@/store/censusesSlice';
 import { FormScreens } from '@/types/enums';
