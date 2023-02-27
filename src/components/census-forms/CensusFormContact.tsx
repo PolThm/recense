@@ -52,21 +52,21 @@ const CensusFormContact: FC<Props> = () => {
       <Form>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <MyTextInput
-            label="First Name"
+            label="Prénom"
             name="firstName"
             type="text"
             placeholder="Jane"
           />
 
           <MyTextInput
-            label="Last Name"
+            label="Nom"
             name="lastName"
             type="text"
             placeholder="Doe"
           />
 
           <MyTextInput
-            label="Email Address"
+            label="Adresse email"
             name="email"
             type="email"
             placeholder="jane@formik.com"

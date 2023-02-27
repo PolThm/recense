@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import { useField } from 'formik';
 import { FC } from 'react';
 
@@ -9,18 +10,19 @@ type Props = {
 };
 
 const MyTextInput: FC<Props> = ({ label, ...props }) => {
-  // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-  // which we can spread on <input>. We can use field meta to show an error
-  // message if the field is invalid and it has been touched (i.e. visited)
   const [field, meta] = useField(props);
   return (
-    <>
-      <label htmlFor={props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
+    <TextField
+      fullWidth
+      label={label}
+      {...field}
+      {...props}
+      error={meta.touched && Boolean(meta.error)}
+      helperText={meta.touched && meta.error}
+      InputLabelProps={{
+        style: { color: '#525457' },
+      }}
+    />
   );
 };
 
