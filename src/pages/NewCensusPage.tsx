@@ -163,7 +163,9 @@ const NewCensusPage: FC = () => {
                     flex: 1,
                   }}
                 >
-                  {currentStep === Contact && <CensusFormContact />}
+                  {currentStep === Contact && (
+                    <CensusFormContact title="Vos coordonnées" />
+                  )}
                   {currentStep === Profile && <CensusFormProfile />}
                   {currentStep === Lodging && <CensusFormLodging />}
                   {currentStep === Summary && (
