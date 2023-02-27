@@ -72,13 +72,13 @@ const CensusFormContact: FC<Props> = () => {
             placeholder="jane@formik.com"
           />
 
-          <MySelect label="Job Type" name="jobType">
-            <option value="">Select a job type</option>
-            <option value="designer">Designer</option>
-            <option value="development">Developer</option>
-            <option value="product">Product Manager</option>
-            <option value="other">Other</option>
-          </MySelect>
+          {/* <MySelect label="Job Type" name="jobType"> */}
+          {/*   <option value="">Select a job type</option> */}
+          {/*   <option value="designer">Designer</option> */}
+          {/*   <option value="development">Developer</option> */}
+          {/*   <option value="product">Product Manager</option> */}
+          {/*   <option value="other">Other</option> */}
+          {/* </MySelect> */}
 
           <MyCheckbox name="acceptedTerms">
             I accept the terms and conditions

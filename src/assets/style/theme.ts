@@ -23,7 +23,9 @@ const theme = createTheme({
     },
     text: {
       primary: '#525457',
-      secondary: 'rgba(255, 255, 255, 0.8)',
+      // secondary: 'rgba(255, 255, 255, 0.8)',
+      secondary: '#FFF',
+      // secondary: '#525457',
     },
   },
   typography: {
