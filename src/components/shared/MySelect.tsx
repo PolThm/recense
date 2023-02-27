@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, Select } from '@mui/material';
 import { useField } from 'formik';
 import React, { FC } from 'react';
 
@@ -16,9 +10,6 @@ type Props = {
 
 const MySelect: FC<Props> = ({ label, ...props }) => {
   const [field, meta] = useField(props);
-
-  console.log('field', field);
-  console.log('meta', props);
 
   return (
     <FormControl fullWidth>
