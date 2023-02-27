@@ -1,9 +1,8 @@
-export enum Pages {
+export enum Routes {
   Home = '/',
   NewCensus = '/new-census',
   MyArchives = '/my-archives',
   Statistics = '/statistics',
-  NotFound = '/not-found',
 }
 
 export enum FormScreens {

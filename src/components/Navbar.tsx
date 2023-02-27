@@ -15,6 +15,8 @@ import {
 import { MouseEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Routes } from '@/types/enums';
+
 import appRoutes from '../routes';
 
 const accountFakeTabs = ['Profil', 'Paramètres', 'Déconnexion'];
@@ -42,7 +44,7 @@ const Navbar = () => {
         <Toolbar disableGutters>
           <Link
             component={NavLink}
-            to="/"
+            to={Routes.Home}
             color="inherit"
             underline="none"
             variant="button"

@@ -12,7 +12,7 @@ import BackButton from '@/components/shared/BackButton';
 import NextButton from '@/components/shared/NextButton';
 import { fakeCensus } from '@/mocks/CensusesMock';
 import { addCensus } from '@/store/censusesSlice';
-import { FormScreens } from '@/types/enums';
+import { FormScreens, Routes } from '@/types/enums';
 import { Census } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormScreens;
@@ -62,7 +62,7 @@ const NewCensusPage: FC = () => {
 
       // TODO: Add real census and remove line above
       // dispatch(addCensus(census));
-      navigate('/my-archives');
+      navigate(Routes.MyArchives);
       return;
     }
 
