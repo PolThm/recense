@@ -54,7 +54,7 @@ const NewCensusPage: FC = () => {
   const navigate = useNavigate();
 
   // TODO: Put back Landing by default
-  const [currentScreen, setCurrentScreen] = useState(Contact);
+  const [currentStep, setCurrentStep] = useState(Contact);
   const [census, setCensus] = useState<Census>(defaultCensus);
   const { id, date, consent, contact, profile, lodging } = census;
 
@@ -64,7 +64,7 @@ const NewCensusPage: FC = () => {
   };
 
   const next = () => {
-    if (currentScreen === Summary) {
+    if (currentStep === Summary) {
       fakeCensus.contact.firstName = census.contact.firstName;
       dispatch(addCensus(fakeCensus));
 
@@ -74,18 +74,35 @@ const NewCensusPage: FC = () => {
       return;
     }
 
-    setCurrentScreen(currentScreen + 1);
+    setCurrentStep(currentStep + 1);
+  };
+
+  const setCensusStep = (values: any) => {
+    switch (currentStep) {
+      case Contact:
+        setCensus({ ...census, contact: values });
+        break;
+      case Profile:
+        setCensus({ ...census, profile: values });
+        break;
+      case Lodging:
+        setCensus({ ...census, lodging: values });
+        break;
+      case Summary:
+        setCensus({ ...census, consent: values.acceptedTerms });
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <Container sx={{ height: 1 }}>
-      {currentScreen === Landing ? (
-        <NewCensusLanding
-          startCensus={() => setCurrentScreen(currentScreen + 1)}
-        />
+      {currentStep === Landing ? (
+        <NewCensusLanding startCensus={() => setCurrentStep(currentStep + 1)} />
       ) : (
         <>
-          <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
+          <BackButton onClick={() => setCurrentStep(currentStep - 1)} />
           <Formik
             initialValues={formInitialValues}
             validationSchema={yup.object({
@@ -103,22 +120,26 @@ const NewCensusPage: FC = () => {
                 .required('Champ requis'),
               phone: yup
                 .string()
-                .matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide')
-                .required('Champ requis'),
-              // acceptedTerms: yup
+                .matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide'),
+              // consent: yup
               //   .boolean()
-              //   .required('Required')
-              //   .oneOf([true], 'You must accept the terms and conditions.'),
+              //   .required('Champ requis')
+              //   .oneOf(
+              //     [true],
+              //     "Vous devez accepter les conditions d'utilisation"
+              //   ),
               // jobType: yup
               //   .string()
               //   .oneOf(
               //     ['designer', 'development', 'product', 'other'],
-              //     'Invalid Job Type'
+              //     'Type de métier invalide'
               //   )
-              //   .required('Required'),
+              //   .required('Champ requis'),
             })}
             onSubmit={(values) => {
               console.log(JSON.stringify(values, null, 2));
+
+              setCensusStep(values);
               next();
             }}
           >
@@ -142,10 +163,10 @@ const NewCensusPage: FC = () => {
                     flex: 1,
                   }}
                 >
-                  {currentScreen === Contact && <CensusFormContact />}
-                  {currentScreen === Profile && <CensusFormProfile />}
-                  {currentScreen === Lodging && <CensusFormLodging />}
-                  {currentScreen === Summary && (
+                  {currentStep === Contact && <CensusFormContact />}
+                  {currentStep === Profile && <CensusFormProfile />}
+                  {currentStep === Lodging && <CensusFormLodging />}
+                  {currentStep === Summary && (
                     <CensusFormSummary census={census} />
                   )}
                 </Box>
@@ -161,7 +182,7 @@ const NewCensusPage: FC = () => {
                     mt: 6,
                   }}
                 >
-                  {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
+                  {currentStep === Summary ? 'Envoyer' : 'Suivant'}
                 </Button>
               </Container>
             </Form>

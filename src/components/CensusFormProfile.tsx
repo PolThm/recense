@@ -17,8 +17,8 @@ const CensusFormProfile: FC<Props> = ({}) => {
         <MenuItem value="other">Other</MenuItem>
       </MySelect>
 
-      <MyCheckbox name="acceptedTerms">
-        I accept the terms and conditions
+      <MyCheckbox name="consent">
+        L'utilisateur accepte les conditions d'utilisation
       </MyCheckbox>
     </>
   );
