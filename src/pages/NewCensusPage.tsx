@@ -78,7 +78,14 @@ const NewCensusPage: FC = () => {
       ) : (
         <Container>
           <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
-          <Box sx={{ my: 2 }}>
+          <Box
+            sx={{
+              my: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
             {currentScreen === Contact && (
               <CensusFormContact
                 firstName={contact.firstName}
@@ -87,14 +94,16 @@ const NewCensusPage: FC = () => {
             )}
             {currentScreen === Profile && <CensusFormProfile />}
             {currentScreen === Lodging && <CensusFormLodging />}
-            {currentScreen === Summary && <CensusFormSummary />}
+            {currentScreen === Summary && <CensusFormSummary census={census} />}
+            <Box sx={{ mt: 2 }}>
+              <NextButton
+                onClick={next}
+                isDisabled={currentScreen === Summary && consent}
+              >
+                {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
+              </NextButton>
+            </Box>
           </Box>
-          <NextButton
-            onClick={next}
-            isDisabled={currentScreen === Summary && consent}
-          >
-            {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
-          </NextButton>
         </Container>
       )}
     </Box>

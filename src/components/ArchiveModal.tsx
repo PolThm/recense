@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 
+import CensusSummary from '@/components/CensusSummary';
 import { Census } from '@/types/interfaces';
 
 type Props = {
@@ -21,30 +22,6 @@ type Props = {
 };
 
 const ArchiveModal: FC<Props> = ({ census, isOpen, handleClose }) => {
-  const { date, contact, profile, lodging } = census;
-
-  const createData = (
-    categoryName: string,
-    userInfo: string | number | null | undefined
-  ) => {
-    return { categoryName, userInfo };
-  };
-
-  const rows = [
-    createData('Prénom', contact.firstName),
-    createData('Nom', contact.lastName),
-    createData('Courriel', contact.mail),
-    createData('Téléphone', contact.phone),
-    createData('Âge', profile.age),
-    createData('Genre', profile.gender),
-    createData('Situation', profile.situation),
-    createData('Éducation', profile.education),
-    createData('Revenu', profile.income),
-    createData('Type de logement', lodging.type),
-    createData('Emplacement', lodging.location),
-    createData('Nombre de résident(s)', lodging.residents),
-  ];
-
   return (
     <Modal open={isOpen} onClose={handleClose}>
       <Box
@@ -64,31 +41,15 @@ const ArchiveModal: FC<Props> = ({ census, isOpen, handleClose }) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            mb: 2,
           }}
         >
-          <Typography>{date}</Typography>
+          <Typography>{census.date}</Typography>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </Box>
-
-        <TableContainer sx={{ mt: 2 }}>
-          <Table size="small" aria-label="contact table">
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.categoryName}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.categoryName}
-                  </TableCell>
-                  <TableCell align="right">{row.userInfo}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <CensusSummary census={census} />
       </Box>
     </Modal>
   );
