@@ -3,9 +3,9 @@ import { Form, Formik } from 'formik';
 import { FC } from 'react';
 import * as yup from 'yup';
 
-import MyCheckbox from '@/components/formik/MyCheckbox';
-import MySelect from '@/components/formik/MySelect';
-import MyTextInput from '@/components/formik/MyTextInput';
+import MyCheckbox from '@/components/shared/MyCheckbox';
+import MySelect from '@/components/shared/MySelect';
+import MyTextInput from '@/components/shared/MyTextInput';
 
 type Props = {};
 
@@ -50,7 +50,7 @@ const CensusFormContact: FC<Props> = () => {
       }}
     >
       <Form>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <MyTextInput
             label="Prénom"
             name="firstName"

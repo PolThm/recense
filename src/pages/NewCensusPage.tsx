@@ -88,8 +88,8 @@ const NewCensusPage: FC = () => {
           >
             {currentScreen === Contact && (
               <CensusFormContact
-                firstName={contact.firstName}
-                handleChange={handleChange}
+              // firstName={contact.firstName}
+              // handleChange={handleChange}
               />
             )}
             {currentScreen === Profile && <CensusFormProfile />}
