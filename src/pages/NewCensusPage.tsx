@@ -45,13 +45,13 @@ const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [currentScreen, setCurrentScreen] = useState(Landing);
+  // TODO: Put back Landing by default
+  const [currentScreen, setCurrentScreen] = useState(Contact);
   const [census, setCensus] = useState<Census>(defaultCensus);
   const { id, date, consent, contact, profile, lodging } = census;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (firstName: string) => {
     // set first name for this example
-    const firstName = e.target.value;
     setCensus({ ...census, contact: { ...contact, firstName } });
   };
 
