@@ -1,55 +1,101 @@
-import { Button, TextField } from '@mui/material';
-import { useFormik } from 'formik';
+import { Box, Button } from '@mui/material';
+import { Form, Formik } from 'formik';
 import { FC } from 'react';
 import * as yup from 'yup';
 
-type Props = {
-  firstName: string;
-  handleChange: (firstName: string) => void;
-};
+import MyCheckbox from '@/components/formik/MyCheckbox';
+import MySelect from '@/components/formik/MySelect';
+import MyTextInput from '@/components/formik/MyTextInput';
 
-const validationSchema = yup.object({
-  firstName: yup.string().required('Ce champ est obligatoire'),
-});
+type Props = {};
 
-const CensusFormContact: FC<Props> = ({ firstName, handleChange }) => {
-  const formik = useFormik({
-    initialValues: {
-      firstName,
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      handleChange(values.firstName);
-    },
-  });
-
+const CensusFormContact: FC<Props> = () => {
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="firstName"
-          name="firstName"
-          label="Prénom"
-          value={formik.values.firstName}
-          onChange={formik.handleChange}
-          error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-          helperText={formik.touched.firstName && formik.errors.firstName}
-          InputLabelProps={{
-            style: { color: '#525457' },
-          }}
-        />
-        <Button
-          color="primary"
-          variant="contained"
-          fullWidth
-          type="submit"
-          sx={{ mt: 2 }}
-        >
-          Submit
-        </Button>
-      </form>
-    </div>
+    <Formik
+      initialValues={{
+        firstName: '',
+        lastName: '',
+        email: '',
+        acceptedTerms: false, // added for our checkbox
+        jobType: '', // added for our select
+      }}
+      validationSchema={yup.object({
+        firstName: yup
+          .string()
+          .max(15, 'Must be 15 characters or less')
+          .required('Required'),
+        lastName: yup
+          .string()
+          .max(20, 'Must be 20 characters or less')
+          .required('Required'),
+        email: yup.string().email('Invalid email address').required('Required'),
+        acceptedTerms: yup
+          .boolean()
+          .required('Required')
+          .oneOf([true], 'You must accept the terms and conditions.'),
+        jobType: yup
+          .string()
+          .oneOf(
+            ['designer', 'development', 'product', 'other'],
+            'Invalid Job Type'
+          )
+          .required('Required'),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        console.log('onSubmit');
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      <Form>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+          <MyTextInput
+            label="First Name"
+            name="firstName"
+            type="text"
+            placeholder="Jane"
+          />
+
+          <MyTextInput
+            label="Last Name"
+            name="lastName"
+            type="text"
+            placeholder="Doe"
+          />
+
+          <MyTextInput
+            label="Email Address"
+            name="email"
+            type="email"
+            placeholder="jane@formik.com"
+          />
+
+          <MySelect label="Job Type" name="jobType">
+            <option value="">Select a job type</option>
+            <option value="designer">Designer</option>
+            <option value="development">Developer</option>
+            <option value="product">Product Manager</option>
+            <option value="other">Other</option>
+          </MySelect>
+
+          <MyCheckbox name="acceptedTerms">
+            I accept the terms and conditions
+          </MyCheckbox>
+
+          <Button
+            color="secondary"
+            variant="contained"
+            fullWidth
+            type="submit"
+            sx={{ mt: 2 }}
+          >
+            Submit
+          </Button>
+        </Box>
+      </Form>
+    </Formik>
   );
 };
 
