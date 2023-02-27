@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 import { useField } from 'formik';
 import React, { FC } from 'react';
 
@@ -11,7 +11,7 @@ const MyCheckbox: FC<Props> = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: 'checkbox' });
 
   return (
-    <div>
+    <Box>
       <FormControlLabel
         control={
           <Checkbox {...field} {...props} sx={{ color: 'text.primary' }} />
@@ -23,7 +23,7 @@ const MyCheckbox: FC<Props> = ({ children, ...props }) => {
           {meta.error}
         </FormHelperText>
       )}
-    </div>
+    </Box>
   );
 };
 

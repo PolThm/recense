@@ -1,6 +1,6 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import * as yup from 'yup';
 
 import MyCheckbox from '@/components/shared/MyCheckbox';
@@ -72,13 +72,13 @@ const CensusFormContact: FC<Props> = () => {
             placeholder="jane@formik.com"
           />
 
-          {/* <MySelect label="Job Type" name="jobType"> */}
-          {/*   <option value="">Select a job type</option> */}
-          {/*   <option value="designer">Designer</option> */}
-          {/*   <option value="development">Developer</option> */}
-          {/*   <option value="product">Product Manager</option> */}
-          {/*   <option value="other">Other</option> */}
-          {/* </MySelect> */}
+          <MySelect label="Job Type" name="jobType">
+            <MenuItem value="">Select a job type</MenuItem>
+            <MenuItem value="designer">Designer</MenuItem>
+            <MenuItem value="development">Developer</MenuItem>
+            <MenuItem value="product">Product Manager</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
+          </MySelect>
 
           <MyCheckbox name="acceptedTerms">
             I accept the terms and conditions

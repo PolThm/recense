@@ -19,9 +19,6 @@ const MyTextInput: FC<Props> = ({ label, ...props }) => {
       {...props}
       error={meta.touched && Boolean(meta.error)}
       helperText={meta.touched && meta.error}
-      InputLabelProps={{
-        style: { color: '#525457' },
-      }}
     />
   );
 };
