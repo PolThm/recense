@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import CensusFormContact from '@/components/census-forms/CensusFormContact';
-import CensusFormLodging from '@/components/census-forms/CensusFormLodging';
-import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
-import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
+import CensusFormContact from '@/components/CensusFormContact';
+import CensusFormLodging from '@/components/CensusFormLodging';
+import CensusFormProfile from '@/components/CensusFormProfile';
+import CensusFormSummary from '@/components/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
 import { fakeCensus } from '@/mocks/CensusesMock';
