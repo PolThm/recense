@@ -1,4 +1,4 @@
-import { MenuItem, Typography } from '@mui/material';
+import { MenuItem } from '@mui/material';
 import { FC } from 'react';
 
 import MyCheckbox from '@/components/shared/MyCheckbox';
