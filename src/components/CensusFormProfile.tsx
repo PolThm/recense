@@ -1,12 +1,10 @@
-import { MenuItem } from '@mui/material';
+import { MenuItem, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import MyCheckbox from '@/components/shared/MyCheckbox';
 import MySelect from '@/components/shared/MySelect';
 
-type Props = {};
-
-const CensusFormProfile: FC<Props> = ({}) => {
+const CensusFormProfile: FC = () => {
   return (
     <>
       <MySelect label="Job Type" name="jobType">

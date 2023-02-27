@@ -1,4 +1,4 @@
-import { Box, Button, Container, MenuItem } from '@mui/material';
+import { Box, Button, Container, MenuItem, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -77,6 +77,21 @@ const NewCensusPage: FC = () => {
     setCurrentStep(currentStep + 1);
   };
 
+  const getStepTitle = () => {
+    switch (currentStep) {
+      case Contact:
+        return 'Vos coordonnées';
+      case Profile:
+        return 'Votre profil';
+      case Lodging:
+        return 'Votre hébergement';
+      case Summary:
+        return 'Récapitulatif';
+      default:
+        return '';
+    }
+  };
+
   const setCensusStep = (values: any) => {
     switch (currentStep) {
       case Contact:
@@ -103,6 +118,18 @@ const NewCensusPage: FC = () => {
       ) : (
         <>
           <BackButton onClick={() => setCurrentStep(currentStep - 1)} />
+          <Typography
+            variant="h2"
+            component="h1"
+            textAlign="center"
+            sx={{
+              pt: 5,
+              mb: { xs: -8, sm: -6 },
+              fontSize: { xs: '2.2rem', sm: '2.5rem', md: '3rem' },
+            }}
+          >
+            {getStepTitle()}
+          </Typography>
           <Formik
             initialValues={formInitialValues}
             validationSchema={yup.object({
@@ -163,9 +190,7 @@ const NewCensusPage: FC = () => {
                     flex: 1,
                   }}
                 >
-                  {currentStep === Contact && (
-                    <CensusFormContact title="Vos coordonnées" />
-                  )}
+                  {currentStep === Contact && <CensusFormContact />}
                   {currentStep === Profile && <CensusFormProfile />}
                   {currentStep === Lodging && <CensusFormLodging />}
                   {currentStep === Summary && (

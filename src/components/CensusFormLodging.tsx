@@ -1,9 +1,11 @@
 import { FC } from 'react';
 
-type Props = {};
+const CensusFormLodging: FC = () => {
+  return (
+    <>
 
-const CensusFormLodging: FC<Props> = ({}) => {
-  return <>CensusFormLodging</>;
+    </>
+  );
 };
 
 export default CensusFormLodging;
