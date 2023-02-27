@@ -12,10 +12,10 @@ import BackButton from '@/components/shared/BackButton';
 import NextButton from '@/components/shared/NextButton';
 import { fakeCensus } from '@/mocks/CensusesMock';
 import { addCensus } from '@/store/censusesSlice';
-import { FormScreens, Routes } from '@/types/enums';
+import { FormSteps, Routes } from '@/types/enums';
 import { Census } from '@/types/interfaces';
 
-const { Landing, Contact, Profile, Lodging, Summary } = FormScreens;
+const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 
 const defaultCensus: Census = {
   id: null,
