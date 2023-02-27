@@ -10,12 +10,17 @@ const CensusFormContact: FC = () => {
     <>
       <MyTextInput
         label="Prénom"
-        name="firstName"
+        name="contact.firstName"
         type="text"
         placeholder="Jane"
       />
 
-      <MyTextInput label="Nom" name="lastName" type="text" placeholder="Doe" />
+      <MyTextInput
+        label="Nom"
+        name="contact.lastName"
+        type="text"
+        placeholder="Doe"
+      />
 
       <MyTextInput
         label="Adresse email"

@@ -27,7 +27,7 @@ const CensusSummary: FC<Props> = ({ census }) => {
   const rows = [
     createData('Prénom', contact.firstName),
     createData('Nom', contact.lastName),
-    createData('Courriel', contact.mail),
+    createData('Courriel', contact.email),
     createData('Téléphone', contact.phone),
     createData('Âge', profile.age),
     createData('Genre', profile.gender),

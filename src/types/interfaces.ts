@@ -19,7 +19,7 @@ export interface Census {
 export interface Contact {
   firstName: string;
   lastName: string;
-  mail: string;
+  email: string;
   phone?: string;
 }
 

@@ -8,7 +8,7 @@ const censusesMock: Census[] = [
     contact: {
       firstName: 'Jean',
       lastName: 'Dupont',
-      mail: 'jean.dupont@email.com',
+      email: 'jean.dupont@email.com',
       phone: '0123456789',
     },
     profile: {
@@ -31,7 +31,7 @@ const censusesMock: Census[] = [
     contact: {
       firstName: 'Marie',
       lastName: 'Durand',
-      mail: 'marie.durand@email.com',
+      email: 'marie.durand@email.com',
       phone: undefined,
     },
     profile: {
@@ -54,7 +54,7 @@ const censusesMock: Census[] = [
     contact: {
       firstName: 'Pierre',
       lastName: 'Martin',
-      mail: 'pierre.martin@email.com',
+      email: 'pierre.martin@email.com',
       phone: '0678901234',
     },
     profile: {
@@ -79,7 +79,7 @@ export const fakeCensus: Census = {
   contact: {
     firstName: '',
     lastName: 'Dubois',
-    mail: 'fake.census@email.com',
+    email: 'fake.census@email.com',
     phone: '0456789012',
   },
   profile: {

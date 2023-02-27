@@ -25,7 +25,7 @@ const defaultCensus: Census = {
   contact: {
     firstName: '',
     lastName: '',
-    mail: '',
+    email: '',
     phone: '',
   },
   profile: {
@@ -80,13 +80,7 @@ const NewCensusPage: FC = () => {
         <Container>
           <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
           <Formik
-            initialValues={{
-              firstName: '',
-              lastName: '',
-              email: '',
-              acceptedTerms: false, // added for our checkbox
-              jobType: '', // added for our select
-            }}
+            initialValues={defaultCensus}
             validationSchema={yup.object({
               firstName: yup
                 .string()
