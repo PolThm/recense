@@ -1,7 +1,9 @@
-import { Box, Container } from '@mui/material';
+import { Box, Button, Container, MenuItem } from '@mui/material';
+import { Form, Formik } from 'formik';
 import { ChangeEvent, FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
 import CensusFormContact from '@/components/census-forms/CensusFormContact';
 import CensusFormLodging from '@/components/census-forms/CensusFormLodging';
@@ -9,7 +11,6 @@ import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
 import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
-import NextButton from '@/components/shared/NextButton';
 import { fakeCensus } from '@/mocks/CensusesMock';
 import { addCensus } from '@/store/censusesSlice';
 import { FormSteps, Routes } from '@/types/enums';
@@ -78,39 +79,62 @@ const NewCensusPage: FC = () => {
       ) : (
         <Container>
           <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
-          <Box
-            sx={{
-              my: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+          <Formik
+            initialValues={{
+              firstName: '',
+              lastName: '',
+              email: '',
+              acceptedTerms: false, // added for our checkbox
+              jobType: '', // added for our select
+            }}
+            validationSchema={yup.object({
+              firstName: yup
+                .string()
+                .max(15, 'Must be 15 characters or less')
+                .required('Required'),
+              lastName: yup
+                .string()
+                .max(20, 'Must be 20 characters or less')
+                .required('Required'),
+              email: yup
+                .string()
+                .email('Invalid email address')
+                .required('Required'),
+              acceptedTerms: yup
+                .boolean()
+                .required('Required')
+                .oneOf([true], 'You must accept the terms and conditions.'),
+              jobType: yup
+                .string()
+                .oneOf(
+                  ['designer', 'development', 'product', 'other'],
+                  'Invalid Job Type'
+                )
+                .required('Required'),
+            })}
+            onSubmit={(values) => {
+              console.log(JSON.stringify(values, null, 2));
+              next();
             }}
           >
-            {currentScreen === Contact && (
-              <CensusFormContact
-              // firstName={contact.firstName}
-              // handleChange={handleChange}
-              />
-            )}
-            {currentScreen === Profile && <CensusFormProfile />}
-            {currentScreen === Lodging && <CensusFormLodging />}
-            {currentScreen === Summary && <CensusFormSummary census={census} />}
-            <Box
-              sx={{
-                mt: 2,
-                width: 260,
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <NextButton
-                onClick={next}
-                isDisabled={currentScreen === Summary && consent}
+            <Form>
+              <Container
+                maxWidth="sm"
+                sx={{ my: 2, display: 'flex', flexDirection: 'column', gap: 3 }}
               >
-                {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
-              </NextButton>
-            </Box>
-          </Box>
+                {currentScreen === Contact && <CensusFormContact />}
+                {currentScreen === Profile && <CensusFormProfile />}
+                {currentScreen === Lodging && <CensusFormLodging />}
+                {currentScreen === Summary && (
+                  <CensusFormSummary census={census} />
+                )}
+
+                <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+                  {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
+                </Button>
+              </Container>
+            </Form>
+          </Formik>
         </Container>
       )}
     </Box>
