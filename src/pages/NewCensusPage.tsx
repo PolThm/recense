@@ -95,7 +95,14 @@ const NewCensusPage: FC = () => {
             {currentScreen === Profile && <CensusFormProfile />}
             {currentScreen === Lodging && <CensusFormLodging />}
             {currentScreen === Summary && <CensusFormSummary census={census} />}
-            <Box sx={{ mt: 2 }}>
+            <Box
+              sx={{
+                mt: 2,
+                width: 260,
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               <NextButton
                 onClick={next}
                 isDisabled={currentScreen === Summary && consent}
