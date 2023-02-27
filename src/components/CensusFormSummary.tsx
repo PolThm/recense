@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 
 import CensusSummary from '@/components/CensusSummary';
+import MyCheckbox from '@/components/shared/MyCheckbox';
 import { Census } from '@/types/interfaces';
 
 type Props = {
@@ -31,6 +32,10 @@ const CensusFormSummary: FC<Props> = ({ census }) => {
         <label htmlFor="confirm">
           L'utilisateur confirme d'envoyer ses données
         </label>
+
+        {/* <MyCheckbox name="acceptedTerms"> */}
+        {/*   I accept the terms and conditions */}
+        {/* </MyCheckbox> */}
       </Box>
     </>
   );

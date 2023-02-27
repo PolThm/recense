@@ -8,7 +8,7 @@ type Props = {
 
 const BackButton: FC<Props> = ({ onClick }) => {
   return (
-    <Button onClick={onClick} startIcon={<ArrowBackIcon />} size="small">
+    <Button onClick={onClick} startIcon={<ArrowBackIcon />} size="small" sx={{ position: 'absolute'}}>
       Retour
     </Button>
   );

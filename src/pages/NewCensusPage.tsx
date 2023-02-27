@@ -1,6 +1,6 @@
 import { Box, Button, Container, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { ChangeEvent, FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
@@ -71,13 +71,13 @@ const NewCensusPage: FC = () => {
   };
 
   return (
-    <Box sx={{ height: 1 }}>
+    <Container sx={{ height: 1 }}>
       {currentScreen === Landing ? (
         <NewCensusLanding
           startCensus={() => setCurrentScreen(currentScreen + 1)}
         />
       ) : (
-        <Container>
+        <>
           <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
           <Formik
             initialValues={defaultCensus}
@@ -111,27 +111,53 @@ const NewCensusPage: FC = () => {
               next();
             }}
           >
-            <Form>
+            <Form style={{ height: '100%' }}>
               <Container
                 maxWidth="sm"
-                sx={{ my: 2, display: 'flex', flexDirection: 'column', gap: 3 }}
+                sx={{
+                  py: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  height: 1,
+                }}
               >
-                {currentScreen === Contact && <CensusFormContact />}
-                {currentScreen === Profile && <CensusFormProfile />}
-                {currentScreen === Lodging && <CensusFormLodging />}
-                {currentScreen === Summary && (
-                  <CensusFormSummary census={census} />
-                )}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    gap: 3,
+                    flex: 1,
+                  }}
+                >
+                  {currentScreen === Contact && <CensusFormContact />}
+                  {currentScreen === Profile && <CensusFormProfile />}
+                  {currentScreen === Lodging && <CensusFormLodging />}
+                  {currentScreen === Summary && (
+                    <CensusFormSummary census={census} />
+                  )}
+                </Box>
 
-                <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    mt: 6,
+                  }}
+                >
                   {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
                 </Button>
               </Container>
             </Form>
           </Formik>
-        </Container>
+        </>
       )}
-    </Box>
+    </Container>
   );
 };
 
