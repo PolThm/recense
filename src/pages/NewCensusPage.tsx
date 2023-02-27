@@ -47,7 +47,36 @@ const formInitialValues = {
   lastName: '',
   email: '',
   phone: '',
+  consent: false,
+  jobType: '',
 };
+
+const contactValidationSchema = yup.object().shape({
+  firstName: yup
+    .string()
+    .max(15, 'Doit faire 15 caractères ou moins')
+    .required('Champ requis'),
+  lastName: yup
+    .string()
+    .max(20, 'Doit faire 20 caractères ou moins')
+    .required('Champ requis'),
+  email: yup.string().email('Adresse email invalide').required('Champ requis'),
+  phone: yup.string().matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide'),
+});
+
+const profileValidationSchema = yup.object().shape({
+  consent: yup
+    .boolean()
+    .required('Champ requis')
+    .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
+  jobType: yup
+    .string()
+    .oneOf(
+      ['designer', 'development', 'product', 'other'],
+      'Type de métier invalide'
+    )
+    .required('Champ requis'),
+});
 
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
@@ -57,11 +86,6 @@ const NewCensusPage: FC = () => {
   const [currentStep, setCurrentStep] = useState(Contact);
   const [census, setCensus] = useState<Census>(defaultCensus);
   const { id, date, consent, contact, profile, lodging } = census;
-
-  const handleChange = (firstName: string) => {
-    // set first name for this example
-    setCensus({ ...census, contact: { ...contact, firstName } });
-  };
 
   const next = () => {
     if (currentStep === Summary) {
@@ -111,6 +135,21 @@ const NewCensusPage: FC = () => {
     }
   };
 
+  const getValidationSchema = () => {
+    switch (currentStep) {
+      case Contact:
+        return contactValidationSchema;
+      case Profile:
+        return profileValidationSchema;
+      case Lodging:
+        return {};
+      case Summary:
+        return {};
+      default:
+        return {};
+    }
+  };
+
   return (
     <Container sx={{ height: 1 }}>
       {currentStep === Landing ? (
@@ -132,37 +171,7 @@ const NewCensusPage: FC = () => {
           </Typography>
           <Formik
             initialValues={formInitialValues}
-            validationSchema={yup.object({
-              firstName: yup
-                .string()
-                .max(15, 'Doit faire 15 caractères ou moins')
-                .required('Champ requis'),
-              lastName: yup
-                .string()
-                .max(20, 'Doit faire 20 caractères ou moins')
-                .required('Champ requis'),
-              email: yup
-                .string()
-                .email('Adresse email invalide')
-                .required('Champ requis'),
-              phone: yup
-                .string()
-                .matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide'),
-              // consent: yup
-              //   .boolean()
-              //   .required('Champ requis')
-              //   .oneOf(
-              //     [true],
-              //     "Vous devez accepter les conditions d'utilisation"
-              //   ),
-              // jobType: yup
-              //   .string()
-              //   .oneOf(
-              //     ['designer', 'development', 'product', 'other'],
-              //     'Type de métier invalide'
-              //   )
-              //   .required('Champ requis'),
-            })}
+            validationSchema={getValidationSchema()}
             onSubmit={(values) => {
               console.log(JSON.stringify(values, null, 2));
 
