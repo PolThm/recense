@@ -42,6 +42,13 @@ const defaultCensus: Census = {
   },
 };
 
+const formInitialValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+};
+
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -80,31 +87,35 @@ const NewCensusPage: FC = () => {
         <>
           <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
           <Formik
-            initialValues={defaultCensus}
+            initialValues={formInitialValues}
             validationSchema={yup.object({
               firstName: yup
                 .string()
-                .max(15, 'Must be 15 characters or less')
-                .required('Required'),
+                .max(15, 'Doit faire 15 caractères ou moins')
+                .required('Champ requis'),
               lastName: yup
                 .string()
-                .max(20, 'Must be 20 characters or less')
-                .required('Required'),
+                .max(20, 'Doit faire 20 caractères ou moins')
+                .required('Champ requis'),
               email: yup
                 .string()
-                .email('Invalid email address')
-                .required('Required'),
-              acceptedTerms: yup
-                .boolean()
-                .required('Required')
-                .oneOf([true], 'You must accept the terms and conditions.'),
-              jobType: yup
+                .email('Adresse email invalide')
+                .required('Champ requis'),
+              phone: yup
                 .string()
-                .oneOf(
-                  ['designer', 'development', 'product', 'other'],
-                  'Invalid Job Type'
-                )
-                .required('Required'),
+                .matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide')
+                .required('Champ requis'),
+              // acceptedTerms: yup
+              //   .boolean()
+              //   .required('Required')
+              //   .oneOf([true], 'You must accept the terms and conditions.'),
+              // jobType: yup
+              //   .string()
+              //   .oneOf(
+              //     ['designer', 'development', 'product', 'other'],
+              //     'Invalid Job Type'
+              //   )
+              //   .required('Required'),
             })}
             onSubmit={(values) => {
               console.log(JSON.stringify(values, null, 2));
