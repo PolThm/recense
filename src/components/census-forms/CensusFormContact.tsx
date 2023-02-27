@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import InputField from '@/components/shared/InputField';
 
 type Props = {
   firstName: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const CensusFormContact: FC<Props> = ({ firstName, handleChange }) => {

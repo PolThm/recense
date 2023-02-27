@@ -1,5 +1,5 @@
 import { Box, Container } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,7 +49,7 @@ const NewCensusPage: FC = () => {
   const [census, setCensus] = useState<Census>(defaultCensus);
   const { id, date, consent, contact, profile, lodging } = census;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // set first name for this example
     const firstName = e.target.value;
     setCensus({ ...census, contact: { ...contact, firstName } });
