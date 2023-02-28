@@ -47,8 +47,11 @@ const StatisticsPage: FC = () => {
       <Typography variant="h1" textAlign="center" gutterBottom>
         Statistics Globales
       </Typography>
-      <Typography variant="h4" textAlign="center">
-        Voici quelques moyennes de nos recentes enquêtes
+      <Typography variant="h4" textAlign="center" gutterBottom>
+        Voici quelques chiffres tirés de nos recensements
+      </Typography>
+      <Typography textAlign="center" sx={{ mt: 1 }}>
+        Chaque résultat représente la moyenne des données recueillies (arrondi)
       </Typography>
 
       <Grid container spacing={4} sx={{ my: 4 }}>
