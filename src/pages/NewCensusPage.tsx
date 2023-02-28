@@ -29,7 +29,7 @@ const NewCensusPage: FC = () => {
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState(Landing);
-  const [census, setCensus] = useState<Census | null>(null);
+  const [census, setCensus] = useState<Census>({} as Census);
 
   const next = () => {
     if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
@@ -39,29 +39,17 @@ const NewCensusPage: FC = () => {
     return navigate(Routes.MyArchives);
   };
 
-  const setCensusWithNewStepData = (c: CensusForm) => {
+  const setCensusWithNewStepData = (newStepData: CensusForm) => {
+    const newFilteredData = Object.fromEntries(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      Object.entries(newStepData).filter(([_, data]) => data)
+    );
+
     setCensus({
+      ...census,
+      ...newFilteredData,
       id: CENSUS_ID,
       date: TODAY_DATE,
-      consent: c.consent,
-      contact: {
-        firstName: c.firstName,
-        lastName: c.lastName,
-        email: c.email,
-        phone: c.phone,
-      },
-      profile: {
-        age: Number(c.age),
-        gender: c.gender,
-        situation: c.situation,
-        education: c.education,
-        income: Number(c.income),
-      },
-      lodging: {
-        lodgingType: c.lodgingType,
-        location: c.location,
-        residents: Number(c.residents),
-      },
     });
   };
 
@@ -85,6 +73,7 @@ const NewCensusPage: FC = () => {
             {getFormStepTitle(currentStep)}
           </Typography>
           <Formik
+            key={currentStep}
             initialValues={formInitialValues}
             validationSchema={getValidationSchema(currentStep)} // TODO: fix validation
             onSubmit={(stepData) => {

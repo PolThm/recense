@@ -14,8 +14,6 @@ type Props = {
 };
 
 const CensusSummary: FC<Props> = ({ census }) => {
-  const { contact, profile, lodging } = census;
-
   const createData = (
     categoryName: string,
     userInfo: string | number | null | undefined
@@ -25,18 +23,18 @@ const CensusSummary: FC<Props> = ({ census }) => {
   };
 
   const rows = [
-    createData('Prénom', contact.firstName),
-    createData('Nom', contact.lastName),
-    createData('Courriel', contact.email),
-    createData('Téléphone', contact.phone),
-    createData('Âge', profile.age),
-    createData('Genre', profile.gender),
-    createData('Situation', profile.situation),
-    createData('Éducation', profile.education),
-    createData('Revenu', profile.income),
-    createData('Type de logement', lodging.lodgingType),
-    createData('Emplacement', lodging.location),
-    createData('Nombre de résident(s)', lodging.residents),
+    createData('Prénom', census.firstName),
+    createData('Nom', census.lastName),
+    createData('Courriel', census.email),
+    createData('Téléphone', census.phone),
+    createData('Âge', census.age),
+    createData('Genre', census.gender),
+    createData('Situation', census.situation),
+    createData('Éducation', census.education),
+    createData('Revenu', census.income),
+    createData('Type de logement', census.lodgingType),
+    createData('Emplacement', census.location),
+    createData('Nombre de résident(s)', census.residents),
   ];
 
   return (

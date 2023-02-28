@@ -16,10 +16,9 @@ const StatisticsPage: FC = () => {
   const setAllAverages = () => {
     const { ageSum, incomeSum, residentsSum } = censuses.reduce(
       (acc, census) => {
-        if (census.profile.age) acc.ageSum += census.profile.age;
-        if (census.profile.income) acc.incomeSum += census.profile.income;
-        if (census.lodging.residents)
-          acc.residentsSum += census.lodging.residents;
+        if (census.age) acc.ageSum += census.age;
+        if (census.income) acc.incomeSum += census.income;
+        if (census.residents) acc.residentsSum += census.residents;
         return acc;
       },
       { ageSum: 0, incomeSum: 0, residentsSum: 0 }

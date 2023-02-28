@@ -67,7 +67,7 @@ const lodgingValidationSchema = yup.object().shape({
   residents: yup
     .number()
     .min(1, 'Doit être au moins 1')
-    .max(20, 'Vous êtes trop nombreux, non ?')
+    .max(20, "Vous n'êtes pas pas un peu nombreux ?")
     .required('Champ requis'),
 });
 
