@@ -24,7 +24,7 @@ export const censusesSlice = createSlice({
     },
 
     addCensus: (state, action: PayloadAction<Census>) => {
-      state.censuses = [...state.censuses, { ...action.payload }];
+      state.censuses = [...state.censuses, action.payload];
     },
 
     deleteCensus: (state, action: PayloadAction<number>) => {
