@@ -1,15 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  Box,
-  IconButton,
-  Modal,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-} from '@mui/material';
+import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import CensusSummary from '@/components/CensusSummary';

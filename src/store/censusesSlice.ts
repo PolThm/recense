@@ -34,7 +34,6 @@ export const censusesSlice = createSlice({
   },
 });
 
-export const { addCensus, deleteCensus, fetchCensuses } =
-  censusesSlice.actions;
+export const { addCensus, deleteCensus, fetchCensuses } = censusesSlice.actions;
 
 export default censusesSlice.reducer;
