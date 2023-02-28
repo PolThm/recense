@@ -13,12 +13,12 @@ const CensusFormSummary: FC<Props> = ({ census }) => {
   return (
     <Box
       sx={{
-        mt: 1,
-        mb: -5,
+        mt: 2,
+        mb: -4,
         display: 'flex',
         flexDirection: 'column',
         gap: 1,
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         flex: 1,
       }}
     >
