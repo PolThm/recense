@@ -77,7 +77,7 @@ const NewCensusPage: FC = () => {
           <Formik
             key={currentStep}
             initialValues={census}
-            validationSchema={getValidationSchema(currentStep)} // TODO: fix validation
+            validationSchema={getValidationSchema(currentStep)}
             onSubmit={(stepData) => {
               setCensusWithNewStepData(stepData);
               next();
