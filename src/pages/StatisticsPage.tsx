@@ -1,5 +1,5 @@
 import { Container, Grid, Typography } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import StatCard from '@/components/StatCard';
@@ -13,7 +13,7 @@ const StatisticsPage: FC = () => {
   const [incomeAverage, setIncomeAverage] = useState(0);
   const [residentsAverage, setResidentsAverage] = useState(0);
 
-  const setAllAverages = () => {
+  const setAllAverages = useCallback(() => {
     const { ageSum, incomeSum, residentsSum } = censuses.reduce(
       (acc, census) => {
         if (census.age) acc.ageSum += census.age;
@@ -28,9 +28,9 @@ const StatisticsPage: FC = () => {
     setAgeAverage(Math.floor(ageSum / censusLength));
     setIncomeAverage(Math.floor(incomeSum / censusLength));
     setResidentsAverage(Math.floor(residentsSum / censusLength));
-  };
+  }, [censuses]);
 
-  useEffect(() => setAllAverages());
+  useEffect(() => setAllAverages(), [setAllAverages]);
 
   return (
     <Container
