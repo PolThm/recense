@@ -3,7 +3,7 @@ import { Census } from '@/types/interfaces';
 const censusesMock: Census[] = [
   {
     id: 1,
-    date: '2023-01-22',
+    date: '22/01/2023',
     consent: true,
     contact: {
       firstName: 'Jean',
@@ -26,7 +26,7 @@ const censusesMock: Census[] = [
   },
   {
     id: 2,
-    date: '2023-02-14',
+    date: '14/02/2023',
     consent: true,
     contact: {
       firstName: 'Marie',
@@ -49,7 +49,7 @@ const censusesMock: Census[] = [
   },
   {
     id: 3,
-    date: '2023-02-20',
+    date: '20/02/2023',
     consent: true,
     contact: {
       firstName: 'Pierre',
@@ -71,29 +71,5 @@ const censusesMock: Census[] = [
     },
   },
 ];
-
-export const fakeCensus: Census = {
-  id: 4,
-  date: '2023-02-26',
-  consent: true,
-  contact: {
-    firstName: '',
-    lastName: 'Dubois',
-    email: 'fake.census@email.com',
-    phone: '0456789012',
-  },
-  profile: {
-    age: 60,
-    gender: 'Homme',
-    situation: 'Marié(e)',
-    education: 'Baccalauréat',
-    income: 15000,
-  },
-  lodging: {
-    type: 'Appartement',
-    location: 'Ville',
-    residents: 1,
-  },
-};
 
 export default censusesMock;

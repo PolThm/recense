@@ -11,44 +11,29 @@ import CensusFormProfile from '@/components/CensusFormProfile';
 import CensusFormSummary from '@/components/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
-import { fakeCensus } from '@/mocks/CensusesMock';
 import { addCensus } from '@/store/censusesSlice';
 import { FormSteps, Routes } from '@/types/enums';
 import { Census } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 
-const defaultCensus: Census = {
-  id: null,
-  date: '',
-  consent: false,
-  contact: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-  },
-  profile: {
-    age: null,
-    gender: '',
-    situation: '',
-    education: '',
-    income: null,
-  },
-  lodging: {
-    type: '',
-    location: '',
-    residents: null,
-  },
-};
+const CENSUS_ID = Date.now();
+const DATE_OF_DAY = new Date().toLocaleDateString('fr-FR');
 
 const formInitialValues = {
   firstName: '',
   lastName: '',
   email: '',
   phone: '',
+  age: null,
+  gender: '',
+  situation: '',
+  education: '',
+  income: null,
+  type: '',
+  location: '',
+  residents: null,
   consent: false,
-  jobType: '',
 };
 
 const contactValidationSchema = yup.object().shape({
@@ -69,13 +54,13 @@ const profileValidationSchema = yup.object().shape({
     .boolean()
     .required('Champ requis')
     .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
-  jobType: yup
-    .string()
-    .oneOf(
-      ['designer', 'development', 'product', 'other'],
-      'Type de métier invalide'
-    )
-    .required('Champ requis'),
+  // jobType: yup
+  //   .string()
+  //   .oneOf(
+  //     ['designer', 'development', 'product', 'other'],
+  //     'Type de métier invalide'
+  //   )
+  //   .required('Champ requis'),
 });
 
 const NewCensusPage: FC = () => {
@@ -84,21 +69,14 @@ const NewCensusPage: FC = () => {
 
   // TODO: Put back Landing by default
   const [currentStep, setCurrentStep] = useState(Contact);
-  const [census, setCensus] = useState<Census>(defaultCensus);
-  const { id, date, consent, contact, profile, lodging } = census;
+  const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
-    if (currentStep === Summary) {
-      fakeCensus.contact.firstName = census.contact.firstName;
-      dispatch(addCensus(fakeCensus));
+    if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
 
-      // TODO: Add real census and remove line above
-      // dispatch(addCensus(census));
-      navigate(Routes.MyArchives);
-      return;
-    }
-
-    setCurrentStep(currentStep + 1);
+    if (!census) throw new Error('Census is null');
+    dispatch(addCensus(census));
+    return navigate(Routes.MyArchives);
   };
 
   const getStepTitle = () => {
@@ -116,23 +94,48 @@ const NewCensusPage: FC = () => {
     }
   };
 
-  const setCensusStep = (values: any) => {
-    switch (currentStep) {
-      case Contact:
-        setCensus({ ...census, contact: values });
-        break;
-      case Profile:
-        setCensus({ ...census, profile: values });
-        break;
-      case Lodging:
-        setCensus({ ...census, lodging: values });
-        break;
-      case Summary:
-        setCensus({ ...census, consent: values.acceptedTerms });
-        break;
-      default:
-        break;
-    }
+  const setPartOfCensus = (values: any) => {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      age,
+      gender,
+      situation,
+      education,
+      income,
+      type,
+      location,
+      residents,
+      consent,
+    } = values;
+
+    const newCensus = {
+      id: CENSUS_ID,
+      date: DATE_OF_DAY,
+      consent,
+      contact: {
+        firstName,
+        lastName,
+        email,
+        phone,
+      },
+      profile: {
+        age,
+        gender,
+        situation,
+        education,
+        income,
+      },
+      lodging: {
+        type,
+        location,
+        residents,
+      },
+    };
+
+    setCensus(newCensus);
   };
 
   const getValidationSchema = () => {
@@ -172,10 +175,10 @@ const NewCensusPage: FC = () => {
           <Formik
             initialValues={formInitialValues}
             validationSchema={getValidationSchema()}
-            onSubmit={(values) => {
-              console.log(JSON.stringify(values, null, 2));
+            onSubmit={(censusData) => {
+              console.log(JSON.stringify(censusData, null, 2));
 
-              setCensusStep(values);
+              setPartOfCensus(censusData);
               next();
             }}
           >
@@ -202,7 +205,7 @@ const NewCensusPage: FC = () => {
                   {currentStep === Contact && <CensusFormContact />}
                   {currentStep === Profile && <CensusFormProfile />}
                   {currentStep === Lodging && <CensusFormLodging />}
-                  {currentStep === Summary && (
+                  {currentStep === Summary && census && (
                     <CensusFormSummary census={census} />
                   )}
                 </Box>

@@ -16,9 +16,9 @@ const CensusFormSummary: FC<Props> = ({ census }) => {
         <CensusSummary census={census} />
       </Box>
 
-      <MyCheckbox name="consent">
-        L'utilisateur accepte les conditions d'utilisation
-      </MyCheckbox>
+      {/* <MyCheckbox name="consent"> */}
+      {/*   L'utilisateur accepte les conditions d'utilisation */}
+      {/* </MyCheckbox> */}
     </>
   );
 };
