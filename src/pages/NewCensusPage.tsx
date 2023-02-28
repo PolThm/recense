@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const NewCensusPage: FC = () => {
   const [currentStep, setCurrentStep] = useState(Landing);
   const [census, setCensus] = useState<CensusForm>(formInitialValues);
 
-  const getFormattedNewCensus = () => {
+  const getFormattedNewCensus = useCallback(() => {
     if (!census) throw new Error('Census is null');
     return {
       ...census,
@@ -38,20 +38,20 @@ const NewCensusPage: FC = () => {
       income: Number(census.income),
       residents: Number(census.residents),
     };
-  };
+  }, [census]);
 
-  const next = () => {
+  const next = useCallback(() => {
     if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
     dispatch(addCensus(getFormattedNewCensus()));
     return navigate(Routes.MyArchives);
-  };
+  }, [currentStep, dispatch, getFormattedNewCensus, navigate]);
 
-  const setCensusWithNewStepData = (newStepData: CensusForm) => {
+  const setCensusWithNewStepData = useCallback((newStepData: CensusForm) => {
     const newFilteredData = Object.fromEntries(
       Object.entries(newStepData).filter(([_, data]) => data !== '')
     );
-    setCensus({ ...census, ...newFilteredData });
-  };
+    setCensus((prevCensus) => ({ ...prevCensus, ...newFilteredData }));
+  }, []);
 
   return (
     <Container sx={{ height: 1 }}>
