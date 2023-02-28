@@ -48,7 +48,7 @@ const NewCensusPage: FC = () => {
 
   const setCensusWithNewStepData = (newStepData: CensusForm) => {
     const newFilteredData = Object.fromEntries(
-      Object.entries(newStepData).filter(([_, data]) => data)
+      Object.entries(newStepData).filter(([_, data]) => data !== '')
     );
     setCensus({ ...census, ...newFilteredData });
   };

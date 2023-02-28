@@ -18,7 +18,8 @@ const CensusSummary: FC<Props> = ({ census }) => {
     categoryName: string,
     userInfo: string | number | null | undefined
   ) => {
-    if (!userInfo) return { categoryName, userInfo: 'Non renseigné' };
+    if (!userInfo && userInfo !== 0)
+      return { categoryName, userInfo: 'Non renseigné' };
     return { categoryName, userInfo };
   };
 
