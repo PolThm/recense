@@ -32,7 +32,7 @@ export interface Profile {
 }
 
 export interface Lodging {
-  type: string;
+  lodgingType: string;
   location: string;
   residents: number | null;
 }

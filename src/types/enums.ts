@@ -37,7 +37,7 @@ export enum LodgingType {
   Apartment = 'Appartement',
 }
 
-export enum LodgingLocation {
+export enum Location {
   City = 'Ville',
   Countryside = 'Campagne',
 }

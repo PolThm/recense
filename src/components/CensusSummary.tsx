@@ -34,7 +34,7 @@ const CensusSummary: FC<Props> = ({ census }) => {
     createData('Situation', profile.situation),
     createData('Éducation', profile.education),
     createData('Revenu', profile.income),
-    createData('Type de logement', lodging.type),
+    createData('Type de logement', lodging.lodgingType),
     createData('Emplacement', lodging.location),
     createData('Nombre de résident(s)', lodging.residents),
   ];

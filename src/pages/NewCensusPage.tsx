@@ -12,13 +12,23 @@ import CensusFormSummary from '@/components/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
 import { addCensus } from '@/store/censusesSlice';
-import { Education, FormSteps, Gender, Routes, Situation } from '@/types/enums';
+import {
+  Education,
+  FormSteps,
+  Gender,
+  Location,
+  LodgingType,
+  Routes,
+  Situation,
+} from '@/types/enums';
 import { Census } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 const { Male, Female, Other } = Gender;
 const { Single, Married, Divorced, Widowed } = Situation;
 const { None, Bac, Superior } = Education;
+const { House, Apartment } = LodgingType;
+const { City, Countryside } = Location;
 
 const CENSUS_ID = Date.now();
 const DATE_OF_DAY = new Date().toLocaleDateString('fr-FR');
@@ -33,7 +43,7 @@ const formInitialValues = {
   situation: '',
   education: '',
   income: '',
-  type: '',
+  lodgingType: '',
   location: '',
   residents: '',
   consent: false,
@@ -73,7 +83,21 @@ const profileValidationSchema = yup.object().shape({
   income: yup.number().min(0, 'Revenu invalide').required('Champ requis'),
 });
 
-const lodgingValidationSchema = yup.object().shape({});
+const lodgingValidationSchema = yup.object().shape({
+  lodgingType: yup
+    .string()
+    .oneOf([House, Apartment], 'Logement invalide')
+    .required('Champ requis'),
+  location: yup
+    .string()
+    .oneOf([City, Countryside], 'Lieu invalide')
+    .required('Champ requis'),
+  residents: yup
+    .number()
+    .min(1, 'Doit être au moins 1')
+    .max(20, 'Vous êtes trop nombreux, non ?')
+    .required('Champ requis'),
+});
 
 const summaryValidationSchema = yup.object().shape({
   consent: yup
@@ -87,7 +111,7 @@ const NewCensusPage: FC = () => {
   const navigate = useNavigate();
 
   // TODO: Put back Landing by default
-  const [currentStep, setCurrentStep] = useState(Profile);
+  const [currentStep, setCurrentStep] = useState(Lodging);
   const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
@@ -124,7 +148,7 @@ const NewCensusPage: FC = () => {
       situation,
       education,
       income,
-      type,
+      lodgingType,
       location,
       residents,
       consent,
@@ -148,7 +172,7 @@ const NewCensusPage: FC = () => {
         income,
       },
       lodging: {
-        type,
+        lodgingType,
         location,
         residents,
       },
