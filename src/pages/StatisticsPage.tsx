@@ -40,7 +40,7 @@ const StatisticsPage: FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
-        pt: -3,
+        pt: { xs: 2, md: 0 },
       }}
     >
       <Typography variant="h1" textAlign="center" gutterBottom>
@@ -54,7 +54,7 @@ const StatisticsPage: FC = () => {
         (arrondies)
       </Typography>
 
-      <Grid container spacing={4} sx={{ my: 4 }}>
+      <Grid container spacing={4} sx={{ my: { xs: 1, md: 4 } }}>
         <Grid item xs={12} sm={6} md={4}>
           <StatCard title="Âge" score={ageAverage} />
         </Grid>

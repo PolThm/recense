@@ -43,6 +43,7 @@ const MyArchivesPage: FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
+        pt: { xs: 2, md: 0 },
       }}
     >
       <Typography variant="h1" gutterBottom>
@@ -50,7 +51,7 @@ const MyArchivesPage: FC = () => {
       </Typography>
       <Typography variant="h4">Retrouvez tous vos recensements</Typography>
 
-      <Grid container spacing={4} sx={{ my: 4 }}>
+      <Grid container spacing={4} sx={{ my: { xs: 1, md: 4 } }}>
         {censuses.map((census) => {
           const name = `${census.firstName} ${census.lastName}`;
 

@@ -86,6 +86,7 @@ const NewCensusPage: FC = () => {
                 maxWidth="sm"
                 sx={{
                   py: 8,
+                  px: 0,
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
