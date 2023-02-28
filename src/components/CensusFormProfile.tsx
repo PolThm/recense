@@ -22,7 +22,7 @@ const CensusFormProfile: FC = () => {
 
       <MySelect label="Situation" name="situation">
         <MenuItem value={Single}>{Single}</MenuItem>
-        <MenuItem value={Married}>{Married})</MenuItem>
+        <MenuItem value={Married}>{Married}</MenuItem>
         <MenuItem value={Divorced}>{Divorced}</MenuItem>
         <MenuItem value={Widowed}>{Widowed}</MenuItem>
       </MySelect>

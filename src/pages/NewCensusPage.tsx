@@ -12,10 +12,13 @@ import CensusFormSummary from '@/components/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
 import { addCensus } from '@/store/censusesSlice';
-import { FormSteps, Routes } from '@/types/enums';
+import { Education, FormSteps, Gender, Routes, Situation } from '@/types/enums';
 import { Census } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
+const { Male, Female, Other } = Gender;
+const { Single, Married, Divorced, Widowed } = Situation;
+const { None, Bac, Superior } = Education;
 
 const CENSUS_ID = Date.now();
 const DATE_OF_DAY = new Date().toLocaleDateString('fr-FR');
@@ -25,14 +28,14 @@ const formInitialValues = {
   lastName: '',
   email: '',
   phone: '',
-  age: null,
+  age: '',
   gender: '',
   situation: '',
   education: '',
-  income: null,
+  income: '',
   type: '',
   location: '',
-  residents: null,
+  residents: '',
   consent: false,
 };
 
@@ -50,17 +53,33 @@ const contactValidationSchema = yup.object().shape({
 });
 
 const profileValidationSchema = yup.object().shape({
+  age: yup
+    .number()
+    .min(18, 'Doit être majeur')
+    .max(120, 'Vous êtes trop vieux, non ?')
+    .required('Champ requis'),
+  gender: yup
+    .string()
+    .oneOf([Male, Female, Other], 'Genre invalide')
+    .required('Champ requis'),
+  situation: yup
+    .string()
+    .oneOf([Single, Married, Divorced, Widowed], 'Situation invalide')
+    .required('Champ requis'),
+  education: yup
+    .string()
+    .oneOf([None, Bac, Superior], 'Éducation invalide')
+    .required('Champ requis'),
+  income: yup.number().min(0, 'Revenu invalide').required('Champ requis'),
+});
+
+const lodgingValidationSchema = yup.object().shape({});
+
+const summaryValidationSchema = yup.object().shape({
   consent: yup
     .boolean()
     .required('Champ requis')
     .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
-  // jobType: yup
-  //   .string()
-  //   .oneOf(
-  //     ['designer', 'development', 'product', 'other'],
-  //     'Type de métier invalide'
-  //   )
-  //   .required('Champ requis'),
 });
 
 const NewCensusPage: FC = () => {
@@ -145,9 +164,9 @@ const NewCensusPage: FC = () => {
       case Profile:
         return profileValidationSchema;
       case Lodging:
-        return {};
+        return lodgingValidationSchema;
       case Summary:
-        return {};
+        return summaryValidationSchema;
       default:
         return {};
     }
