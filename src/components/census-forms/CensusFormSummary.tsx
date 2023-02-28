@@ -3,10 +3,10 @@ import { FC } from 'react';
 
 import CensusSummary from '@/components/CensusSummary';
 import MyCheckbox from '@/components/shared/MyCheckbox';
-import { Census } from '@/types/interfaces';
+import { CensusForm } from '@/types/interfaces';
 
 type Props = {
-  census: Census;
+  census: CensusForm;
 };
 
 const CensusFormSummary: FC<Props> = ({ census }) => {

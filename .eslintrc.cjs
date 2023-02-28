@@ -49,5 +49,14 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'react/no-unescaped-entities': 0,
     'react/jsx-props-no-spreading': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
 };

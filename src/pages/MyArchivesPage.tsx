@@ -52,15 +52,14 @@ const MyArchivesPage: FC = () => {
 
       <Grid container spacing={4} sx={{ my: 4 }}>
         {censuses.map((census) => {
-          const { id, date, contact } = census;
-          const name = `${contact.firstName} ${contact.lastName}`;
+          const name = `${census.firstName} ${census.lastName}`;
 
-          if (!id) return null;
+          if (!census.id) return null;
           return (
             <Grid item xs={12} sm={6} md={4} key={census.id}>
               <ArchivePreview
                 name={name}
-                date={date}
+                date={census.date}
                 deleteArchive={() => openConfirmModal(census)}
                 openArchive={() => openArchiveModal(census)}
               />

@@ -52,7 +52,11 @@ const profileValidationSchema = yup.object().shape({
     .string()
     .oneOf([None, Bac, Superior], 'Éducation invalide')
     .required('Champ requis'),
-  income: yup.number().min(0, 'Revenu invalide').required('Champ requis'),
+  income: yup
+    .number()
+    .min(0, 'Revenu invalide')
+    .max(1000000000, 'Vous êtes très riche, bravo !')
+    .required('Champ requis'),
 });
 
 const lodgingValidationSchema = yup.object().shape({
@@ -67,7 +71,7 @@ const lodgingValidationSchema = yup.object().shape({
   residents: yup
     .number()
     .min(1, 'Doit être au moins 1')
-    .max(20, 'Vous êtes trop nombreux, non ?')
+    .max(20, "Vous n'êtes pas pas un peu nombreux ?")
     .required('Champ requis'),
 });
 
