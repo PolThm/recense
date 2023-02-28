@@ -24,7 +24,7 @@ module.exports = {
       'error',
       {
         props: true,
-        ignorePropertyModificationsFor: ['state'],
+        ignorePropertyModificationsFor: ['state', 'acc'],
       },
     ],
     'react/function-component-definition': [

@@ -13,45 +13,25 @@ const StatisticsPage: FC = () => {
   const [incomeAverage, setIncomeAverage] = useState(0);
   const [residentsAverage, setResidentsAverage] = useState(0);
 
-  const setAge = () => {
-    const age =
-      censuses.reduce((acc, census) => {
-        if (!census.profile.age) return acc;
-        return acc + census.profile.age;
-      }, 0) / censuses.length;
+  const setAllAverages = () => {
+    const { ageSum, incomeSum, residentsSum } = censuses.reduce(
+      (acc, census) => {
+        if (census.profile.age) acc.ageSum += census.profile.age;
+        if (census.profile.income) acc.incomeSum += census.profile.income;
+        if (census.lodging.residents)
+          acc.residentsSum += census.lodging.residents;
+        return acc;
+      },
+      { ageSum: 0, incomeSum: 0, residentsSum: 0 }
+    );
+    const censusLength = censuses.length;
 
-    setAgeAverage(Math.floor(age));
+    setAgeAverage(Math.floor(ageSum / censusLength));
+    setIncomeAverage(Math.floor(incomeSum / censusLength));
+    setResidentsAverage(Math.floor(residentsSum / censusLength));
   };
 
-  const setIncome = () => {
-    const income =
-      censuses.reduce((acc, census) => {
-        if (!census.profile.income) return acc;
-        return acc + census.profile.income;
-      }, 0) / censuses.length;
-
-    setIncomeAverage(Math.floor(income));
-  };
-
-  const setResidents = () => {
-    const residents =
-      censuses.reduce((acc, census) => {
-        if (!census.lodging.residents) return acc;
-        return acc + census.lodging.residents;
-      }, 0) / censuses.length;
-
-    setResidentsAverage(Math.floor(residents));
-  };
-
-  const setAllStats = () => {
-    setAge();
-    setIncome();
-    setResidents();
-  };
-
-  useEffect(() => {
-    setAllStats();
-  });
+  useEffect(() => setAllAverages());
 
   return (
     <Container
