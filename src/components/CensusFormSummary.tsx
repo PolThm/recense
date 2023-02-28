@@ -11,15 +11,22 @@ type Props = {
 
 const CensusFormSummary: FC<Props> = ({ census }) => {
   return (
-    <>
-      <Box sx={{ my: 3 }}>
-        <CensusSummary census={census} />
-      </Box>
-
+    <Box
+      sx={{
+        mt: 1,
+        mb: -5,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1,
+        justifyContent: 'space-around',
+        flex: 1,
+      }}
+    >
+      <CensusSummary census={census} />
       <MyCheckbox name="consent">
         L'utilisateur accepte les conditions d'utilisation
       </MyCheckbox>
-    </>
+    </Box>
   );
 };
 

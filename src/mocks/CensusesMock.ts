@@ -19,7 +19,7 @@ const censusesMock: Census[] = [
       income: 45000,
     },
     lodging: {
-      type: 'Appartement',
+      lodgingType: 'Appartement',
       location: 'Ville',
       residents: 2,
     },
@@ -39,10 +39,10 @@ const censusesMock: Census[] = [
       gender: 'Femme',
       situation: 'Célibataire',
       education: 'Baccalauréat',
-      income: null,
+      income: 0,
     },
     lodging: {
-      type: 'Maison',
+      lodgingType: 'Maison',
       location: 'Campagne',
       residents: 4,
     },
@@ -65,7 +65,7 @@ const censusesMock: Census[] = [
       income: 28000,
     },
     lodging: {
-      type: 'Appartement',
+      lodgingType: 'Appartement',
       location: 'Campagne',
       residents: 1,
     },

@@ -21,7 +21,7 @@ import {
   Routes,
   Situation,
 } from '@/types/enums';
-import { Census } from '@/types/interfaces';
+import { Census, CensusForm } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 const { Male, Female, Other } = Gender;
@@ -33,7 +33,7 @@ const { City, Countryside } = Location;
 const CENSUS_ID = Date.now();
 const DATE_OF_DAY = new Date().toLocaleDateString('fr-FR');
 
-const formInitialValues = {
+const formInitialValues: CensusForm = {
   firstName: '',
   lastName: '',
   email: '',
@@ -110,8 +110,7 @@ const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // TODO: Put back Landing by default
-  const [currentStep, setCurrentStep] = useState(Lodging);
+  const [currentStep, setCurrentStep] = useState(Landing);
   const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
@@ -137,23 +136,21 @@ const NewCensusPage: FC = () => {
     }
   };
 
-  const setPartOfCensus = (values: any) => {
-    const {
-      firstName,
-      lastName,
-      email,
-      phone,
-      age,
-      gender,
-      situation,
-      education,
-      income,
-      lodgingType,
-      location,
-      residents,
-      consent,
-    } = values;
-
+  const setCensusWithNewStepData = ({
+    firstName,
+    lastName,
+    email,
+    phone,
+    age,
+    gender,
+    situation,
+    education,
+    income,
+    lodgingType,
+    location,
+    residents,
+    consent,
+  }: CensusForm) => {
     const newCensus = {
       id: CENSUS_ID,
       date: DATE_OF_DAY,
@@ -165,16 +162,16 @@ const NewCensusPage: FC = () => {
         phone,
       },
       profile: {
-        age,
+        age: Number(age),
         gender,
         situation,
         education,
-        income,
+        income: Number(income),
       },
       lodging: {
         lodgingType,
         location,
-        residents,
+        residents: Number(residents),
       },
     };
 
@@ -218,10 +215,8 @@ const NewCensusPage: FC = () => {
           <Formik
             initialValues={formInitialValues}
             validationSchema={getValidationSchema()}
-            onSubmit={(censusData) => {
-              console.log(JSON.stringify(censusData, null, 2));
-
-              setPartOfCensus(censusData);
+            onSubmit={(stepData) => {
+              setCensusWithNewStepData(stepData);
               next();
             }}
           >
