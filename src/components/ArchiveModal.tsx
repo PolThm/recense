@@ -23,7 +23,7 @@ const ArchiveModal: FC<Props> = ({ census, isOpen, handleClose }) => {
           width: { xs: '90vw', sm: 500 },
           backgroundColor: 'background.paper',
           boxShadow: 24,
-          p: 4,
+          p: { xs: 3, md: 4 },
         }}
       >
         <Box

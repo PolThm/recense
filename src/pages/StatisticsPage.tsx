@@ -54,7 +54,7 @@ const StatisticsPage: FC = () => {
         (arrondies)
       </Typography>
 
-      <Grid container spacing={4} sx={{ my: { xs: 1, md: 4 } }}>
+      <Grid container spacing={4} sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}>
         <Grid item xs={12} sm={6} md={4}>
           <StatCard title="Âge" score={ageAverage} />
         </Grid>

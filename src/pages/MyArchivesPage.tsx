@@ -51,7 +51,7 @@ const MyArchivesPage: FC = () => {
       </Typography>
       <Typography variant="h4">Retrouvez tous vos recensements</Typography>
 
-      <Grid container spacing={4} sx={{ my: { xs: 1, md: 4 } }}>
+      <Grid container spacing={4} sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}>
         {censuses.map((census) => {
           const name = `${census.firstName} ${census.lastName}`;
 

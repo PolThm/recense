@@ -33,24 +33,30 @@ const CensusSummary: FC<Props> = ({ census }) => {
     createData('Situation', census.situation),
     createData('Éducation', census.education),
     createData('Revenu', census.income),
-    createData('Type de logement', census.lodgingType),
-    createData('Emplacement', census.location),
-    createData('Nombre de résident(s)', census.residents),
+    createData('Logement', census.lodgingType),
+    createData('Lieu', census.location),
+    createData('Résident(s)', census.residents),
   ];
 
   return (
     <TableContainer>
-      <Table size="small" aria-label="contact table">
+      <Table size="small" aria-label="census summary">
         <TableBody>
           {rows.map((row) => (
             <TableRow
               key={row.categoryName}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ width: '30%', pr: 0 }}
+              >
                 {row.categoryName}
               </TableCell>
-              <TableCell align="right">{row.userInfo}</TableCell>
+              <TableCell align="right" sx={{ pl: 0 }}>
+                {row.userInfo}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
