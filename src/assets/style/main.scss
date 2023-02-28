@@ -17,8 +17,6 @@ html {
   }
 }
 
-
-
 @media (min-width: 600px) { // sm
   html {
     .MuiButton-sizeMedium {
@@ -36,5 +34,14 @@ html {
     .MuiButton-root {
       font-size: 1.3rem;
     }
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

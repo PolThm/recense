@@ -16,6 +16,7 @@ const HomePage: FC = () => {
         height: 1,
         mt: -2,
       }}
+      style={{ animation: 'fadein 3s' }}
     >
       <Box
         sx={{
