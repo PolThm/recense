@@ -110,7 +110,7 @@ const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [currentStep, setCurrentStep] = useState(Landing);
+  const [currentStep, setCurrentStep] = useState(Profile);
   const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
