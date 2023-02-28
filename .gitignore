@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 /pnpm-lock.yaml
 /coverage/
+
+# Local Netlify folder
+.netlify

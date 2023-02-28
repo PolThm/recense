@@ -42,7 +42,7 @@ const HomePage: FC = () => {
             display: { xs: 'none', sm: 'block' },
           }}
         >
-          RECENSE
+          RECENSE!
         </Typography>
       </Box>
       <Typography
