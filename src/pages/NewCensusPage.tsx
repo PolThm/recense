@@ -41,7 +41,6 @@ const NewCensusPage: FC = () => {
 
   const setCensusWithNewStepData = (newStepData: CensusForm) => {
     const newFilteredData = Object.fromEntries(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       Object.entries(newStepData).filter(([_, data]) => data)
     );
 
