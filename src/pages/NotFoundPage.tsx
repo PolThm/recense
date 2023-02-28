@@ -2,6 +2,8 @@ import { Container, Link, Typography } from '@mui/material';
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Routes } from '@/types/enums';
+
 const NotFoundPage: FC = () => {
   return (
     <Container
@@ -26,7 +28,7 @@ const NotFoundPage: FC = () => {
         component={NavLink}
         variant="button"
         underline="none"
-        to="/"
+        to={Routes.Home}
         sx={{ fontSize: '1.4rem', mt: 2, letterSpacing: 1 }}
       >
         Retourner à l'accueil

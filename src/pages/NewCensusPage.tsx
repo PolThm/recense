@@ -1,5 +1,6 @@
-import { Box, Container } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { Box, Button, Container, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,95 +10,135 @@ import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
 import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
-import NextButton from '@/components/shared/NextButton';
-import { fakeCensus } from '@/mocks/CensusesMock';
 import { addCensus } from '@/store/censusesSlice';
-import { FormScreens } from '@/types/enums';
-import { Census } from '@/types/interfaces';
+import { FormSteps, Routes } from '@/types/enums';
+import { Census, CensusForm } from '@/types/interfaces';
+import {
+  formInitialValues,
+  getFormStepTitle,
+  getValidationSchema,
+} from '@/utils/formUtils';
 
-const { Landing, Contact, Profile, Lodging, Summary } = FormScreens;
+const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 
-const defaultCensus: Census = {
-  id: null,
-  date: '',
-  consent: false,
-  contact: {
-    firstName: '',
-    lastName: '',
-    mail: '',
-    phone: '',
-  },
-  profile: {
-    age: null,
-    gender: '',
-    situation: '',
-    education: '',
-    income: null,
-  },
-  lodging: {
-    type: '',
-    location: '',
-    residents: null,
-  },
-};
+const CENSUS_ID = Date.now();
+const TODAY_DATE = new Date().toLocaleDateString('fr-FR');
 
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [currentScreen, setCurrentScreen] = useState(Landing);
-  const [census, setCensus] = useState<Census>(defaultCensus);
-  const { id, date, consent, contact, profile, lodging } = census;
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // set first name for this example
-    const firstName = e.target.value;
-    setCensus({ ...census, contact: { ...contact, firstName } });
-  };
+  const [currentStep, setCurrentStep] = useState(Landing);
+  const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
-    if (currentScreen === Summary) {
-      fakeCensus.contact.firstName = census.contact.firstName;
-      dispatch(addCensus(fakeCensus));
+    if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
 
-      // TODO: Add real census and remove line above
-      // dispatch(addCensus(census));
-      navigate('/my-archives');
-      return;
-    }
+    if (!census) throw new Error('Census is null');
+    dispatch(addCensus(census));
+    return navigate(Routes.MyArchives);
+  };
 
-    setCurrentScreen(currentScreen + 1);
+  const setCensusWithNewStepData = (c: CensusForm) => {
+    setCensus({
+      id: CENSUS_ID,
+      date: TODAY_DATE,
+      consent: c.consent,
+      contact: {
+        firstName: c.firstName,
+        lastName: c.lastName,
+        email: c.email,
+        phone: c.phone,
+      },
+      profile: {
+        age: Number(c.age),
+        gender: c.gender,
+        situation: c.situation,
+        education: c.education,
+        income: Number(c.income),
+      },
+      lodging: {
+        lodgingType: c.lodgingType,
+        location: c.location,
+        residents: Number(c.residents),
+      },
+    });
   };
 
   return (
-    <Box sx={{ height: 1 }}>
-      {currentScreen === Landing ? (
-        <NewCensusLanding
-          startCensus={() => setCurrentScreen(currentScreen + 1)}
-        />
+    <Container sx={{ height: 1 }}>
+      {currentStep === Landing ? (
+        <NewCensusLanding startCensus={() => setCurrentStep(currentStep + 1)} />
       ) : (
-        <Container>
-          <BackButton onClick={() => setCurrentScreen(currentScreen - 1)} />
-          <Box sx={{ my: 2 }}>
-            {currentScreen === Contact && (
-              <CensusFormContact
-                firstName={contact.firstName}
-                handleChange={handleChange}
-              />
-            )}
-            {currentScreen === Profile && <CensusFormProfile />}
-            {currentScreen === Lodging && <CensusFormLodging />}
-            {currentScreen === Summary && <CensusFormSummary />}
-          </Box>
-          <NextButton
-            onClick={next}
-            isDisabled={currentScreen === Summary && consent}
+        <>
+          <BackButton onClick={() => setCurrentStep(currentStep - 1)} />
+          <Typography
+            variant="h2"
+            component="h1"
+            textAlign="center"
+            sx={{
+              pt: 5,
+              mb: { xs: -7, sm: -6 },
+              fontSize: { xs: '2.2rem', sm: '2.5rem', md: '3rem' },
+            }}
           >
-            {currentScreen === Summary ? 'Envoyer' : 'Suivant'}
-          </NextButton>
-        </Container>
+            {getFormStepTitle(currentStep)}
+          </Typography>
+          <Formik
+            initialValues={formInitialValues}
+            validationSchema={getValidationSchema(currentStep)}
+            onSubmit={(stepData) => {
+              setCensusWithNewStepData(stepData);
+              next();
+            }}
+          >
+            <Form style={{ height: '100%' }}>
+              <Container
+                maxWidth="sm"
+                sx={{
+                  py: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  height: 1,
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    gap: 3,
+                    flex: 1,
+                  }}
+                >
+                  {currentStep === Contact && <CensusFormContact />}
+                  {currentStep === Profile && <CensusFormProfile />}
+                  {currentStep === Lodging && <CensusFormLodging />}
+                  {currentStep === Summary && census && (
+                    <CensusFormSummary census={census} />
+                  )}
+                </Box>
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    mt: 6,
+                  }}
+                >
+                  {currentStep === Summary ? 'Envoyer' : 'Suivant'}
+                </Button>
+              </Container>
+            </Form>
+          </Formik>
+        </>
       )}
-    </Box>
+    </Container>
   );
 };
 

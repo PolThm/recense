@@ -40,7 +40,11 @@ const Footer: FC = () => {
           <GitHubIcon sx={{ fontSize: '1.5rem' }} />
         </Link>
       </Typography>
-      <Typography color="textSecondary" variant="subtitle1" sx={{ mt: 1 }}>
+      <Typography
+        color="textSecondary"
+        variant="subtitle1"
+        sx={{ mt: 1, opacity: 0.8 }}
+      >
         {`${new Date().getFullYear()} | Vite | React | TS | Redux | MUI | Formik`}
       </Typography>
     </Box>

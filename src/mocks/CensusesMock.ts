@@ -3,12 +3,12 @@ import { Census } from '@/types/interfaces';
 const censusesMock: Census[] = [
   {
     id: 1,
-    date: '2023-01-22',
+    date: '22/01/2023',
     consent: true,
     contact: {
       firstName: 'Jean',
       lastName: 'Dupont',
-      mail: 'jean.dupont@email.com',
+      email: 'jean.dupont@email.com',
       phone: '0123456789',
     },
     profile: {
@@ -19,19 +19,19 @@ const censusesMock: Census[] = [
       income: 45000,
     },
     lodging: {
-      type: 'Appartement',
+      lodgingType: 'Appartement',
       location: 'Ville',
       residents: 2,
     },
   },
   {
     id: 2,
-    date: '2023-02-14',
+    date: '14/02/2023',
     consent: true,
     contact: {
       firstName: 'Marie',
       lastName: 'Durand',
-      mail: 'marie.durand@email.com',
+      email: 'marie.durand@email.com',
       phone: undefined,
     },
     profile: {
@@ -39,22 +39,22 @@ const censusesMock: Census[] = [
       gender: 'Femme',
       situation: 'Célibataire',
       education: 'Baccalauréat',
-      income: null,
+      income: 0,
     },
     lodging: {
-      type: 'Maison',
+      lodgingType: 'Maison',
       location: 'Campagne',
       residents: 4,
     },
   },
   {
     id: 3,
-    date: '2023-02-20',
+    date: '20/02/2023',
     consent: true,
     contact: {
       firstName: 'Pierre',
       lastName: 'Martin',
-      mail: 'pierre.martin@email.com',
+      email: 'pierre.martin@email.com',
       phone: '0678901234',
     },
     profile: {
@@ -65,35 +65,11 @@ const censusesMock: Census[] = [
       income: 28000,
     },
     lodging: {
-      type: 'Appartement',
+      lodgingType: 'Appartement',
       location: 'Campagne',
       residents: 1,
     },
   },
 ];
-
-export const fakeCensus: Census = {
-  id: 4,
-  date: '2023-02-26',
-  consent: true,
-  contact: {
-    firstName: '',
-    lastName: 'Dubois',
-    mail: 'fake.census@email.com',
-    phone: '0456789012',
-  },
-  profile: {
-    age: 60,
-    gender: 'Homme',
-    situation: 'Marié(e)',
-    education: 'Baccalauréat',
-    income: 15000,
-  },
-  lodging: {
-    type: 'Appartement',
-    location: 'Ville',
-    residents: 1,
-  },
-};
 
 export default censusesMock;

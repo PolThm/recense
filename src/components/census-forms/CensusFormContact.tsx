@@ -1,24 +1,23 @@
 import { FC } from 'react';
 
-import InputField from '@/components/shared/InputField';
+import MyTextInput from '@/components/shared/MyTextInput';
 
-type Props = {
-  firstName: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-const CensusFormContact: FC<Props> = ({ firstName, handleChange }) => {
+const CensusFormContact: FC = () => {
   return (
-    <form>
-      <InputField
-        type="text"
-        value={firstName}
-        placeholder="Write your first name here"
-        label="First name"
-        name="First name"
-        onChange={handleChange}
+    <>
+      <MyTextInput label="Prénom" name="firstName" type="text" />
+
+      <MyTextInput label="Nom" name="lastName" type="text" />
+
+      <MyTextInput
+        label="Adresse email"
+        name="email"
+        type="email"
+        placeholder="email@test.fr"
       />
-    </form>
+
+      <MyTextInput label="Téléphone (optionnel)" name="phone" type="tel" />
+    </>
   );
 };
 

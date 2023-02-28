@@ -1,23 +1,32 @@
-import { FC, useState } from 'react';
+import { Box } from '@mui/material';
+import { FC } from 'react';
 
-type Props = {};
+import CensusSummary from '@/components/CensusSummary';
+import MyCheckbox from '@/components/shared/MyCheckbox';
+import { Census } from '@/types/interfaces';
 
-const CensusFormSummary: FC<Props> = ({}) => {
-  const [checked, setChecked] = useState(false);
+type Props = {
+  census: Census;
+};
 
+const CensusFormSummary: FC<Props> = ({ census }) => {
   return (
-    <form>
-      <input
-        type="checkbox"
-        id="confirm"
-        name="confirm"
-        checked={checked}
-        onChange={() => setChecked(!checked)}
-      />
-      <label htmlFor="confirm">
-        L'utilisateur confirme d'envoyer ses données
-      </label>
-    </form>
+    <Box
+      sx={{
+        mt: 2,
+        mb: -4,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1,
+        justifyContent: 'space-between',
+        flex: 1,
+      }}
+    >
+      <CensusSummary census={census} />
+      <MyCheckbox name="consent">
+        L'utilisateur accepte les conditions d'utilisation
+      </MyCheckbox>
+    </Box>
   );
 };
 

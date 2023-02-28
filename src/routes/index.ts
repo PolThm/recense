@@ -2,59 +2,35 @@ import HomePage from '@/pages/HomePage';
 import MyArchivesPage from '@/pages/MyArchivesPage';
 import NewCensusPage from '@/pages/NewCensusPage';
 import StatisticsPage from '@/pages/StatisticsPage';
+import { Routes } from '@/types/enums';
 import { Route } from '@/types/interfaces';
+
+const { Home, MyArchives, NewCensus, Statistics } = Routes;
 
 export const router: Route[] = [
   {
     key: 'home-route',
     title: 'Accueil',
-    path: '/',
+    path: Home,
     component: HomePage,
   },
   {
     key: 'statistics-route',
     title: 'Statistiques',
-    path: '/statistics',
+    path: Statistics,
     component: StatisticsPage,
   },
   {
     key: 'my-archives-route',
     title: 'Mes archives',
-    path: '/my-archives',
+    path: MyArchives,
     component: MyArchivesPage,
   },
   {
     key: 'new-census-route',
     title: 'Recensement',
-    path: '/new-census',
+    path: NewCensus,
     component: NewCensusPage,
-  },
-];
-
-export const newRouter = [
-  {
-    key: 'home-route',
-    title: 'Accueil',
-    path: '/',
-    element: HomePage,
-  },
-  {
-    key: 'statistics-route',
-    title: 'Statistiques',
-    path: '/statistics',
-    element: StatisticsPage,
-  },
-  {
-    key: 'my-archives-route',
-    title: 'Mes archives',
-    path: '/my-archives',
-    element: MyArchivesPage,
-  },
-  {
-    key: 'new-census-route',
-    title: 'Recensement',
-    path: '/new-census',
-    element: NewCensusPage,
   },
 ];
 

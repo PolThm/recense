@@ -3,19 +3,19 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#3467ae',
+      main: '#3467AE',
       light: '#407CC4',
       dark: '#0F417A',
-      contrastText: '#FFF',
+      contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#ffc400',
+      main: '#FFC400',
       light: '#FFD302',
-      dark: '#b28900',
-      contrastText: '#3467ae',
+      dark: '#B28900',
+      contrastText: '#3467AE',
     },
     error: {
-      main: '#b00020',
+      main: '#B00020',
     },
     background: {
       default: '#F7F7F7',
@@ -23,7 +23,7 @@ const theme = createTheme({
     },
     text: {
       primary: '#525457',
-      secondary: 'rgba(255, 255, 255, 0.8)',
+      secondary: '#FFFFFF',
     },
   },
   typography: {

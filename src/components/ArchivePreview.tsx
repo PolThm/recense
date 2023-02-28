@@ -28,7 +28,7 @@ const ArchivePreview: FC<Props> = ({
         <Typography sx={{ fontSize: 14 }} gutterBottom>
           {date}
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="p">
           {name}
         </Typography>
         <IconButton

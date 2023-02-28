@@ -24,7 +24,7 @@ module.exports = {
       'error',
       {
         props: true,
-        ignorePropertyModificationsFor: ['state'],
+        ignorePropertyModificationsFor: ['state', 'acc'],
       },
     ],
     'react/function-component-definition': [
@@ -47,6 +47,7 @@ module.exports = {
     ],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
-    "react/no-unescaped-entities": 0,
+    'react/no-unescaped-entities': 0,
+    'react/jsx-props-no-spreading': 'off',
   },
 };

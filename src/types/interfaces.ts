@@ -19,7 +19,7 @@ export interface Census {
 export interface Contact {
   firstName: string;
   lastName: string;
-  mail: string;
+  email: string;
   phone?: string;
 }
 
@@ -32,7 +32,23 @@ export interface Profile {
 }
 
 export interface Lodging {
-  type: string;
+  lodgingType: string;
   location: string;
   residents: number | null;
+}
+
+export interface CensusForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  age: string;
+  gender: string;
+  situation: string;
+  education: string;
+  income: string;
+  lodgingType: string;
+  location: string;
+  residents: string;
+  consent: boolean;
 }

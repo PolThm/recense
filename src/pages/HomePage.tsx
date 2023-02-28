@@ -3,6 +3,8 @@ import { Box, Button, Container, Typography } from '@mui/material';
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Routes } from '@/types/enums';
+
 const HomePage: FC = () => {
   return (
     <Container
@@ -61,13 +63,13 @@ const HomePage: FC = () => {
       >
         <Button
           component={NavLink}
-          to="/new-census"
+          to={Routes.NewCensus}
           variant="contained"
           color="secondary"
         >
           RECENSEMENT
         </Button>
-        <Button component={NavLink} to="/statistics" variant="outlined">
+        <Button component={NavLink} to={Routes.Statistics} variant="outlined">
           STATISTIQUES
         </Button>
       </Box>
