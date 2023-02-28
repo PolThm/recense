@@ -1,5 +1,5 @@
 import { Container, Grid, Typography } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ArchiveModal from '@/components/ArchiveModal';
@@ -19,21 +19,21 @@ const MyArchivesPage: FC = () => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [currentCensus, setCurrentCensus] = useState<Census | null>(null);
 
-  const openArchiveModal = (census: Census) => {
+  const openArchiveModal = useCallback((census: Census) => {
     setCurrentCensus(census);
     setIsArchiveModalOpen(true);
-  };
+  }, []);
 
-  const openConfirmModal = (census: Census) => {
+  const openConfirmModal = useCallback((census: Census) => {
     setCurrentCensus(census);
     setIsConfirmModalOpen(true);
-  };
+  }, []);
 
-  const confirmArchiveDeletion = () => {
+  const confirmArchiveDeletion = useCallback(() => {
     if (!currentCensus?.id) return;
     dispatch(deleteCensus(currentCensus.id));
     setIsConfirmModalOpen(false);
-  };
+  }, [currentCensus, dispatch]);
 
   return (
     <Container
