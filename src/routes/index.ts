@@ -5,29 +5,31 @@ import StatisticsPage from '@/pages/StatisticsPage';
 import { Routes } from '@/types/enums';
 import { Route } from '@/types/interfaces';
 
+const { Home, MyArchives, NewCensus, Statistics } = Routes;
+
 export const router: Route[] = [
   {
     key: 'home-route',
     title: 'Accueil',
-    path: Routes.Home,
+    path: Home,
     component: HomePage,
   },
   {
     key: 'statistics-route',
     title: 'Statistiques',
-    path: Routes.Statistics,
+    path: Statistics,
     component: StatisticsPage,
   },
   {
     key: 'my-archives-route',
     title: 'Mes archives',
-    path: Routes.MyArchives,
+    path: MyArchives,
     component: MyArchivesPage,
   },
   {
     key: 'new-census-route',
     title: 'Recensement',
-    path: Routes.NewCensus,
+    path: NewCensus,
     component: NewCensusPage,
   },
 ];

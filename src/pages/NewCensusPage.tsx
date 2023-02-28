@@ -4,10 +4,10 @@ import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import CensusFormContact from '@/components/census-form/CensusFormContact';
-import CensusFormLodging from '@/components/census-form/CensusFormLodging';
-import CensusFormProfile from '@/components/census-form/CensusFormProfile';
-import CensusFormSummary from '@/components/census-form/CensusFormSummary';
+import CensusFormContact from '@/components/census-forms/CensusFormContact';
+import CensusFormLodging from '@/components/census-forms/CensusFormLodging';
+import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
+import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
 import { addCensus } from '@/store/censusesSlice';
