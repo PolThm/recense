@@ -8,6 +8,10 @@ type Props = {
 };
 
 const StatCard: FC<Props> = ({ title, score, scoreVariant }) => {
+  const formattedScore = score.toLocaleString('fr-CA', {
+    maximumFractionDigits: 2,
+  });
+
   return (
     <Card
       sx={{
@@ -46,7 +50,7 @@ const StatCard: FC<Props> = ({ title, score, scoreVariant }) => {
             alignItems: 'center',
           }}
         >
-          {score}
+          {formattedScore}
         </Typography>
       </CardContent>
     </Card>
