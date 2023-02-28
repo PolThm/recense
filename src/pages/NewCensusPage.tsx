@@ -68,7 +68,7 @@ const NewCensusPage: FC = () => {
   const navigate = useNavigate();
 
   // TODO: Put back Landing by default
-  const [currentStep, setCurrentStep] = useState(Contact);
+  const [currentStep, setCurrentStep] = useState(Profile);
   const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
@@ -166,7 +166,7 @@ const NewCensusPage: FC = () => {
             textAlign="center"
             sx={{
               pt: 5,
-              mb: { xs: -8, sm: -6 },
+              mb: { xs: -7, sm: -6 },
               fontSize: { xs: '2.2rem', sm: '2.5rem', md: '3rem' },
             }}
           >

@@ -1,23 +1,39 @@
 import { MenuItem } from '@mui/material';
 import { FC } from 'react';
 
-import MyCheckbox from '@/components/shared/MyCheckbox';
 import MySelect from '@/components/shared/MySelect';
+import MyTextInput from '@/components/shared/MyTextInput';
+import { Education, Gender, Situation } from '@/types/enums';
+
+const { Male, Female, Other } = Gender;
+const { Single, Married, Divorced, Widowed } = Situation;
+const { None, Bac, Superior } = Education;
 
 const CensusFormProfile: FC = () => {
   return (
     <>
-      {/* <MySelect label="Job Type" name="jobType"> */}
-      {/*   <MenuItem value="">Select a job type</MenuItem> */}
-      {/*   <MenuItem value="designer">Designer</MenuItem> */}
-      {/*   <MenuItem value="development">Developer</MenuItem> */}
-      {/*   <MenuItem value="product">Product Manager</MenuItem> */}
-      {/*   <MenuItem value="other">Other</MenuItem> */}
-      {/* </MySelect> */}
+      <MyTextInput label="Âge" name="age" type="number" />
 
-      <MyCheckbox name="consent">
-        L'utilisateur accepte les conditions d'utilisation
-      </MyCheckbox>
+      <MySelect label="Genre" name="gender">
+        <MenuItem value={Male}>{Male}</MenuItem>
+        <MenuItem value={Female}>{Female}</MenuItem>
+        <MenuItem value={Other}>{Other}</MenuItem>
+      </MySelect>
+
+      <MySelect label="Situation" name="situation">
+        <MenuItem value={Single}>{Single}</MenuItem>
+        <MenuItem value={Married}>{Married})</MenuItem>
+        <MenuItem value={Divorced}>{Divorced}</MenuItem>
+        <MenuItem value={Widowed}>{Widowed}</MenuItem>
+      </MySelect>
+
+      <MySelect label="Éducation" name="education">
+        <MenuItem value={None}>{None}</MenuItem>
+        <MenuItem value={Bac}>{Bac}</MenuItem>
+        <MenuItem value={Superior}>{Superior}</MenuItem>
+      </MySelect>
+
+      <MyTextInput label="Revenu annuel" name="income" type="number" />
     </>
   );
 };

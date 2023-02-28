@@ -22,12 +22,12 @@ export enum Gender {
 export enum Situation {
   Single = 'Célibataire',
   Married = 'Marié(e)',
-  divorced = 'Divorcé(e)',
+  Divorced = 'Divorcé(e)',
   Widowed = 'Veuf(ve)',
 }
 
 export enum Education {
-  None = 'Non diplômé',
+  None = 'Non diplômé(e)',
   Bac = 'Baccalauréat',
   Superior = 'Études supérieurs',
 }
