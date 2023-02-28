@@ -41,7 +41,7 @@ const StatisticsPage: FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: 1,
-        mt: -3,
+        pt: -3,
       }}
     >
       <Typography variant="h1" textAlign="center" gutterBottom>
