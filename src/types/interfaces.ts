@@ -25,18 +25,9 @@ export interface Census {
   residents: number | null;
 }
 
-export interface CensusForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone?: string;
-  age: string;
-  gender: string;
-  situation: string;
-  education: string;
-  income: string;
-  lodgingType: string;
-  location: string;
-  residents: string;
-  consent: boolean;
+export interface CensusForm
+  extends Omit<Census, 'id' | 'date' | 'age' | 'income' | 'residents'> {
+  age?: string;
+  income?: string;
+  residents?: string;
 }
