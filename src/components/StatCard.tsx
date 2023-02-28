@@ -15,7 +15,7 @@ const StatCard: FC<Props> = ({ title, score, scoreVariant }) => {
   return (
     <Card
       sx={{
-        backgroundColor: 'transparent',
+        backgroundColor: 'primary.contrastText',
         width: 200,
         height: 200,
         display: 'flex',
@@ -23,6 +23,7 @@ const StatCard: FC<Props> = ({ title, score, scoreVariant }) => {
         alignItems: 'start',
         mx: 'auto',
         pt: 2,
+        boxShadow: 2,
       }}
       variant="elevation"
     >
