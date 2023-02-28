@@ -4,19 +4,25 @@ import { FC } from 'react';
 
 type Props = {
   onClick: () => void;
+  children?: string;
 };
 
-const BackButton: FC<Props> = ({ onClick }) => {
+const BackButton: FC<Props> = ({ onClick, children }) => {
   return (
     <Button
-      onClick={onClick}
+      data-testid="back-button"
       startIcon={<ArrowBackIcon />}
       size="small"
       sx={{ position: 'absolute' }}
+      onClick={onClick}
     >
-      Retour
+      {children}
     </Button>
   );
+};
+
+BackButton.defaultProps = {
+  children: 'Retour',
 };
 
 export default BackButton;
