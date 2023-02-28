@@ -50,7 +50,8 @@ const StatisticsPage: FC = () => {
         Voici quelques chiffres tirés de nos recensements
       </Typography>
       <Typography textAlign="center" sx={{ mt: 1 }}>
-        Chaque résultat représente la moyenne des données recueillies (arrondi)
+        Chaque résultat représente la moyenne des données recueillies
+        (arrondies)
       </Typography>
 
       <Grid container spacing={4} sx={{ my: 4 }}>
