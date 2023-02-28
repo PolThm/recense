@@ -35,7 +35,7 @@ const NewCensusPage: FC = () => {
     if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
 
     if (!census) throw new Error('Census is null');
-    dispatch(addCensus(census));
+    dispatch(addCensus({ ...census, id: CENSUS_ID, date: TODAY_DATE }));
     return navigate(Routes.MyArchives);
   };
 
@@ -44,12 +44,7 @@ const NewCensusPage: FC = () => {
       Object.entries(newStepData).filter(([_, data]) => data)
     );
 
-    setCensus({
-      ...census,
-      ...newFilteredData,
-      id: CENSUS_ID,
-      date: TODAY_DATE,
-    });
+    setCensus({ ...census, ...newFilteredData });
   };
 
   return (
