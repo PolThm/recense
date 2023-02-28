@@ -17,7 +17,7 @@ import {
 } from '@/helpers/censusFormHelper';
 import { addCensus } from '@/store/censusesSlice';
 import { FormSteps, Routes } from '@/types/enums';
-import { Census, CensusForm } from '@/types/interfaces';
+import { CensusForm } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 
@@ -29,13 +29,21 @@ const NewCensusPage: FC = () => {
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState(Landing);
-  const [census, setCensus] = useState<Census>({} as Census);
+  const [census, setCensus] = useState<CensusForm>(formInitialValues);
 
   const next = () => {
     if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
 
     if (!census) throw new Error('Census is null');
-    dispatch(addCensus({ ...census, id: CENSUS_ID, date: TODAY_DATE }));
+    const newCensus = {
+      ...census,
+      id: CENSUS_ID,
+      date: TODAY_DATE,
+      age: Number(census.age),
+      income: Number(census.income),
+      residents: Number(census.residents),
+    };
+    dispatch(addCensus(newCensus));
     return navigate(Routes.MyArchives);
   };
 
@@ -68,7 +76,7 @@ const NewCensusPage: FC = () => {
           </Typography>
           <Formik
             key={currentStep}
-            initialValues={formInitialValues}
+            initialValues={census}
             validationSchema={getValidationSchema(currentStep)} // TODO: fix validation
             onSubmit={(stepData) => {
               setCensusWithNewStepData(stepData);
