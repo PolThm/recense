@@ -21,9 +21,6 @@ import { CensusForm } from '@/types/interfaces';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 
-const CENSUS_ID = Date.now();
-const TODAY_DATE = new Date().toLocaleDateString('fr-FR');
-
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,19 +28,21 @@ const NewCensusPage: FC = () => {
   const [currentStep, setCurrentStep] = useState(Landing);
   const [census, setCensus] = useState<CensusForm>(formInitialValues);
 
-  const next = () => {
-    if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
-
+  const getFormattedNewCensus = () => {
     if (!census) throw new Error('Census is null');
-    const newCensus = {
+    return {
       ...census,
-      id: CENSUS_ID,
-      date: TODAY_DATE,
+      id: Date.now(),
+      date: new Date().toLocaleDateString('fr-FR'),
       age: Number(census.age),
       income: Number(census.income),
       residents: Number(census.residents),
     };
-    dispatch(addCensus(newCensus));
+  };
+
+  const next = () => {
+    if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
+    dispatch(addCensus(getFormattedNewCensus()));
     return navigate(Routes.MyArchives);
   };
 
@@ -51,7 +50,6 @@ const NewCensusPage: FC = () => {
     const newFilteredData = Object.fromEntries(
       Object.entries(newStepData).filter(([_, data]) => data)
     );
-
     setCensus({ ...census, ...newFilteredData });
   };
 
@@ -107,7 +105,7 @@ const NewCensusPage: FC = () => {
                   {currentStep === Profile && <CensusFormProfile />}
                   {currentStep === Lodging && <CensusFormLodging />}
                   {currentStep === Summary && census && (
-                    <CensusFormSummary census={census} />
+                    <CensusFormSummary census={getFormattedNewCensus()} />
                   )}
                 </Box>
 

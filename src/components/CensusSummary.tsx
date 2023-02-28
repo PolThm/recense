@@ -7,10 +7,10 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 
-import { Census, CensusForm } from '@/types/interfaces';
+import { Census } from '@/types/interfaces';
 
 type Props = {
-  census: CensusForm | Census;
+  census: Census;
 };
 
 const CensusSummary: FC<Props> = ({ census }) => {
