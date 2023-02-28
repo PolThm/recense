@@ -3,7 +3,6 @@ import { Form, Formik } from 'formik';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
 
 import CensusFormContact from '@/components/census-form/CensusFormContact';
 import CensusFormLodging from '@/components/census-form/CensusFormLodging';
@@ -12,103 +11,18 @@ import CensusFormSummary from '@/components/census-form/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
 import { addCensus } from '@/store/censusesSlice';
-import {
-  Education,
-  FormSteps,
-  Gender,
-  Location,
-  LodgingType,
-  Routes,
-  Situation,
-} from '@/types/enums';
+import { FormSteps, Routes } from '@/types/enums';
 import { Census, CensusForm } from '@/types/interfaces';
+import {
+  formInitialValues,
+  getFormStepTitle,
+  getValidationSchema,
+} from '@/utils/formUtils';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
-const { Male, Female, Other } = Gender;
-const { Single, Married, Divorced, Widowed } = Situation;
-const { None, Bac, Superior } = Education;
-const { House, Apartment } = LodgingType;
-const { City, Countryside } = Location;
 
 const CENSUS_ID = Date.now();
-const DATE_OF_DAY = new Date().toLocaleDateString('fr-FR');
-
-const formInitialValues: CensusForm = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  age: '',
-  gender: '',
-  situation: '',
-  education: '',
-  income: '',
-  lodgingType: '',
-  location: '',
-  residents: '',
-  consent: false,
-};
-
-const contactValidationSchema = yup.object().shape({
-  firstName: yup
-    .string()
-    .max(15, 'Doit faire 15 caractères ou moins')
-    .required('Champ requis'),
-  lastName: yup
-    .string()
-    .max(20, 'Doit faire 20 caractères ou moins')
-    .required('Champ requis'),
-  email: yup
-    .string()
-    .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Adresse email invalide')
-    .max(50, 'Adresse email trop longue')
-    .required('Champ requis'),
-  phone: yup.string().matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide'),
-});
-
-const profileValidationSchema = yup.object().shape({
-  age: yup
-    .number()
-    .min(18, 'Doit être majeur')
-    .max(120, 'Vous êtes trop vieux, non ?')
-    .required('Champ requis'),
-  gender: yup
-    .string()
-    .oneOf([Male, Female, Other], 'Genre invalide')
-    .required('Champ requis'),
-  situation: yup
-    .string()
-    .oneOf([Single, Married, Divorced, Widowed], 'Situation invalide')
-    .required('Champ requis'),
-  education: yup
-    .string()
-    .oneOf([None, Bac, Superior], 'Éducation invalide')
-    .required('Champ requis'),
-  income: yup.number().min(0, 'Revenu invalide').required('Champ requis'),
-});
-
-const lodgingValidationSchema = yup.object().shape({
-  lodgingType: yup
-    .string()
-    .oneOf([House, Apartment], 'Logement invalide')
-    .required('Champ requis'),
-  location: yup
-    .string()
-    .oneOf([City, Countryside], 'Lieu invalide')
-    .required('Champ requis'),
-  residents: yup
-    .number()
-    .min(1, 'Doit être au moins 1')
-    .max(20, 'Vous êtes trop nombreux, non ?')
-    .required('Champ requis'),
-});
-
-const summaryValidationSchema = yup.object().shape({
-  consent: yup
-    .boolean()
-    .required('Champ requis')
-    .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
-});
+const TODAY_DATE = new Date().toLocaleDateString('fr-FR');
 
 const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
@@ -125,76 +39,30 @@ const NewCensusPage: FC = () => {
     return navigate(Routes.MyArchives);
   };
 
-  const getStepTitle = () => {
-    switch (currentStep) {
-      case Contact:
-        return 'Vos coordonnées';
-      case Profile:
-        return 'Votre profil';
-      case Lodging:
-        return 'Votre hébergement';
-      case Summary:
-        return 'Récapitulatif';
-      default:
-        return '';
-    }
-  };
-
-  const setCensusWithNewStepData = ({
-    firstName,
-    lastName,
-    email,
-    phone,
-    age,
-    gender,
-    situation,
-    education,
-    income,
-    lodgingType,
-    location,
-    residents,
-    consent,
-  }: CensusForm) => {
-    const newCensus = {
+  const setCensusWithNewStepData = (c: CensusForm) => {
+    setCensus({
       id: CENSUS_ID,
-      date: DATE_OF_DAY,
-      consent,
+      date: TODAY_DATE,
+      consent: c.consent,
       contact: {
-        firstName,
-        lastName,
-        email,
-        phone,
+        firstName: c.firstName,
+        lastName: c.lastName,
+        email: c.email,
+        phone: c.phone,
       },
       profile: {
-        age: Number(age),
-        gender,
-        situation,
-        education,
-        income: Number(income),
+        age: Number(c.age),
+        gender: c.gender,
+        situation: c.situation,
+        education: c.education,
+        income: Number(c.income),
       },
       lodging: {
-        lodgingType,
-        location,
-        residents: Number(residents),
+        lodgingType: c.lodgingType,
+        location: c.location,
+        residents: Number(c.residents),
       },
-    };
-
-    setCensus(newCensus);
-  };
-
-  const getValidationSchema = () => {
-    switch (currentStep) {
-      case Contact:
-        return contactValidationSchema;
-      case Profile:
-        return profileValidationSchema;
-      case Lodging:
-        return lodgingValidationSchema;
-      case Summary:
-        return summaryValidationSchema;
-      default:
-        return {};
-    }
+    });
   };
 
   return (
@@ -214,11 +82,11 @@ const NewCensusPage: FC = () => {
               fontSize: { xs: '2.2rem', sm: '2.5rem', md: '3rem' },
             }}
           >
-            {getStepTitle()}
+            {getFormStepTitle(currentStep)}
           </Typography>
           <Formik
             initialValues={formInitialValues}
-            validationSchema={getValidationSchema()}
+            validationSchema={getValidationSchema(currentStep)}
             onSubmit={(stepData) => {
               setCensusWithNewStepData(stepData);
               next();
