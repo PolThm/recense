@@ -29,7 +29,7 @@ export enum Situation {
 export enum Education {
   None = 'Non diplômé(e)',
   Bac = 'Baccalauréat',
-  Superior = 'Études supérieurs',
+  Superior = 'Études supérieures',
 }
 
 export enum LodgingType {

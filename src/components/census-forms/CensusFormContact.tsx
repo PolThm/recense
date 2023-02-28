@@ -10,7 +10,7 @@ const CensusFormContact: FC = () => {
       <MyTextInput label="Nom" name="lastName" type="text" />
 
       <MyTextInput
-        label="Adresse email"
+        label="Email"
         name="email"
         type="email"
         placeholder="email@test.fr"
