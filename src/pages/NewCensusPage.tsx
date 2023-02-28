@@ -58,7 +58,11 @@ const contactValidationSchema = yup.object().shape({
     .string()
     .max(20, 'Doit faire 20 caractères ou moins')
     .required('Champ requis'),
-  email: yup.string().email('Adresse email invalide').required('Champ requis'),
+  email: yup
+    .string()
+    .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Adresse email invalide')
+    .max(50, 'Adresse email trop longue')
+    .required('Champ requis'),
   phone: yup.string().matches(/^(\+33|0)[1-9](\d{2}){4}$/, 'Numéro invalide'),
 });
 
@@ -110,7 +114,7 @@ const NewCensusPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [currentStep, setCurrentStep] = useState(Profile);
+  const [currentStep, setCurrentStep] = useState(Landing);
   const [census, setCensus] = useState<Census | null>(null);
 
   const next = () => {
