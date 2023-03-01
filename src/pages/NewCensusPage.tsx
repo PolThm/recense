@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const NewCensusPage: FC = () => {
   const [currentStep, setCurrentStep] = useState(Landing);
   const [census, setCensus] = useState<CensusForm>(formInitialValues);
 
-  const getFormattedNewCensus = useCallback(() => {
+  const getFormattedNewCensus = useMemo(() => {
     return {
       ...census,
       id: Date.now(),
@@ -41,7 +41,7 @@ const NewCensusPage: FC = () => {
 
   const next = useCallback(() => {
     if (currentStep !== Summary) return setCurrentStep(currentStep + 1);
-    dispatch(addCensus(getFormattedNewCensus()));
+    dispatch(addCensus(getFormattedNewCensus));
     return navigate(Routes.MyArchives);
   }, [currentStep, dispatch, getFormattedNewCensus, navigate]);
 
@@ -105,7 +105,7 @@ const NewCensusPage: FC = () => {
                   {currentStep === Profile && <CensusFormProfile />}
                   {currentStep === Lodging && <CensusFormLodging />}
                   {currentStep === Summary && census && (
-                    <CensusFormSummary census={getFormattedNewCensus()} />
+                    <CensusFormSummary census={getFormattedNewCensus} />
                   )}
                 </Box>
 
