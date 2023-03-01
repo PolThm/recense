@@ -15,7 +15,7 @@ const RandomJoke: FC = () => {
       {loading && <Typography>Chargement...</Typography>}
       {error || !data?.joke ? (
         <Typography textAlign="center" color="error">
-          Il semblerait que le serveur ne soit pas joignable, désolé...
+          Il semblerait que le serveur ne soit pas joignable...
         </Typography>
       ) : (
         <Typography
