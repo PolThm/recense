@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 const useFetch = (url: string) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [apiData, setApiData] = useState<any>(null);
+  const [isApiLoading, setIsApiLoading] = useState(true);
+  const [apiError, setApiError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,18 +13,18 @@ const useFetch = (url: string) => {
           headers: { Accept: 'application/json' },
         });
         const json = await response.json();
-        setData(json);
+        setApiData(json);
       } catch (err) {
-        setError(err as Error);
+        setApiError(err as Error);
       } finally {
-        setLoading(false);
+        setIsApiLoading(false);
       }
     };
 
     fetchData();
   }, [url]);
 
-  return { data, loading, error };
+  return { apiData, isApiLoading, apiError };
 };
 
 export default useFetch;
