@@ -5,24 +5,21 @@ import useFetch from '@/hooks/useFetch';
 
 const LOADING_TEXT = 'Chargement...';
 const ERROR_TEXT = 'Il semblerait que le serveur ne soit pas joignable :/';
+const API_URL = 'https://icanhazdadjoke.com/';
 
 const RandomJoke: FC = () => {
-  const [isFakeLoading, setIsFakeLoading] = useState(true);
-
-  const { isApiLoading, apiData, apiError } = useFetch(
-    'https://icanhazdadjoke.com/'
-  );
-
-  const isLoaded = !isFakeLoading && !isApiLoading;
+  const [isLoading, setIsLoading] = useState(true);
+  const { isApiLoading, apiData, apiError } = useFetch(API_URL);
   const joke = apiData?.joke;
+  const jokeError = apiError || !joke;
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsFakeLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
+    let timeout: NodeJS.Timeout;
+    if (!isApiLoading) {
+      timeout = setTimeout(() => setIsLoading(isApiLoading), 500);
+    }
+    return () => clearTimeout(timeout);
+  }, [isApiLoading]);
 
   return (
     <Box>
@@ -30,17 +27,16 @@ const RandomJoke: FC = () => {
         Pour vous consoler, voici une petite blague aléatoire en anglais :
       </Typography>
 
-      <Box sx={{ minHeight: 25, mt: 1 }}>
-        {!isLoaded ? (
+      <Box sx={{ minHeight: 25, mt: 1, textAlign: 'center' }}>
+        {isLoading ? (
           <Typography color="primary">{LOADING_TEXT}</Typography>
         ) : (
           <Typography
-            textAlign="center"
-            color={apiError || !joke ? 'error' : 'primary'}
+            color={jokeError ? 'error' : 'primary'}
             sx={{ fontWeight: 600 }}
             style={{ animation: 'fadein 1s ease' }}
           >
-            {apiError || !joke ? ERROR_TEXT : joke}
+            {jokeError ? ERROR_TEXT : joke}
           </Typography>
         )}
       </Box>
