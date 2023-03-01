@@ -13,19 +13,20 @@ const RandomJoke: FC = () => {
       </Typography>
 
       {loading && <Typography>Chargement...</Typography>}
-      {error || !data?.joke ? (
-        <Typography textAlign="center" color="error">
-          Il semblerait que le serveur ne soit pas joignable...
-        </Typography>
-      ) : (
-        <Typography
-          textAlign="center"
-          color="primary"
-          sx={{ fontWeight: 600, mt: 1 }}
-        >
-          {data.joke}
-        </Typography>
-      )}
+      {!loading &&
+        (error || !data?.joke ? (
+          <Typography textAlign="center" color="error">
+            Il semblerait que le serveur ne soit pas joignable...
+          </Typography>
+        ) : (
+          <Typography
+            textAlign="center"
+            color="primary"
+            sx={{ fontWeight: 600, mt: 1 }}
+          >
+            {data.joke}
+          </Typography>
+        ))}
     </Box>
   );
 };
