@@ -13,18 +13,17 @@ const RandomJoke: FC = () => {
       </Typography>
 
       {loading && <Typography>Chargement...</Typography>}
-      {error && (
+      {error || !data?.joke ? (
         <Typography textAlign="center" color="error">
-          Erreur : {error}
+          Il semblerait que le serveur ne soit pas joignable, désolé...
         </Typography>
-      )}
-      {data && (
+      ) : (
         <Typography
           textAlign="center"
           color="primary"
           sx={{ fontWeight: 600, mt: 1 }}
         >
-          {data?.joke}
+          {data.joke}
         </Typography>
       )}
     </Box>
