@@ -14,6 +14,7 @@ const RandomJoke: FC = () => {
   );
 
   const isLoaded = !isFakeLoading && !isApiLoading;
+  const joke = apiData?.joke;
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -35,11 +36,11 @@ const RandomJoke: FC = () => {
         ) : (
           <Typography
             textAlign="center"
-            color={apiError ? 'error' : 'primary'}
+            color={apiError || !joke ? 'error' : 'primary'}
             sx={{ fontWeight: 600 }}
             style={{ animation: 'fadein 1s ease' }}
           >
-            {apiError ? ERROR_TEXT : apiData?.joke}
+            {apiError || !joke ? ERROR_TEXT : joke}
           </Typography>
         )}
       </Box>
