@@ -24,7 +24,7 @@ const RandomJoke: FC = () => {
           color="primary"
           sx={{ fontWeight: 600, mt: 1 }}
         >
-          {data.joke}
+          {data?.joke}
         </Typography>
       )}
     </Box>
