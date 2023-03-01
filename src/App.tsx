@@ -18,7 +18,12 @@ const App: FC = () => {
   }, [dispatch]);
 
   return (
-    <Box height="100vh" display="flex" flexDirection="column">
+    <Box
+      display="flex"
+      flexDirection="column"
+      height="100vh" // dvh fallback
+      sx={{ height: '100dvh' }}
+    >
       <BrowserRouter>
         <Navbar />
         <Paper elevation={3} sx={{ p: 2, flex: 1 }}>
