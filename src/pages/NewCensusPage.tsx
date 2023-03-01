@@ -29,7 +29,6 @@ const NewCensusPage: FC = () => {
   const [census, setCensus] = useState<CensusForm>(formInitialValues);
 
   const getFormattedNewCensus = useCallback(() => {
-    if (!census) throw new Error('Census is null');
     return {
       ...census,
       id: Date.now(),
