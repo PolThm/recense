@@ -1,7 +1,8 @@
-import { Container, Link, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import RandomJoke from '@/components/RandomJoke';
 import { Routes } from '@/types/enums';
 
 const NotFoundPage: FC = () => {
@@ -12,6 +13,7 @@ const NotFoundPage: FC = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        gap: 4,
         height: 1,
         mt: -3,
       }}
@@ -24,15 +26,12 @@ const NotFoundPage: FC = () => {
       >
         Oups, page non trouvée...
       </Typography>
-      <Link
-        component={NavLink}
-        variant="button"
-        underline="none"
-        to={Routes.Home}
-        sx={{ fontSize: '1.4rem', mt: 2, letterSpacing: 1 }}
-      >
+
+      <RandomJoke />
+
+      <Button component={NavLink} to={Routes.Home} variant="contained">
         Retourner à l'accueil
-      </Link>
+      </Button>
     </Container>
   );
 };
