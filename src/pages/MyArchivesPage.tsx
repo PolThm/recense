@@ -49,7 +49,7 @@ const MyArchivesPage: FC = () => {
       <Typography variant="h1" gutterBottom>
         Mes Archives
       </Typography>
-      <Typography variant="h4">Retrouvez tous vos recensements</Typography>
+      <Typography variant="h2">Retrouvez tous vos recensements</Typography>
 
       <Grid container spacing={4} sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}>
         {censuses.map((census) => {

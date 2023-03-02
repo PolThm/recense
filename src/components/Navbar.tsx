@@ -19,7 +19,7 @@ import { Routes } from '@/types/enums';
 
 import appRoutes from '../routes';
 
-const accountFakeTabs = ['Profil', 'Paramètres', 'Déconnexion'];
+const accountFakeTabs = ['Menu', 'Factice'];
 
 const APP_NAME = 'RECENSE';
 
@@ -102,9 +102,7 @@ const Navbar = () => {
                   variant="button"
                 >
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" sx={{ letterSpacing: 1 }}>
-                      {page.title}
-                    </Typography>
+                    <Typography>{page.title}</Typography>
                   </MenuItem>
                 </Link>
               ))}

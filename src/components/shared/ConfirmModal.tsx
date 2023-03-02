@@ -15,12 +15,7 @@ const ConfirmModal: FC<Props> = ({
   confirmAction,
 }) => {
   return (
-    <Modal
-      open={isOpen}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+    <Modal open={isOpen} onClose={handleClose} aria-labelledby="confirm-modal">
       <Box
         sx={{
           position: 'absolute',
@@ -28,7 +23,7 @@ const ConfirmModal: FC<Props> = ({
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: { xs: '90vw', sm: 500 },
-          bgcolor: 'background.paper',
+          backgroundColor: 'background.paper',
           boxShadow: 24,
           p: 4,
         }}

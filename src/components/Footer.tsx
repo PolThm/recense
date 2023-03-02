@@ -45,7 +45,7 @@ const Footer: FC = () => {
         variant="subtitle1"
         sx={{ mt: 1, opacity: 0.8 }}
       >
-        {`${new Date().getFullYear()} | Vite | React | TS | Redux | MUI | Formik`}
+        {`${new Date().getFullYear()} | React | TS | Redux | MUI | Formik | Vitest`}
       </Typography>
     </Box>
   );
