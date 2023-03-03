@@ -33,7 +33,7 @@ const App: FC = () => {
         style={{ animation: 'fadein 2s ease' }}
       >
         <AnimatePresence mode="wait" initial={false}>
-          <motion.div
+          <motion.main
             key={location.pathname}
             style={{ height: '100%' }}
             initial={{ opacity: 0 }}
@@ -51,7 +51,7 @@ const App: FC = () => {
               ))}
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
-          </motion.div>
+          </motion.main>
         </AnimatePresence>
       </Paper>
       <Footer />

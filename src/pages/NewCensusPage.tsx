@@ -1,5 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useCallback, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -59,72 +60,83 @@ const NewCensusPage: FC = () => {
       ) : (
         <>
           <BackButton onClick={() => setCurrentStep(currentStep - 1)} />
-          <Typography
-            variant="h2"
-            component="h1"
-            textAlign="center"
-            sx={{
-              pt: 5,
-              mb: { xs: -7, sm: -6 },
-              fontSize: { xs: '2.2rem', sm: '2.5rem', md: '3rem' },
-            }}
-          >
-            {getFormStepTitle(currentStep)}
-          </Typography>
-          <Formik
-            key={currentStep}
-            initialValues={census}
-            validationSchema={getValidationSchema(currentStep)}
-            onSubmit={(stepData) => {
-              setCensusWithNewStepData(stepData);
-              next();
-            }}
-          >
-            <Form style={{ height: '100%' }}>
-              <Container
-                maxWidth="sm"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              style={{ height: '100%' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <Typography
+                variant="h2"
+                component="h1"
+                textAlign="center"
                 sx={{
-                  py: 8,
-                  px: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  height: 1,
+                  pt: 5,
+                  mb: { xs: -7, sm: -6 },
+                  fontSize: { xs: '2.2rem', sm: '2.5rem', md: '3rem' },
                 }}
               >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    gap: 3,
-                    flex: 1,
-                  }}
-                >
-                  {currentStep === Contact && <CensusFormContact />}
-                  {currentStep === Profile && <CensusFormProfile />}
-                  {currentStep === Lodging && <CensusFormLodging />}
-                  {currentStep === Summary && census && (
-                    <CensusFormSummary census={getFormattedNewCensus} />
-                  )}
-                </Box>
+                {getFormStepTitle(currentStep)}
+              </Typography>
+              <Formik
+                key={currentStep}
+                initialValues={census}
+                validationSchema={getValidationSchema(currentStep)}
+                onSubmit={(stepData) => {
+                  setCensusWithNewStepData(stepData);
+                  next();
+                }}
+              >
+                <Form style={{ height: '100%' }}>
+                  <Container
+                    maxWidth="sm"
+                    sx={{
+                      py: 8,
+                      px: 0,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      height: 1,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        gap: 3,
+                        flex: 1,
+                      }}
+                    >
+                      {currentStep === Contact && <CensusFormContact />}
+                      {currentStep === Profile && <CensusFormProfile />}
+                      {currentStep === Lodging && <CensusFormLodging />}
+                      {currentStep === Summary && census && (
+                        <CensusFormSummary census={getFormattedNewCensus} />
+                      )}
+                    </Box>
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    mt: 6,
-                  }}
-                >
-                  {currentStep === Summary ? 'Envoyer' : 'Suivant'}
-                </Button>
-              </Container>
-            </Form>
-          </Formik>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      size="large"
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        mt: 6,
+                      }}
+                    >
+                      {currentStep === Summary ? 'Envoyer' : 'Suivant'}
+                    </Button>
+                  </Container>
+                </Form>
+              </Formik>
+            </motion.div>
+          </AnimatePresence>
         </>
       )}
     </Container>
