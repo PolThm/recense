@@ -10,11 +10,11 @@ describe('ConfirmModal', () => {
     confirmAction: () => {},
   };
 
-  const defaultTitle = 'Are you sure?';
+  const defaultChildren = 'Are you sure?';
 
   it('should render the modal with the correct title', () => {
-    render(<ConfirmModal {...defaultProps}>{defaultTitle}</ConfirmModal>);
-    expect(screen.getByText(defaultTitle)).toBeInTheDocument();
+    render(<ConfirmModal {...defaultProps}>{defaultChildren}</ConfirmModal>);
+    expect(screen.getByText(defaultChildren)).toBeInTheDocument();
   });
 
   it('should render the modal with a custom title', () => {
@@ -24,7 +24,7 @@ describe('ConfirmModal', () => {
   });
 
   it('should render the confirm and cancel buttons', () => {
-    render(<ConfirmModal {...defaultProps}>{defaultTitle}</ConfirmModal>);
+    render(<ConfirmModal {...defaultProps}>{defaultChildren}</ConfirmModal>);
     expect(screen.getByText('Confirmer')).toBeInTheDocument();
     expect(screen.getByText('Annuler')).toBeInTheDocument();
   });
@@ -33,7 +33,7 @@ describe('ConfirmModal', () => {
     const confirmAction = vitest.fn();
     render(
       <ConfirmModal {...defaultProps} confirmAction={confirmAction}>
-        {defaultTitle}
+        {defaultChildren}
       </ConfirmModal>
     );
     fireEvent.click(screen.getByText('Confirmer'));
@@ -44,7 +44,7 @@ describe('ConfirmModal', () => {
     const handleClose = vitest.fn();
     render(
       <ConfirmModal {...defaultProps} handleClose={handleClose}>
-        {defaultTitle}
+        {defaultChildren}
       </ConfirmModal>
     );
     fireEvent.click(screen.getByText('Annuler'));
@@ -54,18 +54,18 @@ describe('ConfirmModal', () => {
   it('should not render the modal when isOpen is false', () => {
     render(
       <ConfirmModal {...defaultProps} isOpen={false}>
-        {defaultTitle}
+        {defaultChildren}
       </ConfirmModal>
     );
-    expect(screen.queryByText(defaultTitle)).not.toBeInTheDocument();
+    expect(screen.queryByText(defaultChildren)).not.toBeInTheDocument();
   });
 
   it('should render the modal when isOpen is true', () => {
     render(
       <ConfirmModal {...defaultProps} isOpen>
-        {defaultTitle}
+        {defaultChildren}
       </ConfirmModal>
     );
-    expect(screen.getByText(defaultTitle)).toBeInTheDocument();
+    expect(screen.getByText(defaultChildren)).toBeInTheDocument();
   });
 });
