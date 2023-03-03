@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vitest } from 'vitest';
+import { vitest } from 'vitest';
 
 import BackButton from '@/components/shared/BackButton';
 
