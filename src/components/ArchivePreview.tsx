@@ -32,7 +32,6 @@ const ArchivePreview: FC<Props> = ({
           {name}
         </Typography>
         <IconButton
-          aria-label="delete"
           color="error"
           sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
           onClick={deleteArchive}

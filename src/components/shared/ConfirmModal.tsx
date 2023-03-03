@@ -15,7 +15,7 @@ const ConfirmModal: FC<Props> = ({
   confirmAction,
 }) => {
   return (
-    <Modal open={isOpen} onClose={handleClose} aria-labelledby="confirm-modal">
+    <Modal open={isOpen} onClose={handleClose}>
       <Box
         sx={{
           position: 'absolute',

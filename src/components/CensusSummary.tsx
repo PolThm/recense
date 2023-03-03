@@ -40,7 +40,7 @@ const CensusSummary: FC<Props> = ({ census }) => {
 
   return (
     <TableContainer>
-      <Table size="small" aria-label="census summary">
+      <Table size="small">
         <TableBody>
           {rows.map((row) => (
             <TableRow
