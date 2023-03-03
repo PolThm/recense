@@ -26,7 +26,11 @@ const App: FC = () => {
     >
       <BrowserRouter>
         <Navbar />
-        <Paper elevation={3} sx={{ p: 2, flex: 1 }}>
+        <Paper
+          elevation={3}
+          sx={{ p: 2, flex: 1 }}
+          style={{ animation: 'fadein 2s ease' }}
+        >
           <Routes>
             {appRoutes.map((route) => (
               <Route
