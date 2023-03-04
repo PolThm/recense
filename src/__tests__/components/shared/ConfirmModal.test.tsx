@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { vitest } from 'vitest';
+import { vi } from 'vitest';
 
 import ConfirmModal from '@/components/shared/ConfirmModal';
 
 describe('ConfirmModal', () => {
   const defaultProps = {
     isOpen: true,
-    handleClose: () => {},
-    confirmAction: () => {},
+    handleClose: vi.fn(),
+    confirmAction: vi.fn(),
   };
 
   const defaultChildren = 'Are you sure?';
@@ -30,7 +30,7 @@ describe('ConfirmModal', () => {
   });
 
   it('should call the confirmAction function when the confirm button is clicked', () => {
-    const confirmAction = vitest.fn();
+    const confirmAction = vi.fn();
     render(
       <ConfirmModal {...defaultProps} confirmAction={confirmAction}>
         {defaultChildren}
@@ -41,7 +41,7 @@ describe('ConfirmModal', () => {
   });
 
   it('should call the handleClose function when the cancel button is clicked', () => {
-    const handleClose = vitest.fn();
+    const handleClose = vi.fn();
     render(
       <ConfirmModal {...defaultProps} handleClose={handleClose}>
         {defaultChildren}

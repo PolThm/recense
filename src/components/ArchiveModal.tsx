@@ -35,7 +35,10 @@ const ArchiveModal: FC<Props> = ({ census, isOpen, handleClose }) => {
           }}
         >
           <Typography>{census.date}</Typography>
-          <IconButton onClick={handleClose}>
+          <IconButton
+            onClick={handleClose}
+            data-testid="archive-modal-close-icon"
+          >
             <CloseIcon />
           </IconButton>
         </Box>
