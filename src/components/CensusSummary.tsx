@@ -39,7 +39,7 @@ const CensusSummary: FC<Props> = ({ census }) => {
   ];
 
   return (
-    <TableContainer>
+    <TableContainer data-testid="census-summary">
       <Table size="small">
         <TableBody>
           {rows.map((row) => (
