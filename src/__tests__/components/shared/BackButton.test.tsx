@@ -7,13 +7,17 @@ describe('BackButton', () => {
   it('should render the button text by default', () => {
     const defaultLabel = 'Retour';
     render(<BackButton onClick={vi.fn()} />);
-    expect(screen.getByText(defaultLabel)).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: defaultLabel })
+    ).toBeInTheDocument();
   });
 
   it('should render the custom button label when passed as a prop', () => {
     const customLabel = 'Back';
     render(<BackButton onClick={vi.fn()}>{customLabel}</BackButton>);
-    expect(screen.getByText(customLabel)).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: customLabel })
+    ).toBeInTheDocument();
   });
 
   it('should call onClick when button is clicked', () => {
