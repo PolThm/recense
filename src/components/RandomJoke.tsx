@@ -35,6 +35,7 @@ const RandomJoke: FC = () => {
             color={jokeError ? 'error' : 'primary'}
             sx={{ fontWeight: 600 }}
             style={{ animation: 'fadein 1s ease' }}
+            data-testid={jokeError ? 'random-joke-error' : 'random-joke-joke'}
           >
             {jokeError ? ERROR_TEXT : joke}
           </Typography>
