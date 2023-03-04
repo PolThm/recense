@@ -25,8 +25,10 @@ describe('ConfirmModal', () => {
 
   it('should render the confirm and cancel buttons', () => {
     render(<ConfirmModal {...defaultProps}>{defaultChildren}</ConfirmModal>);
-    expect(screen.getByText('Confirmer')).toBeInTheDocument();
-    expect(screen.getByText('Annuler')).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Confirmer' })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Annuler' })).toBeInTheDocument();
   });
 
   it('should call the confirmAction function when the confirm button is clicked', () => {
@@ -36,7 +38,7 @@ describe('ConfirmModal', () => {
         {defaultChildren}
       </ConfirmModal>
     );
-    fireEvent.click(screen.getByText('Confirmer'));
+    fireEvent.click(screen.getByRole('button', { name: 'Confirmer' }));
     expect(confirmAction).toHaveBeenCalledTimes(1);
   });
 
@@ -47,7 +49,7 @@ describe('ConfirmModal', () => {
         {defaultChildren}
       </ConfirmModal>
     );
-    fireEvent.click(screen.getByText('Annuler'));
+    fireEvent.click(screen.getByRole('button', { name: 'Annuler' }));
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
