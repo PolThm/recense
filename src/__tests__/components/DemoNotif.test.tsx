@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { expect, vi } from 'vitest';
+import { vi } from 'vitest';
 
 import DemoNotif from '@/components/DemoNotif';
 
