@@ -75,4 +75,16 @@ describe('CensusSummary', () => {
       screen.getByText(defaultProps.census.residents as number)
     ).toBeInTheDocument();
   });
+
+  it('should render "Non renseigné" in the phone userInfo if it is an empty string', () => {
+    const censusWithoutPhone = { ...censusesMock[0], phone: '' };
+    render(<CensusSummary census={censusWithoutPhone} />);
+    expect(screen.getByTestId('Téléphone')).toHaveTextContent('Non renseigné');
+  });
+
+  it('should render "0" in the income userInfo is "0" (and not "Non renseigné")', () => {
+    const censusWithZeroIncome = { ...censusesMock[0], income: 0 };
+    render(<CensusSummary census={censusWithZeroIncome} />);
+    expect(screen.getByTestId('Revenu')).toHaveTextContent('0');
+  });
 });

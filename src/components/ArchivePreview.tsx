@@ -35,6 +35,7 @@ const ArchivePreview: FC<Props> = ({
           color="error"
           sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
           onClick={deleteArchive}
+          data-testid="delete-archive-icon"
         >
           <DeleteForeverIcon />
         </IconButton>
