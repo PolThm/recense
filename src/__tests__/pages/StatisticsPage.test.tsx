@@ -1,11 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import StatisticsPage from '@/pages/StatisticsPage';
+import { setupStore } from '@/store';
+import { renderWithProviders } from '@/utils/tests-utils';
 
 describe('StatisticsPage', () => {
-  it('should render the StatisticsPage', () => {
-    render(<StatisticsPage />);
-    expect(screen.getByText('Statistics')).toBeInTheDocument();
+  const store = setupStore();
+
+  it('should render the title', () => {
+    renderWithProviders(<StatisticsPage />, { store });
+    expect(screen.getByText('Statistics Globales')).toBeInTheDocument();
   });
 });
