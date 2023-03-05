@@ -63,7 +63,7 @@ const MyArchivesPage: FC = () => {
       </Typography>
       <Typography variant="h2">Retrouvez tous vos recensements</Typography>
 
-      <Container sx={{ pt: { xs: 2, md: 8 }, pb: 8, minHeight: 270 }}>
+      <Container sx={{ pt: { xs: 4, md: 8 }, pb: 8, minHeight: 270 }}>
         {areCensusesLoading ? (
           <Box
             sx={{

@@ -65,7 +65,7 @@ const StatisticsPage: FC = () => {
         (arrondies)
       </Typography>
 
-      <Container sx={{ pt: { xs: 2, md: 8 }, pb: 8, minHeight: 330 }}>
+      <Container sx={{ pt: { xs: 4, md: 8 }, pb: 8, minHeight: 330 }}>
         {areCensusesLoading ? (
           <Box
             sx={{
