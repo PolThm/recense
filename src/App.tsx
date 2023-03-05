@@ -24,9 +24,7 @@ const App: FC = () => {
     try {
       dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
-      if (snapshot.exists()) {
-        dispatch(setAllCensuses(snapshot.val()));
-      }
+      if (snapshot.exists()) dispatch(setAllCensuses(snapshot.val()));
     } catch (error) {
       console.error(error);
     } finally {
