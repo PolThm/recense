@@ -11,14 +11,14 @@ import CensusFormProfile from '@/components/census-forms/CensusFormProfile';
 import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 import NewCensusLanding from '@/components/NewCensusLanding';
 import BackButton from '@/components/shared/BackButton';
+import { addCensus } from '@/store/censusesSlice';
+import { FormSteps, Routes } from '@/types/enums';
+import { CensusForm } from '@/types/interfaces';
 import {
   formInitialValues,
   getFormStepTitle,
   getValidationSchema,
-} from '@/helpers/censusFormHelper';
-import { addCensus } from '@/store/censusesSlice';
-import { FormSteps, Routes } from '@/types/enums';
-import { CensusForm } from '@/types/interfaces';
+} from '@/utils/census-form-utils';
 
 const { Landing, Contact, Profile, Lodging, Summary } = FormSteps;
 
