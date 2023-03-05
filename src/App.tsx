@@ -20,7 +20,6 @@ const App: FC = () => {
 
   const getDbAndSetAllCensuses = useCallback(async () => {
     let timeoutId: NodeJS.Timeout;
-
     try {
       dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
@@ -30,7 +29,6 @@ const App: FC = () => {
     } finally {
       timeoutId = setTimeout(() => dispatch(setIsLoading(false)), 500);
     }
-
     return () => clearTimeout(timeoutId);
   }, [dispatch]);
 
