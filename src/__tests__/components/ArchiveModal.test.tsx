@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import censusMock from '@/__tests__/mocks/CensusMock';
 import ArchiveModal from '@/components/ArchiveModal';
-import censusesMock from '@/mocks/CensusesMock';
 
 describe('ArchiveModal', () => {
   const defaultProps = {
-    census: censusesMock[0],
+    census: censusMock,
     isOpen: true,
     handleClose: vi.fn(),
   };

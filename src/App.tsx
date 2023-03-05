@@ -8,7 +8,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import DemoNotif from '@/components/DemoNotif';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import censusesMock from '@/mocks/CensusesMock';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
 import { setAllCensuses } from '@/store/censusesSlice';
