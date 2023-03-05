@@ -18,6 +18,7 @@ const MyArchivesPage: FC = () => {
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [currentCensus, setCurrentCensus] = useState<Census | null>(null);
+  const [updateIndex, setUpdateIndex] = useState(0);
 
   const openArchiveModal = useCallback((census: Census) => {
     setCurrentCensus(census);
@@ -33,6 +34,7 @@ const MyArchivesPage: FC = () => {
     if (!currentCensus?.id) return;
     dispatch(deleteCensus(currentCensus.id));
     setIsConfirmModalOpen(false);
+    setUpdateIndex((prev) => prev + 1);
   }, [currentCensus, dispatch]);
 
   return (
@@ -51,7 +53,13 @@ const MyArchivesPage: FC = () => {
       </Typography>
       <Typography variant="h2">Retrouvez tous vos recensements</Typography>
 
-      <Grid container spacing={4} sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}>
+      <Grid
+        key={updateIndex}
+        container
+        spacing={4}
+        sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}
+        style={{ animation: 'fadein 0.5s ease-in-out' }}
+      >
         {censuses.map((census) => {
           const name = `${census.firstName} ${census.lastName}`;
 
@@ -68,6 +76,7 @@ const MyArchivesPage: FC = () => {
           );
         })}
       </Grid>
+
       {currentCensus && (
         <ArchiveModal
           census={currentCensus}
