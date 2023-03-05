@@ -18,20 +18,17 @@ const App: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const getDbAndSetAllCensuses = useCallback(() => {
-    const dbRef = ref(database);
-    get(child(dbRef, 'censuses'))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          dispatch(setAllCensuses(snapshot.val()));
-        } else {
-          console.log('No data available');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const getDbAndSetAllCensuses = useCallback(async () => {
+    try {
+      const snapshot = await get(child(ref(database), 'censuses'));
+      if (snapshot.exists()) {
+        dispatch(setAllCensuses(snapshot.val()));
+      } else {
+        console.log('No data available');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }, [dispatch]);
 
   useEffect(() => {
