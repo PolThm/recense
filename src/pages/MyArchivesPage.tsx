@@ -1,4 +1,10 @@
-import { Container, Grid, Typography } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Grid,
+  Typography,
+} from '@mui/material';
 import { FC, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,6 +19,9 @@ const MyArchivesPage: FC = () => {
   const dispatch = useDispatch();
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
+  );
+  const areCensusesLoading = useSelector(
+    (state: RootState) => state.censusesStore.isLoading
   );
 
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
@@ -53,29 +62,43 @@ const MyArchivesPage: FC = () => {
       </Typography>
       <Typography variant="h2">Retrouvez tous vos recensements</Typography>
 
-      <Grid
-        key={updateIndex}
-        container
-        spacing={4}
-        sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}
-        style={{ animation: 'fadein 0.5s ease-in-out' }}
-      >
-        {censuses.map((census) => {
-          const name = `${census.firstName} ${census.lastName}`;
+      <Container sx={{ pt: { xs: 2, md: 8 }, pb: 8, minHeight: 270 }}>
+        {!areCensusesLoading ? (
+          <Grid
+            key={updateIndex}
+            container
+            spacing={4}
+            style={{ animation: 'fadein 0.5s ease-in-out' }}
+          >
+            {censuses.map((census) => {
+              const name = `${census.firstName} ${census.lastName}`;
 
-          if (!census.id) return null;
-          return (
-            <Grid item xs={12} sm={6} md={4} key={census.id}>
-              <ArchivePreview
-                name={name}
-                date={census.date}
-                deleteArchive={() => openConfirmModal(census)}
-                openArchive={() => openArchiveModal(census)}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>
+              if (!census.id) return null;
+              return (
+                <Grid item xs={12} sm={6} md={4} key={census.id}>
+                  <ArchivePreview
+                    name={name}
+                    date={census.date}
+                    deleteArchive={() => openConfirmModal(census)}
+                    openArchive={() => openArchiveModal(census)}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        ) : (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        )}
+      </Container>
 
       {currentCensus && (
         <ArchiveModal

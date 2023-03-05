@@ -19,19 +19,21 @@ const App: FC = () => {
   const location = useLocation();
 
   const getDbAndSetAllCensuses = useCallback(async () => {
+    let timeoutId: NodeJS.Timeout;
+
     try {
       dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
       if (snapshot.exists()) {
         dispatch(setAllCensuses(snapshot.val()));
-      } else {
-        console.log('No censuses available');
       }
     } catch (error) {
       console.error(error);
     } finally {
-      dispatch(setIsLoading(false));
+      timeoutId = setTimeout(() => dispatch(setIsLoading(false)), 500);
     }
+
+    return () => clearTimeout(timeoutId);
   }, [dispatch]);
 
   useEffect(() => {
