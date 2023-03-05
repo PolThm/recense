@@ -8,6 +8,7 @@ import {
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import EmptyCensusesMessage from '@/components/shared/EmptyCensusesMessage';
 import StatCard from '@/components/StatCard';
 import { RootState } from '@/store';
 
@@ -65,23 +66,7 @@ const StatisticsPage: FC = () => {
       </Typography>
 
       <Container sx={{ pt: { xs: 2, md: 8 }, pb: 8, minHeight: 330 }}>
-        {!areCensusesLoading ? (
-          <Grid container spacing={4}>
-            <Grid item xs={12} sm={6} md={4}>
-              <StatCard title="Âge" score={ageAverage} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <StatCard
-                title="Revenu annuel"
-                score={incomeAverage}
-                scoreVariant="h3"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <StatCard title="Résidents" score={residentsAverage} />
-            </Grid>
-          </Grid>
-        ) : (
+        {areCensusesLoading ? (
           <Box
             sx={{
               display: 'flex',
@@ -92,6 +77,27 @@ const StatisticsPage: FC = () => {
           >
             <CircularProgress />
           </Box>
+        ) : (
+          <>
+            {censuses.length > 0 && (
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6} md={4}>
+                  <StatCard title="Âge" score={ageAverage} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <StatCard
+                    title="Revenu annuel"
+                    score={incomeAverage}
+                    scoreVariant="h3"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <StatCard title="Résidents" score={residentsAverage} />
+                </Grid>
+              </Grid>
+            )}
+            <EmptyCensusesMessage censuses={censuses} />
+          </>
         )}
       </Container>
     </Container>
