@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
+import censusMock from '@/__tests__/mocks/CensusMock';
 import CensusSummary from '@/components/CensusSummary';
-import censusesMock from '@/mocks/CensusesMock';
 
 describe('CensusSummary', () => {
-  const defaultProps = { census: censusesMock[0] };
+  const defaultProps = { census: censusMock };
 
   it('should render the correct first name', () => {
     render(<CensusSummary {...defaultProps} />);
@@ -77,13 +77,13 @@ describe('CensusSummary', () => {
   });
 
   it('should render "Non renseigné" in the phone userInfo if it is an empty string', () => {
-    const censusWithoutPhone = { ...censusesMock[0], phone: '' };
+    const censusWithoutPhone = { ...censusMock, phone: '' };
     render(<CensusSummary census={censusWithoutPhone} />);
     expect(screen.getByTestId('Téléphone')).toHaveTextContent('Non renseigné');
   });
 
   it('should render "0" in the income userInfo is "0" (and not "Non renseigné")', () => {
-    const censusWithZeroIncome = { ...censusesMock[0], income: 0 };
+    const censusWithZeroIncome = { ...censusMock, income: 0 };
     render(<CensusSummary census={censusWithZeroIncome} />);
     expect(screen.getByTestId('Revenu')).toHaveTextContent('0');
   });

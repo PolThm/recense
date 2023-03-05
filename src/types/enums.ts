@@ -41,3 +41,8 @@ export enum Location {
   City = 'Ville',
   Countryside = 'Campagne',
 }
+
+export enum WarningTypes {
+  Info = 'info',
+  Error = 'error',
+}

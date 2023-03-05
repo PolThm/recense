@@ -5,10 +5,14 @@ import { Census } from '@/types/interfaces';
 
 export interface CensusesState {
   censuses: Census[];
+  isLoading: boolean;
+  error: Error | null;
 }
 
 const initialState: CensusesState = {
   censuses: [],
+  isLoading: false,
+  error: null,
 };
 
 function findCensusIndex(state: CensusesState, id: number) {
@@ -19,7 +23,7 @@ export const censusesSlice = createSlice({
   name: 'censusesStore',
   initialState,
   reducers: {
-    fetchCensuses: (state, action: PayloadAction<Census[]>) => {
+    setAllCensuses: (state, action: PayloadAction<Census[]>) => {
       state.censuses = action.payload;
     },
 
@@ -31,9 +35,23 @@ export const censusesSlice = createSlice({
       const index = findCensusIndex(state, action.payload);
       state.censuses.splice(index, 1);
     },
+
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+
+    setError: (state, action: PayloadAction<Error>) => {
+      state.error = action.payload;
+    },
   },
 });
 
-export const { addCensus, deleteCensus, fetchCensuses } = censusesSlice.actions;
+export const {
+  addCensus,
+  deleteCensus,
+  setAllCensuses,
+  setIsLoading,
+  setError,
+} = censusesSlice.actions;
 
 export default censusesSlice.reducer;

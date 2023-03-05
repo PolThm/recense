@@ -5,8 +5,8 @@ const DemoNotif: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsOpen(true), 1000);
-    return () => clearTimeout(timer);
+    const timeoutId: NodeJS.Timeout = setTimeout(() => setIsOpen(true), 1000);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const handleClose = () => {
