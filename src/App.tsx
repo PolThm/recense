@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
-import { setAllCensuses } from '@/store/censusesSlice';
+import { setAllCensuses, setIsLoading } from '@/store/censusesSlice';
 
 import { database } from '../firebase';
 
@@ -20,14 +20,17 @@ const App: FC = () => {
 
   const getDbAndSetAllCensuses = useCallback(async () => {
     try {
+      dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
       if (snapshot.exists()) {
         dispatch(setAllCensuses(snapshot.val()));
       } else {
-        console.log('No data available');
+        console.log('No censuses available');
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      dispatch(setIsLoading(false));
     }
   }, [dispatch]);
 
