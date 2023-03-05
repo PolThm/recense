@@ -1,6 +1,6 @@
 # Recense by Pol Thomas
 
-Made with: Vite + React + TS + Redux + MUI + Formik + Vitest + PWA
+Made with: Vite + React + TS + Redux + MUI + Formik + Vitest + Firebase + PWA
 
 ###### Greetings and welcome to this app designed to facilitate population census.
 
