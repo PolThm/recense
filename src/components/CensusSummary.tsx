@@ -54,7 +54,11 @@ const CensusSummary: FC<Props> = ({ census }) => {
               >
                 {row.categoryName}
               </TableCell>
-              <TableCell align="right" sx={{ pl: 0 }}>
+              <TableCell
+                align="right"
+                sx={{ pl: 0 }}
+                data-testid={row.categoryName}
+              >
                 {row.userInfo}
               </TableCell>
             </TableRow>
