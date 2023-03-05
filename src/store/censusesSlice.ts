@@ -19,7 +19,7 @@ export const censusesSlice = createSlice({
   name: 'censusesStore',
   initialState,
   reducers: {
-    fetchCensuses: (state, action: PayloadAction<Census[]>) => {
+    setAllCensuses: (state, action: PayloadAction<Census[]>) => {
       state.censuses = action.payload;
     },
 
@@ -34,6 +34,7 @@ export const censusesSlice = createSlice({
   },
 });
 
-export const { addCensus, deleteCensus, fetchCensuses } = censusesSlice.actions;
+export const { addCensus, deleteCensus, setAllCensuses } =
+  censusesSlice.actions;
 
 export default censusesSlice.reducer;

@@ -1,6 +1,7 @@
 import { Box, Paper } from '@mui/material';
+import { child, get, ref } from 'firebase/database';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
@@ -10,15 +11,33 @@ import Navbar from '@/components/Navbar';
 import censusesMock from '@/mocks/CensusesMock';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
-import { fetchCensuses } from '@/store/censusesSlice';
+import { setAllCensuses } from '@/store/censusesSlice';
+
+import { database } from '../firebase';
 
 const App: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  useEffect(() => {
-    dispatch(fetchCensuses(censusesMock));
+  const getDbAndSetAllCensuses = useCallback(() => {
+    const dbRef = ref(database);
+    get(child(dbRef, 'censuses'))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          dispatch(setAllCensuses(snapshot.val()));
+        } else {
+          console.log('No data available');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, [dispatch]);
+
+  useEffect(() => {
+    getDbAndSetAllCensuses();
+  }, [getDbAndSetAllCensuses]);
 
   return (
     <Box
