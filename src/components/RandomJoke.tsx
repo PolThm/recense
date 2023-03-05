@@ -16,7 +16,7 @@ const RandomJoke: FC = () => {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     if (!isApiLoading) {
-      timeoutId = setTimeout(() => setIsLoading(isApiLoading), 500);
+      timeoutId = setTimeout(() => setIsLoading(isApiLoading), 500); // 500ms delay to avoid flickering
     }
     return () => clearTimeout(timeoutId);
   }, [isApiLoading]);
