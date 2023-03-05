@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ArchiveModal from '@/components/ArchiveModal';
 import ArchivePreview from '@/components/ArchivePreview';
 import ConfirmModal from '@/components/shared/ConfirmModal';
-import EmptyCensusesMessage from '@/components/shared/EmptyCensusesMessage';
+import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
 import { RootState } from '@/store';
 import { deleteCensus } from '@/store/censusesSlice';
 import { Census } from '@/types/interfaces';
@@ -99,7 +99,7 @@ const MyArchivesPage: FC = () => {
                 );
               })}
             </Grid>
-            <EmptyCensusesMessage censuses={censuses} />
+            <EmptyCensusesWarning censuses={censuses} />
           </>
         )}
       </Container>

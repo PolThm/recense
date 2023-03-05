@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
-import { setAllCensuses, setIsLoading } from '@/store/censusesSlice';
+import { setAllCensuses, setError, setIsLoading } from '@/store/censusesSlice';
 
 import { database } from '../firebase';
 
@@ -25,6 +25,7 @@ const App: FC = () => {
       const snapshot = await get(child(ref(database), 'censuses'));
       if (snapshot.exists()) dispatch(setAllCensuses(snapshot.val()));
     } catch (error) {
+      dispatch(setError(error as Error));
       console.error(error);
     } finally {
       timeoutId = setTimeout(() => dispatch(setIsLoading(false)), 500);

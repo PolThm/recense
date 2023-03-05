@@ -8,7 +8,7 @@ import {
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import EmptyCensusesMessage from '@/components/shared/EmptyCensusesMessage';
+import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
 import StatCard from '@/components/StatCard';
 import { RootState } from '@/store';
 
@@ -96,7 +96,7 @@ const StatisticsPage: FC = () => {
                 </Grid>
               </Grid>
             )}
-            <EmptyCensusesMessage censuses={censuses} />
+            <EmptyCensusesWarning censuses={censuses} />
           </>
         )}
       </Container>
