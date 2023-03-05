@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { expect, vi } from 'vitest';
+import { vi } from 'vitest';
 
 import ArchivePreview from '@/components/ArchivePreview';
 
