@@ -8,11 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from '@/App';
 import theme from '@/assets/style/theme';
-import { store } from '@/store';
+import { setupStore } from '@/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter>
