@@ -1,11 +1,14 @@
 import { screen } from '@testing-library/react';
 
+import CensusMock from '@/__tests__/mocks/CensusMock';
 import StatisticsPage from '@/pages/StatisticsPage';
 import { setupStore } from '@/store';
+import { setAllCensuses } from '@/store/censusesSlice';
 import { renderWithProviders } from '@/utils/tests-utils';
 
 describe('StatisticsPage', () => {
   const store = setupStore();
+  store.dispatch(setAllCensuses([CensusMock]));
 
   it('should render the title', () => {
     renderWithProviders(<StatisticsPage />, { store });
