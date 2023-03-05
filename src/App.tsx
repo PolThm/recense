@@ -4,6 +4,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
+import DemoNotif from '@/components/DemoNotif';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import censusesMock from '@/mocks/CensusesMock';
@@ -55,6 +56,7 @@ const App: FC = () => {
         </AnimatePresence>
       </Paper>
       <Footer />
+      <DemoNotif />
     </Box>
   );
 };
