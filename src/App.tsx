@@ -12,6 +12,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
 import { setAllCensuses, setError, setIsLoading } from '@/store/censusesSlice';
 import { LocalStorageKeys } from '@/types/enums';
+import { clearLocalStorageAfterOneWeek } from '@/utils/local-storage-utils';
 
 import { database } from '../firebase';
 
@@ -32,18 +33,6 @@ const App: FC = () => {
     }
   }, [dispatch]);
 
-  const clearLocalStorageAfterOneWeek = useCallback(() => {
-    const oneWeekAgo = 1000 * 60 * 60 * 24 * 7;
-    const lastUpdate = localStorage.getItem(LocalStorageKeys.LastUpdate);
-    if (lastUpdate) {
-      const lastUpdateDate = new Date(JSON.parse(lastUpdate));
-      const currentDate = new Date();
-      if (currentDate.getTime() - lastUpdateDate.getTime() > oneWeekAgo) {
-        localStorage.clear();
-      }
-    }
-  }, []);
-
   useEffect(() => {
     clearLocalStorageAfterOneWeek();
     const localCensusesDb = localStorage.getItem(LocalStorageKeys.Censuses);
@@ -52,7 +41,7 @@ const App: FC = () => {
     } else {
       getFirebaseDbAndSetAllCensuses();
     }
-  }, [getFirebaseDbAndSetAllCensuses, clearLocalStorageAfterOneWeek, dispatch]);
+  }, [getFirebaseDbAndSetAllCensuses, dispatch]);
 
   return (
     <Box

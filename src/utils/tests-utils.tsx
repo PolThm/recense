@@ -14,7 +14,6 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   store?: AppStore;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function renderWithProviders(
   ui: React.ReactElement,
   {
