@@ -28,7 +28,7 @@ const ConfirmModal: FC<Props> = ({
           p: 4,
         }}
       >
-        <Typography variant="h6" component="h2" textAlign="center">
+        <Typography variant="h6" component="h2">
           {children}
         </Typography>
 
