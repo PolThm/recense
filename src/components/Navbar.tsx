@@ -172,6 +172,7 @@ const Navbar = () => {
                 <Typography
                   textAlign="center"
                   onClick={() => setIsConfirmModalOpen(true)}
+                  color="error"
                 >
                   Réinitialiser la démo
                 </Typography>
