@@ -16,9 +16,7 @@ describe('DemoNotif', () => {
     render(<DemoNotif />);
     expect(screen.queryByText('Ceci est une démo')).not.toBeInTheDocument();
     act(() => vi.advanceTimersByTime(1000));
-    expect(
-      screen.getByText('Bienvenue dans cette démo :)')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Bienvenue dans cette démo !')).toBeInTheDocument();
   });
 
   it('should close the notification when clicking on the close button (once it is open) after a small transition', () => {
