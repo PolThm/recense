@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import WarningMessage from '@/components/WarningMessage';
+import WarningMessage from '@/components/shared/WarningMessage';
 import { RootState } from '@/store';
 import { Routes, WarningTypes } from '@/types/enums';
 import { Census } from '@/types/interfaces';
@@ -29,7 +29,7 @@ const EmptyCensusesWarning: FC<Props> = ({ censuses }) => {
           gap: 4,
         }}
       >
-        {!isCensusError ? (
+        {isCensusError ? (
           <WarningMessage type={WarningTypes.Error}>
             Il semblerait qu'il y ait un problème avec le serveur :/
           </WarningMessage>
