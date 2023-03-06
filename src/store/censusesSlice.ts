@@ -1,8 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LocalStorageKeys } from '@/types/enums';
 import { Census } from '@/types/interfaces';
+import { setCensusesToLocalStorage } from '@/utils/local-storage-utils';
 
 export interface CensusesState {
   censuses: Census[];
@@ -18,11 +18,6 @@ const initialState: CensusesState = {
 
 const findCensusIndex = (state: CensusesState, id: number) => {
   return state.censuses.findIndex((e) => e.id === id);
-};
-
-const setCensusesToLocalStorage = (censuses: Census[]) => {
-  localStorage.setItem(LocalStorageKeys.Censuses, JSON.stringify(censuses));
-  localStorage.setItem(LocalStorageKeys.LastUpdate, JSON.stringify(Date.now()));
 };
 
 export const censusesSlice = createSlice({

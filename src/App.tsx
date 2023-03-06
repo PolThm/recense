@@ -1,47 +1,26 @@
-import { Box, Paper } from '@mui/material';
-import { child, get, ref } from 'firebase/database';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useCallback, useEffect } from 'react';
+import { Box } from '@mui/material';
+import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes, useLocation } from 'react-router-dom';
 
 import DemoNotif from '@/components/DemoNotif';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import NotFoundPage from '@/pages/NotFoundPage';
-import appRoutes from '@/routes';
-import { setAllCensuses, setError, setIsLoading } from '@/store/censusesSlice';
-import { LocalStorageKeys } from '@/types/enums';
-import { clearLocalStorageAfterOneWeek } from '@/utils/local-storage-utils';
-
-import { database } from '../firebase';
+import RouterContent from '@/components/RouterContent';
+import { setAllCensuses } from '@/store/censusesSlice';
+import { getFirebaseDbAndSetAllCensuses } from '@/utils/firebase-utils';
+import { getCensusesFromLocalStorage } from '@/utils/local-storage-utils';
 
 const App: FC = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-
-  const getFirebaseDbAndSetAllCensuses = useCallback(async () => {
-    try {
-      dispatch(setIsLoading(true));
-      const snapshot = await get(child(ref(database), 'censuses'));
-      if (snapshot.exists()) dispatch(setAllCensuses(snapshot.val()));
-    } catch (error) {
-      dispatch(setError(error as Error));
-      console.error(error);
-    } finally {
-      setTimeout(() => dispatch(setIsLoading(false)), 500); // 500ms delay to avoid flickering
-    }
-  }, [dispatch]);
 
   useEffect(() => {
-    clearLocalStorageAfterOneWeek();
-    const localCensusesDb = localStorage.getItem(LocalStorageKeys.Censuses);
+    const localCensusesDb = getCensusesFromLocalStorage();
     if (localCensusesDb) {
-      dispatch(setAllCensuses(JSON.parse(localCensusesDb)));
+      dispatch(setAllCensuses(localCensusesDb));
     } else {
-      getFirebaseDbAndSetAllCensuses();
+      getFirebaseDbAndSetAllCensuses(dispatch);
     }
-  }, [getFirebaseDbAndSetAllCensuses, dispatch]);
+  }, [dispatch]);
 
   return (
     <Box
@@ -51,33 +30,7 @@ const App: FC = () => {
       sx={{ height: '100dvh' }}
     >
       <Navbar />
-      <Paper
-        elevation={3}
-        sx={{ p: 2, flex: 1 }}
-        style={{ animation: 'fadein 2s ease' }}
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.main
-            key={location.pathname}
-            style={{ height: '100%' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-          >
-            <Routes location={location} key={location.pathname}>
-              {appRoutes.map((route) => (
-                <Route
-                  key={route.key}
-                  path={route.path}
-                  element={<route.component />}
-                />
-              ))}
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </motion.main>
-        </AnimatePresence>
-      </Paper>
+      <RouterContent />
       <Footer />
       <DemoNotif />
     </Box>
