@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 
 const DemoNotif: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     setTimeout(() => setIsOpen(true), 1000);
