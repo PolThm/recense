@@ -19,7 +19,6 @@ const App: FC = () => {
   const location = useLocation();
 
   const getDbAndSetAllCensuses = useCallback(async () => {
-    let timeoutId: NodeJS.Timeout;
     try {
       dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
@@ -28,9 +27,8 @@ const App: FC = () => {
       dispatch(setError(error as Error));
       console.error(error);
     } finally {
-      timeoutId = setTimeout(() => dispatch(setIsLoading(false)), 500); // 500ms delay to avoid flickering
+      setTimeout(() => dispatch(setIsLoading(false)), 500); // 500ms delay to avoid flickering
     }
-    return () => clearTimeout(timeoutId);
   }, [dispatch]);
 
   useEffect(() => {
