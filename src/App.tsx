@@ -1,7 +1,6 @@
 import { Box, Paper } from '@mui/material';
-import { child, get, ref } from 'firebase/database';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
@@ -10,28 +9,14 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
-import { setAllCensuses, setError, setIsLoading } from '@/store/censusesSlice';
+import { setAllCensuses } from '@/store/censusesSlice';
 import { LocalStorageKeys } from '@/types/enums';
+import { getFirebaseDbAndSetAllCensuses } from '@/utils/firebase-utils';
 import { clearLocalStorageAfterOneWeek } from '@/utils/local-storage-utils';
-
-import { database } from '../firebase';
 
 const App: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-
-  const getFirebaseDbAndSetAllCensuses = useCallback(async () => {
-    try {
-      dispatch(setIsLoading(true));
-      const snapshot = await get(child(ref(database), 'censuses'));
-      if (snapshot.exists()) dispatch(setAllCensuses(snapshot.val()));
-    } catch (error) {
-      dispatch(setError(error as Error));
-      console.error(error);
-    } finally {
-      setTimeout(() => dispatch(setIsLoading(false)), 500); // 500ms delay to avoid flickering
-    }
-  }, [dispatch]);
 
   useEffect(() => {
     clearLocalStorageAfterOneWeek();
@@ -39,9 +24,9 @@ const App: FC = () => {
     if (localCensusesDb) {
       dispatch(setAllCensuses(JSON.parse(localCensusesDb)));
     } else {
-      getFirebaseDbAndSetAllCensuses();
+      getFirebaseDbAndSetAllCensuses(dispatch);
     }
-  }, [getFirebaseDbAndSetAllCensuses, dispatch]);
+  }, [dispatch]);
 
   return (
     <Box
