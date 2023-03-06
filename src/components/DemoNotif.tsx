@@ -33,7 +33,7 @@ const DemoNotif: FC = () => {
         sx={{ display: 'flex', alignItems: 'center' }}
       >
         <Typography fontWeight="lg" mt={0.25}>
-          Bienvenue dans cette démo :)
+          Bienvenue dans cette démo !
         </Typography>
         <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
           {isMobile
