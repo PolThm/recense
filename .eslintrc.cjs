@@ -58,5 +58,7 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'import/prefer-default-export': 'off',
   },
 };

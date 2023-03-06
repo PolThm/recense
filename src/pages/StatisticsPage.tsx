@@ -1,7 +1,14 @@
-import { Container, Grid, Typography } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Grid,
+  Typography,
+} from '@mui/material';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
 import StatCard from '@/components/StatCard';
 import { RootState } from '@/store';
 
@@ -9,6 +16,10 @@ const StatisticsPage: FC = () => {
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
   );
+  const areCensusesLoading = useSelector(
+    (state: RootState) => state.censusesStore.isLoading
+  );
+
   const [ageAverage, setAgeAverage] = useState(0);
   const [incomeAverage, setIncomeAverage] = useState(0);
   const [residentsAverage, setResidentsAverage] = useState(0);
@@ -54,21 +65,41 @@ const StatisticsPage: FC = () => {
         (arrondies)
       </Typography>
 
-      <Grid container spacing={4} sx={{ mt: { xs: 1, md: 4 }, mb: 4 }}>
-        <Grid item xs={12} sm={6} md={4}>
-          <StatCard title="Âge" score={ageAverage} />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <StatCard
-            title="Revenu annuel"
-            score={incomeAverage}
-            scoreVariant="h3"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <StatCard title="Résidents" score={residentsAverage} />
-        </Grid>
-      </Grid>
+      <Container sx={{ pt: { xs: 4, md: 8 }, pb: 8, minHeight: 330 }}>
+        {areCensusesLoading ? (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : (
+          <>
+            {censuses.length > 0 && (
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6} md={4}>
+                  <StatCard title="Âge" score={ageAverage} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <StatCard
+                    title="Revenu annuel"
+                    score={incomeAverage}
+                    scoreVariant="h3"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <StatCard title="Résidents" score={residentsAverage} />
+                </Grid>
+              </Grid>
+            )}
+            <EmptyCensusesWarning censuses={censuses} />
+          </>
+        )}
+      </Container>
     </Container>
   );
 };

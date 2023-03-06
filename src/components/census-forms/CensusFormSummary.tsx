@@ -22,7 +22,15 @@ const CensusFormSummary: FC<Props> = ({ census }) => {
         flex: 1,
       }}
     >
-      <CensusSummary census={census} />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flex: 1,
+        }}
+      >
+        <CensusSummary census={census} />
+      </Box>
       <MyCheckbox name="consent">
         L'utilisateur accepte les conditions d'utilisation
       </MyCheckbox>

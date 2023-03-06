@@ -13,19 +13,21 @@ import {
   Typography,
 } from '@mui/material';
 import { MouseEvent, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import ConfirmModal from '@/components/shared/ConfirmModal';
 import { Routes } from '@/types/enums';
 
 import appRoutes from '../routes';
 
-const accountFakeTabs = ['Menu', 'Factice'];
-
 const APP_NAME = 'RECENSE';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -37,6 +39,13 @@ const Navbar = () => {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   const handleCloseUserMenu = () => setAnchorElUser(null);
+
+  const confirmLocalStorageReset = () => {
+    setIsConfirmModalOpen(false);
+    localStorage.clear();
+    navigate(Routes.Home);
+    window.location.reload();
+  };
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'primary.dark' }}>
@@ -159,15 +168,26 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {accountFakeTabs.map((tab) => (
-                <MenuItem key={tab} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{tab}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => setIsConfirmModalOpen(true)}
+                  color="error"
+                >
+                  Réinitialiser la démo
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
       </Container>
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        handleClose={() => setIsConfirmModalOpen(false)}
+        confirmAction={() => confirmLocalStorageReset()}
+      >
+        Êtes-vous sûr de vouloir réinitialiser la sauvegarde locale ?
+      </ConfirmModal>
     </AppBar>
   );
 };

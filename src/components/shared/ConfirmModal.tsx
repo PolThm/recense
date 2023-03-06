@@ -22,7 +22,7 @@ const ConfirmModal: FC<Props> = ({
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: { xs: '90vw', sm: 500 },
+          width: { xs: '90vw', sm: 550 },
           backgroundColor: 'background.paper',
           boxShadow: 24,
           p: 4,

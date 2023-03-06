@@ -14,11 +14,11 @@ const RandomJoke: FC = () => {
   const jokeError = apiError || !joke;
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
     if (!isApiLoading) {
-      timeout = setTimeout(() => setIsLoading(isApiLoading), 500);
+      timeoutId = setTimeout(() => setIsLoading(isApiLoading), 500); // 500ms delay to avoid flickering
     }
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(timeoutId);
   }, [isApiLoading]);
 
   return (
