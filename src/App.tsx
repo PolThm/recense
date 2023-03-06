@@ -14,9 +14,9 @@ const App: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const localCensusesDb = getCensusesFromLocalStorage();
-    if (localCensusesDb) {
-      dispatch(setAllCensuses(localCensusesDb));
+    const localCensuses = getCensusesFromLocalStorage();
+    if (localCensuses) {
+      dispatch(setAllCensuses(localCensuses));
     } else {
       getFirebaseDbAndSetAllCensuses(dispatch);
     }
