@@ -1,9 +1,8 @@
-// Import the functions you need from the SDKs you need
+// This database can only be read from, not written to.
+
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyA68IHFCQ0ysps9M9wJVjsxf13G0a2IYkQ',
   authDomain: 'recense-7dd15.firebaseapp.com',
@@ -16,9 +15,7 @@ const firebaseConfig = {
   measurementId: 'G-9RM0PFPRLN',
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Realtime Database and get a reference to the service
 // eslint-disable-next-line import/prefer-default-export
 export const database = getDatabase(app);
