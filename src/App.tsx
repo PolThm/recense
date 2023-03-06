@@ -11,6 +11,7 @@ import Navbar from '@/components/Navbar';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
 import { setAllCensuses, setError, setIsLoading } from '@/store/censusesSlice';
+import { LocalStorageKeys } from '@/types/enums';
 
 import { database } from '../firebase';
 
@@ -18,7 +19,7 @@ const App: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const getDbAndSetAllCensuses = useCallback(async () => {
+  const getFirebaseDbAndSetAllCensuses = useCallback(async () => {
     try {
       dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
@@ -31,9 +32,27 @@ const App: FC = () => {
     }
   }, [dispatch]);
 
+  const clearLocalStorageAfterOneWeek = useCallback(() => {
+    const oneWeekAgo = 1000 * 60 * 60 * 24 * 7;
+    const lastUpdate = localStorage.getItem(LocalStorageKeys.LastUpdate);
+    if (lastUpdate) {
+      const lastUpdateDate = new Date(JSON.parse(lastUpdate));
+      const currentDate = new Date();
+      if (currentDate.getTime() - lastUpdateDate.getTime() > oneWeekAgo) {
+        localStorage.clear();
+      }
+    }
+  }, []);
+
   useEffect(() => {
-    getDbAndSetAllCensuses();
-  }, [getDbAndSetAllCensuses]);
+    clearLocalStorageAfterOneWeek();
+    const localCensusesDb = localStorage.getItem(LocalStorageKeys.Censuses);
+    if (localCensusesDb) {
+      dispatch(setAllCensuses(JSON.parse(localCensusesDb)));
+    } else {
+      getFirebaseDbAndSetAllCensuses();
+    }
+  }, [getFirebaseDbAndSetAllCensuses, clearLocalStorageAfterOneWeek, dispatch]);
 
   return (
     <Box

@@ -116,7 +116,7 @@ const MyArchivesPage: FC = () => {
         handleClose={() => setIsConfirmModalOpen(false)}
         confirmAction={() => confirmArchiveDeletion()}
       >
-        Êtes-vous sûr de vouloir supprimer cette archive ?
+        Êtes-vous certain de vouloir supprimer cette archive ?
       </ConfirmModal>
     </Container>
   );
