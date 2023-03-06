@@ -14,6 +14,7 @@ const DemoNotif: FC = () => {
   };
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 600);
     const handleResize = () => setIsMobile(window.innerWidth < 600);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
