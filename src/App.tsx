@@ -10,19 +10,17 @@ import Navbar from '@/components/Navbar';
 import NotFoundPage from '@/pages/NotFoundPage';
 import appRoutes from '@/routes';
 import { setAllCensuses } from '@/store/censusesSlice';
-import { LocalStorageKeys } from '@/types/enums';
 import { getFirebaseDbAndSetAllCensuses } from '@/utils/firebase-utils';
-import { clearLocalStorageAfterOneWeek } from '@/utils/local-storage-utils';
+import { getCensusesFromLocalStorage } from '@/utils/local-storage-utils';
 
 const App: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   useEffect(() => {
-    clearLocalStorageAfterOneWeek();
-    const localCensusesDb = localStorage.getItem(LocalStorageKeys.Censuses);
+    const localCensusesDb = getCensusesFromLocalStorage();
     if (localCensusesDb) {
-      dispatch(setAllCensuses(JSON.parse(localCensusesDb)));
+      dispatch(setAllCensuses(localCensusesDb));
     } else {
       getFirebaseDbAndSetAllCensuses(dispatch);
     }
