@@ -46,3 +46,8 @@ export enum WarningTypes {
   Info = 'info',
   Error = 'error',
 }
+
+export enum LocalStorageKeys {
+  Censuses = 'censuses',
+  LastUpdate = 'lastUpdate',
+}
