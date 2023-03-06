@@ -15,6 +15,7 @@ import {
 import { MouseEvent, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import ConfirmModal from '@/components/shared/ConfirmModal';
 import { Routes } from '@/types/enums';
 
 import appRoutes from '../routes';
@@ -26,6 +27,7 @@ const Navbar = () => {
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -38,10 +40,11 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => setAnchorElUser(null);
 
-  const resetLocalStorage = () => {
+  const confirmLocalStorageReset = () => {
+    setIsConfirmModalOpen(false);
     localStorage.clear();
-    window.location.reload();
     navigate(Routes.Home);
+    window.location.reload();
   };
 
   return (
@@ -166,7 +169,10 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center" onClick={resetLocalStorage}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => setIsConfirmModalOpen(true)}
+                >
                   Réinitialiser la démo
                 </Typography>
               </MenuItem>
@@ -174,6 +180,13 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </Container>
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        handleClose={() => setIsConfirmModalOpen(false)}
+        confirmAction={() => confirmLocalStorageReset()}
+      >
+        Êtes-vous sûr de vouloir réinitialiser la sauvegarde locale ?
+      </ConfirmModal>
     </AppBar>
   );
 };
