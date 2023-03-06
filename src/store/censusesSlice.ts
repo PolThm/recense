@@ -15,9 +15,13 @@ const initialState: CensusesState = {
   error: null,
 };
 
-function findCensusIndex(state: CensusesState, id: number) {
+const findCensusIndex = (state: CensusesState, id: number) => {
   return state.censuses.findIndex((e) => e.id === id);
-}
+};
+
+const setCensusesToLocalStorage = (censuses: Census[]) => {
+  localStorage.setItem('censuses', JSON.stringify(censuses));
+};
 
 export const censusesSlice = createSlice({
   name: 'censusesStore',
@@ -29,11 +33,13 @@ export const censusesSlice = createSlice({
 
     addCensus: (state, action: PayloadAction<Census>) => {
       state.censuses = [...state.censuses, action.payload];
+      setCensusesToLocalStorage(state.censuses);
     },
 
     deleteCensus: (state, action: PayloadAction<number>) => {
       const index = findCensusIndex(state, action.payload);
       state.censuses.splice(index, 1);
+      setCensusesToLocalStorage(state.censuses);
     },
 
     setIsLoading: (state, action: PayloadAction<boolean>) => {

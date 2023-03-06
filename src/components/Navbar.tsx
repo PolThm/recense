@@ -13,17 +13,17 @@ import {
   Typography,
 } from '@mui/material';
 import { MouseEvent, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Routes } from '@/types/enums';
 
 import appRoutes from '../routes';
 
-const accountFakeTabs = ['Menu', 'Factice'];
-
 const APP_NAME = 'RECENSE';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -37,6 +37,12 @@ const Navbar = () => {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   const handleCloseUserMenu = () => setAnchorElUser(null);
+
+  const resetLocalStorage = () => {
+    localStorage.clear();
+    window.location.reload();
+    navigate(Routes.Home);
+  };
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'primary.dark' }}>
@@ -159,11 +165,11 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {accountFakeTabs.map((tab) => (
-                <MenuItem key={tab} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{tab}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" onClick={resetLocalStorage}>
+                  Réinitialiser la démo
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

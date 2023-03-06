@@ -18,7 +18,7 @@ const App: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const getDbAndSetAllCensuses = useCallback(async () => {
+  const getFirebaseDbAndSetAllCensuses = useCallback(async () => {
     try {
       dispatch(setIsLoading(true));
       const snapshot = await get(child(ref(database), 'censuses'));
@@ -32,8 +32,13 @@ const App: FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    getDbAndSetAllCensuses();
-  }, [getDbAndSetAllCensuses]);
+    const localCensusesDb = localStorage.getItem('censuses');
+    if (localCensusesDb) {
+      dispatch(setAllCensuses(JSON.parse(localCensusesDb)));
+    } else {
+      getFirebaseDbAndSetAllCensuses();
+    }
+  }, [getFirebaseDbAndSetAllCensuses, dispatch]);
 
   return (
     <Box
