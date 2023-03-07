@@ -101,7 +101,7 @@ const MyArchivesPage: FC = () => {
                 );
               })}
             </Grid>
-            <EmptyCensusesWarning censuses={censuses} />
+            {censuses.length === 0 && <EmptyCensusesWarning />}
           </>
         )}
       </Container>

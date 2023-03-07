@@ -98,7 +98,7 @@ const StatisticsPage: FC = () => {
                 </Grid>
               </Grid>
             )}
-            <EmptyCensusesWarning censuses={censuses} />
+            {censuses.length === 0 && <EmptyCensusesWarning />}
           </>
         )}
       </Container>
