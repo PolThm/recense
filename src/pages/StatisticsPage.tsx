@@ -10,14 +10,15 @@ import { useSelector } from 'react-redux';
 
 import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
 import StatCard from '@/components/StatCard';
+import useLoadWithDelay from '@/hooks/useLoadWithDelay';
 import { RootState } from '@/store';
 
 const StatisticsPage: FC = () => {
+  const { isLoadingWithDelay: areCensusesLoading, isCensusesError } =
+    useLoadWithDelay();
+
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
-  );
-  const areCensusesLoading = useSelector(
-    (state: RootState) => state.censusesStore.isLoading
   );
 
   const [ageAverage, setAgeAverage] = useState(0);
@@ -98,7 +99,9 @@ const StatisticsPage: FC = () => {
                 </Grid>
               </Grid>
             )}
-            {censuses.length === 0 && <EmptyCensusesWarning />}
+            {censuses.length === 0 && (
+              <EmptyCensusesWarning isCensusesError={isCensusesError} />
+            )}
           </>
         )}
       </Container>

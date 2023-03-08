@@ -1,17 +1,15 @@
 import { Box, Button } from '@mui/material';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import WarningMessage from '@/components/shared/WarningMessage';
-import { RootState } from '@/store';
 import { Routes, WarningTypes } from '@/types/enums';
 
-const EmptyCensusesWarning: FC = () => {
-  const isCensusError = useSelector(
-    (state: RootState) => !!state.censusesStore.error
-  );
+interface Props {
+  isCensusesError: boolean;
+}
 
+const EmptyCensusesWarning: FC<Props> = ({ isCensusesError }) => {
   return (
     <Box
       sx={{
@@ -24,7 +22,7 @@ const EmptyCensusesWarning: FC = () => {
       }}
       data-testid="empty-censuses-warning"
     >
-      {isCensusError ? (
+      {isCensusesError ? (
         <WarningMessage type={WarningTypes.Error}>
           Il semblerait qu'il y ait un problème avec le serveur :/
         </WarningMessage>

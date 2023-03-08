@@ -1,17 +1,21 @@
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { censusesApi } from '@/store/apiSlice';
 import censusesReducer from '@/store/censusesSlice';
 
 // Create the root reducer separately, so we can extract the RootState type
 const rootReducer = combineReducers({
   censusesStore: censusesReducer,
+  [censusesApi.reducerPath]: censusesApi.reducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
     reducer: rootReducer,
     preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(censusesApi.middleware),
   });
 };
 

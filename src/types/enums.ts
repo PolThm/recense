@@ -51,3 +51,7 @@ export enum LocalStorageKeys {
   Censuses = 'censuses',
   LastUpdate = 'lastUpdate',
 }
+
+export enum Queries {
+  Censuses = 'censuses',
+}
