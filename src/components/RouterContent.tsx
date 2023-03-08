@@ -12,7 +12,7 @@ const RouterContent: FC = () => {
   return (
     <Paper
       elevation={3}
-      sx={{ p: 2, flex: 1 }}
+      sx={{ p: 2, flex: 1, borderRadius: 'unset' }}
       style={{ animation: 'fadein 2s ease' }}
     >
       <AnimatePresence mode="wait" initial={false}>
