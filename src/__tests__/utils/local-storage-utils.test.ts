@@ -2,6 +2,7 @@ import { vi } from 'vitest';
 
 import CensusMock from '@/__tests__/mocks/CensusMock';
 import {
+  areLocalCensuses,
   getCensusesFromLocalStorage,
   setCensusesToLocalStorage,
 } from '@/utils/local-storage-utils';
@@ -48,5 +49,36 @@ describe('getCensusesFromLocalStorage', () => {
     spyGetItem.mockReturnValueOnce(JSON.stringify(lastUpdate));
     expect(getCensusesFromLocalStorage()).toEqual('');
     expect(spyClear).toHaveBeenCalled();
+  });
+
+  it('should NOT clear local storage if last update is not older than one week', () => {
+    const spyGetItem = vi.spyOn(Storage.prototype, 'getItem');
+    const spyClear = vi.spyOn(Storage.prototype, 'clear');
+    const censuses = [CensusMock];
+    setCensusesToLocalStorage(censuses);
+    const oneWeekAgo = 1000 * 60 * 60 * 24 * 7;
+    const lastUpdate = Date.now() - oneWeekAgo + 1;
+    spyGetItem.mockReturnValueOnce(JSON.stringify(lastUpdate));
+    expect(getCensusesFromLocalStorage()).toEqual(censuses);
+    expect(spyClear).not.toHaveBeenCalled();
+  });
+});
+
+describe('areLocalCensuses', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    vi.restoreAllMocks();
+  });
+
+  it('should return true if censuses are in local storage', () => {
+    const spyGetItem = vi.spyOn(Storage.prototype, 'getItem');
+    const censuses = [CensusMock];
+    setCensusesToLocalStorage(censuses);
+    expect(areLocalCensuses()).toEqual(true);
+    expect(spyGetItem).toHaveBeenCalledWith('censuses');
+  });
+
+  it('should return false if censuses are NOT in local storage', () => {
+    expect(areLocalCensuses()).toEqual(false);
   });
 });

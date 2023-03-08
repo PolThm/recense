@@ -25,3 +25,7 @@ export const setCensusesToLocalStorage = (censuses: Census[]) => {
   localStorage.setItem(Censuses, JSON.stringify(censuses));
   localStorage.setItem(LastUpdate, JSON.stringify(Date.now()));
 };
+
+export const areLocalCensuses = () => {
+  return !!localStorage.getItem(Censuses);
+};
