@@ -10,19 +10,14 @@ const useLoadCensusesWithDelay = () => {
     Queries.Censuses
   );
   const [isLoadingWithDelay, setIsLoadingWithDelay] = useState(isLoading);
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (areLocalCensuses()) {
       setIsLoadingWithDelay(false); // no delay if censuses are in local storage
     } else if (isLoading) {
-      const delayId = addDelay(() => setIsLoadingWithDelay(false)); // add 500ms delay to avoid flickering
-      setTimeoutId(delayId);
+      addDelay(() => setIsLoadingWithDelay(false)); // add 500ms delay to avoid flickering
     }
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [isLoading, timeoutId]);
+  }, [isLoading]);
 
   return { areCensusesLoading: isLoadingWithDelay, isCensusesError };
 };
