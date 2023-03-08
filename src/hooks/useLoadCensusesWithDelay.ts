@@ -6,9 +6,7 @@ import { areLocalCensuses } from '@/utils/local-storage-utils';
 import { addDelay } from '@/utils/time-utils';
 
 const useLoadCensusesWithDelay = () => {
-  const { isLoading, isError: isCensusesError } = useFetchCensusesQuery(
-    Queries.Censuses
-  );
+  const { isLoading, isError } = useFetchCensusesQuery(Queries.Censuses);
   const [isLoadingWithDelay, setIsLoadingWithDelay] = useState(isLoading);
 
   useEffect(() => {
@@ -19,7 +17,7 @@ const useLoadCensusesWithDelay = () => {
     }
   }, [isLoading]);
 
-  return { areCensusesLoading: isLoadingWithDelay, isCensusesError };
+  return { areCensusesLoading: isLoadingWithDelay, isCensusesError: isError };
 };
 
 export default useLoadCensusesWithDelay;

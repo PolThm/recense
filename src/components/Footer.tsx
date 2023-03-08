@@ -10,7 +10,8 @@ const Footer: FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: 'primary.main',
-        py: 2,
+        py: { xs: 1.2, sm: 1.6, md: 2 },
+        gap: { xs: 0.4, sm: 0.7, md: 1 },
       }}
     >
       <Typography
@@ -43,7 +44,7 @@ const Footer: FC = () => {
       <Typography
         color="textSecondary"
         variant="subtitle1"
-        sx={{ mt: 1, opacity: 0.8 }}
+        sx={{ opacity: 0.8 }}
       >
         {`${new Date().getFullYear()} | React | TS | Redux | MUI | Formik | Vitest`}
       </Typography>
