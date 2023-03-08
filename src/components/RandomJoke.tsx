@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 
 import { useFetchJokeQuery } from '@/store/apiSlice';
+import { Queries } from '@/types/enums';
 
 const LOADING_TEXT = 'Chargement...';
 const ERROR_TEXT = 'Il semblerait que le serveur ne soit pas joignable :/';
@@ -12,7 +13,7 @@ const RandomJoke: FC = () => {
     isLoading: isApiLoading,
     data: apiData,
     error: apiError,
-  } = useFetchJokeQuery({});
+  } = useFetchJokeQuery(Queries.Joke);
   const joke = apiData?.joke;
   const jokeError = apiError || !joke;
 
