@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useFetchCensusesQuery } from '@/store/apiSlice';
 import { LocalStorageKeys, Queries } from '@/types/enums';
 
-const useLoadWithDelay = () => {
+const useLoadCensusesWithDelay = () => {
   const { isLoading, isError: isCensusesError } = useFetchCensusesQuery(
     Queries.Censuses
   );
@@ -16,7 +16,7 @@ const useLoadWithDelay = () => {
     if (isLoading) setTimeout(() => setIsLoadingWithDelay(false), 500); // 500ms delay to avoid flickering
   }, [isLoading]);
 
-  return { isLoadingWithDelay, isCensusesError };
+  return { areCensusesLoading: isLoadingWithDelay, isCensusesError };
 };
 
-export default useLoadWithDelay;
+export default useLoadCensusesWithDelay;

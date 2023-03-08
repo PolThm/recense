@@ -12,15 +12,14 @@ import ArchiveModal from '@/components/ArchiveModal';
 import ArchivePreview from '@/components/ArchivePreview';
 import ConfirmModal from '@/components/shared/ConfirmModal';
 import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
-import useLoadWithDelay from '@/hooks/useLoadWithDelay';
+import useLoadCensusesWithDelay from '@/hooks/useLoadCensusesWithDelay';
 import { RootState } from '@/store';
 import { deleteCensus } from '@/store/censusesSlice';
 import { Census } from '@/types/interfaces';
 
 const MyArchivesPage: FC = () => {
   const dispatch = useDispatch();
-  const { isLoadingWithDelay: areCensusesLoading, isCensusesError } =
-    useLoadWithDelay();
+  const { areCensusesLoading, isCensusesError } = useLoadCensusesWithDelay();
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
   );

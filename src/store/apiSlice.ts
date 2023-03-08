@@ -1,4 +1,8 @@
-import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  createApi,
+  fakeBaseQuery,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
 import { child, get, ref } from 'firebase/database';
 
 import { database } from '../../firebase';
@@ -20,4 +24,24 @@ export const censusesApi = createApi({
   }),
 });
 
+export const jokeApi = createApi({
+  reducerPath: 'jokeApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/',
+    headers: {
+      Accept: 'application/json',
+    },
+  }),
+  endpoints: (builder) => ({
+    fetchJoke: builder.query({
+      query: () => {
+        return {
+          url: 'https://icanhazdadjoke.com/',
+        };
+      },
+    }),
+  }),
+});
+
 export const { useFetchCensusesQuery } = censusesApi;
+export const { useFetchJokeQuery } = jokeApi;

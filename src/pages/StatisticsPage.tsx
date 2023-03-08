@@ -10,12 +10,11 @@ import { useSelector } from 'react-redux';
 
 import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
 import StatCard from '@/components/StatCard';
-import useLoadWithDelay from '@/hooks/useLoadWithDelay';
+import useLoadCensusesWithDelay from '@/hooks/useLoadCensusesWithDelay';
 import { RootState } from '@/store';
 
 const StatisticsPage: FC = () => {
-  const { isLoadingWithDelay: areCensusesLoading, isCensusesError } =
-    useLoadWithDelay();
+  const { areCensusesLoading, isCensusesError } = useLoadCensusesWithDelay();
 
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
