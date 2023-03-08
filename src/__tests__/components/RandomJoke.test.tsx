@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import RandomJoke from '@/components/RandomJoke';
 import { setupStore } from '@/store';
@@ -26,7 +26,8 @@ describe('RandomJoke', () => {
 
   it('should render the joke', async () => {
     renderWithProviders(<RandomJoke />, { store });
-    const joke = await screen.findByTestId('random-joke-joke');
-    expect(joke).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.getByTestId('random-joke-joke')).toBeInTheDocument()
+    );
   });
 });
