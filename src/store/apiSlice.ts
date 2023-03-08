@@ -24,8 +24,8 @@ export const censusesApi = createApi({
   }),
 });
 
-export const jokeApi = createApi({
-  reducerPath: 'jokeApi',
+export const customApi = createApi({
+  reducerPath: 'customApi',
   baseQuery: fetchBaseQuery({
     baseUrl: '/',
     headers: {
@@ -33,15 +33,13 @@ export const jokeApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    fetchJoke: builder.query({
-      query: () => {
-        return {
-          url: 'https://icanhazdadjoke.com/',
-        };
+    fetchCustom: builder.query({
+      query: (url) => {
+        return { url };
       },
     }),
   }),
 });
 
 export const { useFetchCensusesQuery } = censusesApi;
-export const { useFetchJokeQuery } = jokeApi;
+export const { useFetchCustomQuery } = customApi;

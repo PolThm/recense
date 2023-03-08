@@ -54,5 +54,4 @@ export enum LocalStorageKeys {
 
 export enum Queries {
   Censuses = 'censuses',
-  Joke = 'joke',
 }

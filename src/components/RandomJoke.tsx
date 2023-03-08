@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 
-import { useFetchJokeQuery } from '@/store/apiSlice';
-import { Queries } from '@/types/enums';
+import { useFetchCustomQuery } from '@/store/apiSlice';
 
 const LOADING_TEXT = 'Chargement...';
 const ERROR_TEXT = 'Il semblerait que le serveur ne soit pas joignable :/';
+const API_URL = 'https://icanhazdadjoke.com/';
 
 const RandomJoke: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ const RandomJoke: FC = () => {
     isLoading: isApiLoading,
     data: apiData,
     error: apiError,
-  } = useFetchJokeQuery(Queries.Joke);
+  } = useFetchCustomQuery(API_URL);
   const joke = apiData?.joke;
   const jokeError = apiError || !joke;
 
