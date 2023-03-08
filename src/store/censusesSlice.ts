@@ -6,14 +6,10 @@ import { setCensusesToLocalStorage } from '@/utils/local-storage-utils';
 
 export interface CensusesState {
   censuses: Census[];
-  isLoading: boolean;
-  error: Error | null;
 }
 
 const initialState: CensusesState = {
   censuses: [],
-  isLoading: false,
-  error: null,
 };
 
 const findCensusIndex = (state: CensusesState, id: number) => {
@@ -38,23 +34,10 @@ export const censusesSlice = createSlice({
       state.censuses.splice(index, 1);
       setCensusesToLocalStorage(state.censuses);
     },
-
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
-
-    setError: (state, action: PayloadAction<Error>) => {
-      state.error = action.payload;
-    },
   },
 });
 
-export const {
-  addCensus,
-  deleteCensus,
-  setAllCensuses,
-  setIsLoading,
-  setError,
-} = censusesSlice.actions;
+export const { addCensus, deleteCensus, setAllCensuses } =
+  censusesSlice.actions;
 
 export default censusesSlice.reducer;

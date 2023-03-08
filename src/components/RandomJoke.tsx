@@ -1,15 +1,19 @@
 import { Box, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 
-import useFetch from '@/hooks/useFetch';
+import { useFetchJokeQuery } from '@/store/apiSlice';
+import { Queries } from '@/types/enums';
 
 const LOADING_TEXT = 'Chargement...';
 const ERROR_TEXT = 'Il semblerait que le serveur ne soit pas joignable :/';
-const API_URL = 'https://icanhazdadjoke.com/';
 
 const RandomJoke: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const { isApiLoading, apiData, apiError } = useFetch(API_URL);
+  const {
+    isLoading: isApiLoading,
+    data: apiData,
+    error: apiError,
+  } = useFetchJokeQuery(Queries.Joke);
   const joke = apiData?.joke;
   const jokeError = apiError || !joke;
 

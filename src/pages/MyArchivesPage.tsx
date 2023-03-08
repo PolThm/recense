@@ -12,17 +12,16 @@ import ArchiveModal from '@/components/ArchiveModal';
 import ArchivePreview from '@/components/ArchivePreview';
 import ConfirmModal from '@/components/shared/ConfirmModal';
 import EmptyCensusesWarning from '@/components/shared/EmptyCensusesWarning';
+import useLoadCensusesWithDelay from '@/hooks/useLoadCensusesWithDelay';
 import { RootState } from '@/store';
 import { deleteCensus } from '@/store/censusesSlice';
 import { Census } from '@/types/interfaces';
 
 const MyArchivesPage: FC = () => {
   const dispatch = useDispatch();
+  const { areCensusesLoading, isCensusesError } = useLoadCensusesWithDelay();
   const censuses = useSelector(
     (state: RootState) => state.censusesStore.censuses
-  );
-  const areCensusesLoading = useSelector(
-    (state: RootState) => state.censusesStore.isLoading
   );
 
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
@@ -101,7 +100,9 @@ const MyArchivesPage: FC = () => {
                 );
               })}
             </Grid>
-            {censuses.length === 0 && <EmptyCensusesWarning />}
+            {censuses.length === 0 && (
+              <EmptyCensusesWarning isCensusesError={isCensusesError} />
+            )}
           </>
         )}
       </Container>
