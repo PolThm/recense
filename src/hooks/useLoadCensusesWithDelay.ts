@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useFetchCensusesQuery } from '@/store/apiSlice';
 import { Queries } from '@/types/enums';
 import { areLocalCensuses } from '@/utils/local-storage-utils';
+import { addDelay } from '@/utils/time-utils';
 
 const useLoadCensusesWithDelay = () => {
   const { isLoading, isError: isCensusesError } = useFetchCensusesQuery(
@@ -14,7 +15,7 @@ const useLoadCensusesWithDelay = () => {
     if (areLocalCensuses()) {
       setIsLoadingWithDelay(false); // no delay if censuses are in local storage
     } else if (isLoading) {
-      setTimeout(() => setIsLoadingWithDelay(false), 500); // 500ms delay to avoid flickering
+      addDelay(() => setIsLoadingWithDelay(false)); // add 500ms delay to avoid flickering
     }
   }, [isLoading]);
 

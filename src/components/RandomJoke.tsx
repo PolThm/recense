@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 
 import { useFetchCustomQuery } from '@/store/apiSlice';
+import { addDelay } from '@/utils/time-utils';
 
 const LOADING_TEXT = 'Chargement...';
 const ERROR_TEXT = 'Il semblerait que le serveur ne soit pas joignable :/';
@@ -20,7 +21,7 @@ const RandomJoke: FC = () => {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     if (!isApiLoading) {
-      timeoutId = setTimeout(() => setIsLoading(isApiLoading), 500); // 500ms delay to avoid flickering
+      timeoutId = addDelay(() => setIsLoading(isApiLoading)); // add 500ms delay to avoid flickering
     }
     return () => clearTimeout(timeoutId);
   }, [isApiLoading]);
