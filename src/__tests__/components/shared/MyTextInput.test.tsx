@@ -14,10 +14,6 @@ vi.mock('formik', () => ({
 }));
 
 describe('MyTextInput', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should render a text type input (with label)', () => {
     render(<MyTextInput label="Prénom" name="firstName" type="text" />);
     expect(screen.getByLabelText('Prénom')).toBeInTheDocument();
