@@ -9,7 +9,7 @@ vi.mock('formik', () => ({
       value: '',
       onChange: vi.fn(),
     },
-    { touched: false, error: '' },
+    { touched: false, error: false },
   ],
 }));
 
