@@ -57,7 +57,7 @@ describe('StatisticsPage', () => {
   it('should render the residents average card if it is not loading and there are censuses', async () => {
     renderWithProviders(<StatisticsPage />, { store });
     await waitFor(() =>
-      expect(screen.getByText('Résidents')).toBeInTheDocument()
+      expect(screen.getByText('Résident(s)')).toBeInTheDocument()
     );
   });
 

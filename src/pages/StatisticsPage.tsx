@@ -94,11 +94,11 @@ const StatisticsPage: FC = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                  <StatCard title="Résidents" score={residentsAverage} />
+                  <StatCard title="Résident(s)" score={residentsAverage} />
                 </Grid>
               </Grid>
             )}
-            {censuses.length === 0 && (
+            {!censuses.length && (
               <EmptyCensusesWarning isCensusesError={isCensusesError} />
             )}
           </>

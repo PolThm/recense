@@ -100,7 +100,7 @@ const MyArchivesPage: FC = () => {
                 );
               })}
             </Grid>
-            {censuses.length === 0 && (
+            {!censuses.length && (
               <EmptyCensusesWarning isCensusesError={isCensusesError} />
             )}
           </>
