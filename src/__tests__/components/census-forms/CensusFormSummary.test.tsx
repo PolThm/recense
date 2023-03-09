@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import CensusMock from '@/__tests__/mocks/CensusMock';
+import CensusMock from '@/__tests__/_mocks/CensusMock';
 import CensusFormSummary from '@/components/census-forms/CensusFormSummary';
 
 vi.mock('formik', () => ({

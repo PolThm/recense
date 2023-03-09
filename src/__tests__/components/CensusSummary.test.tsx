@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import censusMock from '@/__tests__/mocks/CensusMock';
+import censusMock from '@/__tests__/_mocks/CensusMock';
 import CensusSummary from '@/components/CensusSummary';
 
 describe('CensusSummary', () => {

@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import CensusMock from '@/__tests__/mocks/CensusMock';
+import CensusMock from '@/__tests__/_mocks/CensusMock';
 import {
   areLocalCensuses,
   getCensusesFromLocalStorage,

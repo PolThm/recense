@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { beforeEach } from 'vitest';
 
-import CensusMock from '@/__tests__/mocks/CensusMock';
+import CensusMock from '@/__tests__/_mocks/CensusMock';
 import StatisticsPage from '@/pages/StatisticsPage';
 import { setupStore } from '@/store';
 import { setAllCensuses } from '@/store/censusesSlice';

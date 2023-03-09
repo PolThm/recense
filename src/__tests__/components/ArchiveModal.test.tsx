@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import censusMock from '@/__tests__/mocks/CensusMock';
+import censusMock from '@/__tests__/_mocks/CensusMock';
 import ArchiveModal from '@/components/ArchiveModal';
 
 describe('ArchiveModal', () => {
