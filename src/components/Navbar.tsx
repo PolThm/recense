@@ -156,6 +156,7 @@ const Navbar = () => {
               <Avatar
                 alt="profile image"
                 src="https://source.unsplash.com/random/40×40"
+                sx={{ backgroundColor: 'primary.light' }}
               />
             </IconButton>
             <Menu
