@@ -79,7 +79,7 @@ const summaryValidationSchema = yup.object().shape({
   consent: yup
     .boolean()
     .required('Champ requis')
-    .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
+    .oneOf([true], "L'utilisateur doit accepter les conditions d'utilisation"),
 });
 
 export const getValidationSchema = (currentStep: FormSteps) => {
