@@ -24,8 +24,4 @@ const MyTextInput: FC<Props> = ({ label, ...props }) => {
   );
 };
 
-MyTextInput.defaultProps = {
-  placeholder: '',
-};
-
 export default MyTextInput;

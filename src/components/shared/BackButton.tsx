@@ -7,7 +7,7 @@ type Props = {
   children?: string;
 };
 
-const BackButton: FC<Props> = ({ onClick, children }) => {
+const BackButton: FC<Props> = ({ onClick, children = 'Retour' }) => {
   return (
     <Button
       data-testid="back-button"
@@ -19,10 +19,6 @@ const BackButton: FC<Props> = ({ onClick, children }) => {
       {children}
     </Button>
   );
-};
-
-BackButton.defaultProps = {
-  children: 'Retour',
 };
 
 export default BackButton;

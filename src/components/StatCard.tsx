@@ -7,7 +7,7 @@ type Props = {
   scoreVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 };
 
-const StatCard: FC<Props> = ({ title, score, scoreVariant }) => {
+const StatCard: FC<Props> = ({ title, score, scoreVariant = 'h1' }) => {
   const formattedScore = score.toLocaleString('fr-CA', {
     maximumFractionDigits: 2,
   });
@@ -56,10 +56,6 @@ const StatCard: FC<Props> = ({ title, score, scoreVariant }) => {
       </CardContent>
     </Card>
   );
-};
-
-StatCard.defaultProps = {
-  scoreVariant: 'h1',
 };
 
 export default StatCard;
