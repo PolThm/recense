@@ -16,6 +16,7 @@ const Footer: FC = () => {
     >
       <Typography
         variant="h6"
+        component="p"
         color="primary.contrastText"
         sx={{
           fontWeight: 400,
@@ -42,8 +43,9 @@ const Footer: FC = () => {
         </Link>
       </Typography>
       <Typography
-        color="textSecondary"
         variant="subtitle1"
+        component="p"
+        color="textSecondary"
         sx={{ opacity: 0.8 }}
       >
         {`${new Date().getFullYear()} | React | TS | Redux | MUI | Formik | Vitest`}

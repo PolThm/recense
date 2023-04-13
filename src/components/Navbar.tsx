@@ -85,6 +85,7 @@ const Navbar = () => {
               size="large"
               onClick={handleOpenNavMenu}
               color="inherit"
+              aria-label="menu"
             >
               <MenuIcon />
             </IconButton>
